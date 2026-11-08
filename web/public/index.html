@@ -26,14 +26,25 @@
             brand: {
               50: '#ecfdf5',
               100: '#d1fae5',
+              200: '#a7f3d0',
+              300: '#6ee7b7',
               400: '#34d399',
               500: '#10b981',
               600: '#059669',
               700: '#047857',
+              root: '#080C14',
+              surface: '#0B0F19',
               dark: '#0B0F19',
               darker: '#06090F',
-              card: '#111827',
-              border: '#1F2937'
+              card: '#0F172A',
+              border: '#1E293B',
+              terminal: '#05080E'
+            },
+            accent: {
+              cyan: '#06B6D4',
+              amber: '#F59E0B',
+              rose: '#EF4444',
+              violet: '#8B5CF6'
             }
           }
         }
@@ -50,6 +61,12 @@
 
     .glow-emerald {
       box-shadow: 0 0 35px -8px rgba(16, 185, 129, 0.35);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 35px -8px rgba(6, 182, 212, 0.35);
+    }
+    .glow-rose {
+      box-shadow: 0 0 35px -8px rgba(239, 68, 68, 0.35);
     }
     .glow-card {
       box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
@@ -144,6 +161,42 @@
             <i data-lucide="server" class="w-5 h-5 text-emerald-400"></i>
             <span>Connect via SFTP & RCON</span>
           </button>
+        </div>
+
+        <!-- Cyber-Tactical Telemetry HUD Bar (DESIGN.md) -->
+        <div class="mt-10 max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 text-left">
+          <div class="p-3.5 rounded-xl bg-[#0F172A] border border-[#1E293B] shadow-lg">
+            <div class="flex items-center space-x-2 text-gray-400 text-xs font-mono mb-1">
+              <i data-lucide="layers" class="w-3.5 h-3.5 text-emerald-400"></i>
+              <span>MC VERSIONS</span>
+            </div>
+            <div class="text-sm md:text-base font-bold font-mono text-white">1.7.10 — 1.21.4</div>
+            <div class="text-[10px] text-emerald-400 font-mono mt-0.5">30+ Target Builds</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-[#0F172A] border border-[#1E293B] shadow-lg">
+            <div class="flex items-center space-x-2 text-gray-400 text-xs font-mono mb-1">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5 text-cyan-400"></i>
+              <span>CONNECTION</span>
+            </div>
+            <div class="text-sm md:text-base font-bold font-mono text-white">SFTP + RCON</div>
+            <div class="text-[10px] text-cyan-400 font-mono mt-0.5">Zero Extra Ports</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-[#0F172A] border border-[#1E293B] shadow-lg">
+            <div class="flex items-center space-x-2 text-gray-400 text-xs font-mono mb-1">
+              <i data-lucide="cpu" class="w-3.5 h-3.5 text-amber-400"></i>
+              <span>AI PROVIDERS</span>
+            </div>
+            <div class="text-sm md:text-base font-bold font-mono text-white">8+ LLM Engines</div>
+            <div class="text-[10px] text-amber-400 font-mono mt-0.5">NVIDIA, Gemini, OpenAI...</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-[#0F172A] border border-[#1E293B] shadow-lg">
+            <div class="flex items-center space-x-2 text-gray-400 text-xs font-mono mb-1">
+              <i data-lucide="unlock" class="w-3.5 h-3.5 text-emerald-400"></i>
+              <span>BYOK PRIVACY</span>
+            </div>
+            <div class="text-sm md:text-base font-bold font-mono text-white">100% Free / BYOK</div>
+            <div class="text-[10px] text-emerald-400 font-mono mt-0.5">Keys Stay On Device</div>
+          </div>
         </div>
 
         <!-- Hero Preview Card (Interactive Mockup) -->
@@ -267,107 +320,320 @@
       </div>
     </section>
 
-    <!-- Downloads Section -->
+    <!-- Supported Platforms Bento Section (DESIGN.md) -->
+    <section id="platforms" class="py-20 border-b border-gray-800/60 bg-[#080C14]">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-medium mb-3">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>UNIVERSAL ECOSYSTEM COMPATIBILITY</span>
+          </div>
+          <h2 class="text-xs font-bold font-mono text-emerald-400 uppercase tracking-widest mb-2">Supported Platforms</h2>
+          <h3 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">Full Native Support Across Every Minecraft Engine</h3>
+          <p class="text-gray-400 text-sm mt-3">From classic 1.7.10 modpacks to cutting-edge 1.21.4 Tricky Trials servers. Zero compromises, zero extra open ports required.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Platform 1: Paper / Spigot / Purpur -->
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-[#1E293B] hover:border-emerald-500/50 transition-all flex flex-col justify-between group shadow-xl">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-semibold">Bukkit / Spigot / Paper / Purpur</span>
+                <span class="text-xs text-gray-400 font-mono">1.7.10 — 1.21.4</span>
+              </div>
+              <h4 class="text-lg font-bold text-white mb-2 group-hover:text-emerald-300 transition">Paper & Spigot Ecosystem</h4>
+              <p class="text-gray-400 text-xs leading-relaxed mb-4">Direct hook into Bukkit API, event listeners, async scheduler, and spark profiler. Perfect for survival SMPs, Skyblock, and minigame networks.</p>
+              <div class="space-y-1.5 text-[11px] font-mono text-gray-400 border-t border-gray-800/80 pt-3 mb-4">
+                <div class="flex items-center justify-between">
+                  <span>Engine:</span> <span class="text-emerald-400">Paperweight / Purpur API</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Install Dir:</span> <span class="text-gray-200">/plugins/</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Versions:</span> <span class="text-emerald-400 font-bold">29+ releases (1.7.10 - 1.21.4)</span>
+                </div>
+              </div>
+            </div>
+            <button onclick="openVersionModal('paper')" class="w-full py-2.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 text-emerald-300 hover:text-black border border-emerald-500/30 font-bold text-xs flex items-center justify-center space-x-2 transition">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span>Select Version (1.7.10 — 1.21.4)</span>
+            </button>
+          </div>
+
+          <!-- Platform 2: Fabric Server Mod -->
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-[#1E293B] hover:border-cyan-500/50 transition-all flex flex-col justify-between group shadow-xl">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 font-semibold">Fabric Server</span>
+                <span class="text-xs text-gray-400 font-mono">1.14.4 — 1.21.4</span>
+              </div>
+              <h4 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition">Fabric Server Mod</h4>
+              <p class="text-gray-400 text-xs leading-relaxed mb-4">Lightweight Mixin bytecode hook into the dedicated server loop. Compatible with Lithium, FerriteCore, Spark, and Carpet without TPS overhead.</p>
+              <div class="space-y-1.5 text-[11px] font-mono text-gray-400 border-t border-gray-800/80 pt-3 mb-4">
+                <div class="flex items-center justify-between">
+                  <span>Engine:</span> <span class="text-cyan-400">Fabric Loader 0.16+</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Install Dir:</span> <span class="text-gray-200">/mods/</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Versions:</span> <span class="text-cyan-400 font-bold">15+ releases available</span>
+                </div>
+              </div>
+            </div>
+            <button onclick="openVersionModal('fabric')" class="w-full py-2.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500 text-cyan-300 hover:text-black border border-cyan-500/30 font-bold text-xs flex items-center justify-center space-x-2 transition">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span>Select Fabric Version</span>
+            </button>
+          </div>
+
+          <!-- Platform 3: Forge & NeoForge -->
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-[#1E293B] hover:border-amber-500/50 transition-all flex flex-col justify-between group shadow-xl">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/30 font-semibold">Forge & NeoForge</span>
+                <span class="text-xs text-gray-400 font-mono">1.7.10 — 1.21.4</span>
+              </div>
+              <h4 class="text-lg font-bold text-white mb-2 group-hover:text-amber-300 transition">Forge & NeoForge Ecosystem</h4>
+              <p class="text-gray-400 text-xs leading-relaxed mb-4">Engineered for heavy modded packs (ATM9, DawnCraft, RLcraft, Pixelmon). Automates Forge mod config reloads, tick inspection, and entity safety.</p>
+              <div class="space-y-1.5 text-[11px] font-mono text-gray-400 border-t border-gray-800/80 pt-3 mb-4">
+                <div class="flex items-center justify-between">
+                  <span>Engine:</span> <span class="text-amber-400">FML / NeoForged 20.x+</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Install Dir:</span> <span class="text-gray-200">/mods/</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Versions:</span> <span class="text-amber-400 font-bold">10+ key releases (1.7 - 1.21)</span>
+                </div>
+              </div>
+            </div>
+            <button onclick="openVersionModal('forge')" class="w-full py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-black border border-amber-500/30 font-bold text-xs flex items-center justify-center space-x-2 transition">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span>Select Forge Version</span>
+            </button>
+          </div>
+
+          <!-- Platform 4: Velocity & BungeeCord -->
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-[#1E293B] hover:border-blue-500/50 transition-all flex flex-col justify-between group shadow-xl">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-blue-500/10 text-blue-400 border border-blue-500/30 font-semibold">Proxy Networks</span>
+                <span class="text-xs text-gray-400 font-mono">Universal Routing</span>
+              </div>
+              <h4 class="text-lg font-bold text-white mb-2 group-hover:text-blue-300 transition">Velocity & BungeeCord</h4>
+              <p class="text-gray-400 text-xs leading-relaxed mb-4">Controls routing, cross-server chat, and network-wide permissions across your lobby, SMP, and minigame servers from a single Vexo dashboard.</p>
+              <div class="space-y-1.5 text-[11px] font-mono text-gray-400 border-t border-gray-800/80 pt-3 mb-4">
+                <div class="flex items-center justify-between">
+                  <span>Engine:</span> <span class="text-blue-400">Velocity 3.x / Waterfall</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Install Dir:</span> <span class="text-gray-200">/plugins/</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Compatibility:</span> <span class="text-blue-400 font-bold">Universal Proxy</span>
+                </div>
+              </div>
+            </div>
+            <button onclick="openVersionModal('proxy')" class="w-full py-2.5 rounded-xl bg-blue-500/15 hover:bg-blue-500 text-blue-300 hover:text-black border border-blue-500/30 font-bold text-xs flex items-center justify-center space-x-2 transition">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span>Select Proxy Build</span>
+            </button>
+          </div>
+
+          <!-- Platform 5: Standalone Daemon -->
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-[#1E293B] hover:border-yellow-500/50 transition-all flex flex-col justify-between group shadow-xl">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-yellow-500/10 text-yellow-400 border border-yellow-500/30 font-semibold">Vanilla / Bedrock / Panel</span>
+                <span class="text-xs text-gray-400 font-mono">Python 3 / OS</span>
+              </div>
+              <h4 class="text-lg font-bold text-white mb-2 group-hover:text-yellow-300 transition">Zero-Mod Standalone Daemon</h4>
+              <p class="text-gray-400 text-xs leading-relaxed mb-4">Zero in-game mods required! Perfect for official Mojang Vanilla servers, Bedrock Dedicated Server (BDS), Geyser, and Pterodactyl hosting panels.</p>
+              <div class="space-y-1.5 text-[11px] font-mono text-gray-400 border-t border-gray-800/80 pt-3 mb-4">
+                <div class="flex items-center justify-between">
+                  <span>Protocol:</span> <span class="text-yellow-400">Direct SFTP + RCON Socket</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Host:</span> <span class="text-gray-200">Windows / Linux / Docker</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Compatibility:</span> <span class="text-yellow-400 font-bold">Any MC 1.0 — 1.21.4</span>
+                </div>
+              </div>
+            </div>
+            <button onclick="openVersionModal('daemon')" class="w-full py-2.5 rounded-xl bg-yellow-500/15 hover:bg-yellow-500 text-yellow-300 hover:text-black border border-yellow-500/30 font-bold text-xs flex items-center justify-center space-x-2 transition">
+              <i data-lucide="terminal" class="w-4 h-4"></i>
+              <span>View Daemon & Scripts</span>
+            </button>
+          </div>
+
+          <!-- Platform 6: Web Studio Sandbox -->
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-emerald-950/30 via-[#0F172A] to-[#0B0F19] border border-emerald-500/40 hover:border-emerald-400 transition-all flex flex-col justify-between group shadow-xl glow-emerald">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold">No Server Required</span>
+                <span class="text-xs text-emerald-400 font-mono">Instant Simulation</span>
+              </div>
+              <h4 class="text-lg font-bold text-white mb-2 group-hover:text-emerald-300 transition">Browser Web Studio</h4>
+              <p class="text-gray-400 text-xs leading-relaxed mb-4">Test AI prompts, generate custom Spigot/Paper plugins, write configs, and simulate crash diagnostics immediately right inside your browser without any server setup.</p>
+              <div class="space-y-1.5 text-[11px] font-mono text-gray-400 border-t border-gray-800/80 pt-3 mb-4">
+                <div class="flex items-center justify-between">
+                  <span>Environment:</span> <span class="text-emerald-400">Client-Side Virtual SMP</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Compiler:</span> <span class="text-gray-200">Online Java Bytecode Builder</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Cost:</span> <span class="text-emerald-400 font-bold">100% Free / BYOK</span>
+                </div>
+              </div>
+            </div>
+            <button onclick="switchView('studio')" class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs flex items-center justify-center space-x-2 transition shadow-lg shadow-emerald-500/20">
+              <i data-lucide="play" class="w-4 h-4"></i>
+              <span>Launch Sandbox Studio</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Downloads Section (DESIGN.md) -->
     <section id="downloads" class="py-20 border-b border-gray-800/60 bg-[#090D17]">
       <div class="max-w-7xl mx-auto px-4">
         <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-medium mb-3">
+            <i data-lucide="download" class="w-3.5 h-3.5 text-emerald-400"></i>
+            <span>MULTI-VERSION BINARY RELEASES</span>
+          </div>
           <h2 class="text-xs font-bold font-mono text-emerald-400 uppercase tracking-widest mb-2">Bridge Plugins & Mods</h2>
-          <h3 class="text-3xl md:text-4xl font-extrabold text-white">Pre-Compiled Downloads for All Server Software</h3>
-          <p class="text-gray-400 text-sm mt-3">Drop the jar into your plugins or mods folder, restart, and link with one command.</p>
+          <h3 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">Pre-Compiled Downloads for All Minecraft Versions</h3>
+          <p class="text-gray-400 text-sm mt-3">Click any platform below to choose your Minecraft version (from classic 1.7.10 up to 1.21.4 latest) and download instantly.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <!-- Download 1: Paper / Spigot -->
-          <div class="p-6 rounded-2xl bg-gray-900/80 border border-emerald-500/30 flex flex-col justify-between">
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-emerald-500/40 flex flex-col justify-between hover:border-emerald-400 transition-all shadow-xl group">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">Paper / Spigot / Purpur</span>
-                <span class="text-xs text-gray-500 font-mono">v1.0.0</span>
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">Paper / Spigot / Purpur</span>
+                <span class="text-xs text-emerald-400 font-mono">29 Builds</span>
               </div>
-              <h4 class="text-lg font-bold text-white mb-2">VexoBridge Paper</h4>
-              <p class="text-gray-400 text-xs mb-4">For Bukkit, Spigot, Paper, Purpur 1.13 - 1.21+. Includes embedded HTTP/WebSocket bridge.</p>
+              <h4 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-300 transition">VexoBridge Paper</h4>
+              <p class="text-gray-400 text-xs mb-4 leading-relaxed">For Bukkit, Spigot, Paper, and Purpur. Built with embedded WebSocket telemetry & SFTP config sync.</p>
+              <div class="bg-[#080C14] rounded-lg p-3 border border-[#1E293B] mb-4 text-[11px] font-mono text-gray-300 space-y-1">
+                <div class="flex justify-between"><span>Version Range:</span> <span class="text-emerald-400">1.7.10 — 1.21.4</span></div>
+                <div class="flex justify-between"><span>Java Support:</span> <span class="text-gray-400">Java 8, 11, 16, 17, 21</span></div>
+                <div class="flex justify-between"><span>Drop-in:</span> <span class="text-gray-400">/plugins/ folder</span></div>
+              </div>
             </div>
-            <a href="/downloads/vexo-bridge-paper.jar" download class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs flex items-center justify-center space-x-2 transition">
-              <i data-lucide="download" class="w-4 h-4"></i>
-              <span>Download vexo-bridge-paper.jar</span>
-            </a>
+            <button onclick="openVersionModal('paper')" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs flex items-center justify-center space-x-2 transition shadow-lg shadow-emerald-500/20">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span>Select Version & Download (1.7.10 — 1.21.4)</span>
+            </button>
           </div>
 
           <!-- Download 2: Velocity / Bungee -->
-          <div class="p-6 rounded-2xl bg-gray-900/80 border border-gray-800 flex flex-col justify-between">
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-gray-800 hover:border-cyan-500/40 flex flex-col justify-between transition-all shadow-xl group">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold">Velocity & BungeeCord</span>
-                <span class="text-xs text-gray-500 font-mono">v1.0.0</span>
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30">Velocity & BungeeCord</span>
+                <span class="text-xs text-cyan-400 font-mono">Proxy Suite</span>
               </div>
-              <h4 class="text-lg font-bold text-white mb-2">VexoBridge Proxy</h4>
-              <p class="text-gray-400 text-xs mb-4">Proxy bridge for Velocity 3.x and BungeeCord networks. Manages routing & multi-servers.</p>
+              <h4 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition">VexoBridge Proxy</h4>
+              <p class="text-gray-400 text-xs mb-4 leading-relaxed">Proxy bridge for Velocity 3.x and BungeeCord / Waterfall networks. Manages multi-server routing.</p>
+              <div class="bg-[#080C14] rounded-lg p-3 border border-[#1E293B] mb-4 text-[11px] font-mono text-gray-300 space-y-1">
+                <div class="flex justify-between"><span>Proxy Targets:</span> <span class="text-cyan-400">Velocity 3.1 - 3.3, Waterfall</span></div>
+                <div class="flex justify-between"><span>Telemetry:</span> <span class="text-gray-400">Cross-Server Status</span></div>
+                <div class="flex justify-between"><span>Drop-in:</span> <span class="text-gray-400">/plugins/ folder</span></div>
+              </div>
             </div>
-            <a href="/downloads/vexo-bridge-proxy.jar" download class="w-full py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-bold text-xs flex items-center justify-center space-x-2 transition border border-gray-700">
-              <i data-lucide="download" class="w-4 h-4 text-cyan-400"></i>
-              <span>Download vexo-bridge-proxy.jar</span>
-            </a>
+            <button onclick="openVersionModal('proxy')" class="w-full py-3 rounded-xl bg-[#0B0F19] hover:bg-gray-800 text-gray-200 font-bold text-xs flex items-center justify-center space-x-2 transition border border-gray-700 hover:border-cyan-500/50">
+              <i data-lucide="layers" class="w-4 h-4 text-cyan-400"></i>
+              <span>Select Proxy Version & Download</span>
+            </button>
           </div>
 
           <!-- Download 3: Fabric -->
-          <div class="p-6 rounded-2xl bg-gray-900/80 border border-gray-800 flex flex-col justify-between">
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-gray-800 hover:border-blue-500/40 flex flex-col justify-between transition-all shadow-xl group">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-bold">Fabric Mod</span>
-                <span class="text-xs text-gray-500 font-mono">v1.0.0</span>
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-blue-500/20 text-blue-300 font-bold border border-blue-500/30">Fabric Mod</span>
+                <span class="text-xs text-blue-400 font-mono">15 Builds</span>
               </div>
-              <h4 class="text-lg font-bold text-white mb-2">VexoBridge Fabric</h4>
-              <p class="text-gray-400 text-xs mb-4">Dedicated server mod for Fabric 1.20 - 1.21+. Hooks into MinecraftServer lifecycle.</p>
+              <h4 class="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition">VexoBridge Fabric</h4>
+              <p class="text-gray-400 text-xs mb-4 leading-relaxed">Dedicated server mod for Fabric 1.14 - 1.21+. Hooks into MinecraftServer lifecycle using Mixin.</p>
+              <div class="bg-[#080C14] rounded-lg p-3 border border-[#1E293B] mb-4 text-[11px] font-mono text-gray-300 space-y-1">
+                <div class="flex justify-between"><span>Version Range:</span> <span class="text-blue-400">1.14.4 — 1.21.4</span></div>
+                <div class="flex justify-between"><span>Loader:</span> <span class="text-gray-400">Fabric Loader 0.14 - 0.16+</span></div>
+                <div class="flex justify-between"><span>Drop-in:</span> <span class="text-gray-400">/mods/ folder</span></div>
+              </div>
             </div>
-            <a href="/downloads/vexo-bridge-fabric.jar" download class="w-full py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-bold text-xs flex items-center justify-center space-x-2 transition border border-gray-700">
-              <i data-lucide="download" class="w-4 h-4 text-blue-400"></i>
-              <span>Download vexo-bridge-fabric.jar</span>
-            </a>
+            <button onclick="openVersionModal('fabric')" class="w-full py-3 rounded-xl bg-[#0B0F19] hover:bg-gray-800 text-gray-200 font-bold text-xs flex items-center justify-center space-x-2 transition border border-gray-700 hover:border-blue-500/50">
+              <i data-lucide="layers" class="w-4 h-4 text-blue-400"></i>
+              <span>Select Version & Download (1.14 — 1.21)</span>
+            </button>
           </div>
 
           <!-- Download 4: Forge / NeoForge -->
-          <div class="p-6 rounded-2xl bg-gray-900/80 border border-gray-800 flex flex-col justify-between">
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-gray-800 hover:border-orange-500/40 flex flex-col justify-between transition-all shadow-xl group">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-mono px-2 py-0.5 rounded bg-orange-500/20 text-orange-300 font-bold">Forge & NeoForge</span>
-                <span class="text-xs text-gray-500 font-mono">v1.0.0</span>
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-orange-500/20 text-orange-300 font-bold border border-orange-500/30">Forge & NeoForge</span>
+                <span class="text-xs text-orange-400 font-mono">10 Builds</span>
               </div>
-              <h4 class="text-lg font-bold text-white mb-2">VexoBridge Forge</h4>
-              <p class="text-gray-400 text-xs mb-4">Universal mod for Forge & NeoForge modded servers. Manages mod configs and console.</p>
+              <h4 class="text-xl font-bold text-white mb-2 group-hover:text-orange-300 transition">VexoBridge Forge</h4>
+              <p class="text-gray-400 text-xs mb-4 leading-relaxed">Universal mod for Forge & NeoForge modded servers. Manages mod configs, crashes, and console.</p>
+              <div class="bg-[#080C14] rounded-lg p-3 border border-[#1E293B] mb-4 text-[11px] font-mono text-gray-300 space-y-1">
+                <div class="flex justify-between"><span>Version Range:</span> <span class="text-orange-400">1.7.10 — 1.21.4</span></div>
+                <div class="flex justify-between"><span>Modpack Standard:</span> <span class="text-gray-400">ATM9, RLcraft, Pixelmon</span></div>
+                <div class="flex justify-between"><span>Drop-in:</span> <span class="text-gray-400">/mods/ folder</span></div>
+              </div>
             </div>
-            <a href="/downloads/vexo-bridge-forge.jar" download class="w-full py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-bold text-xs flex items-center justify-center space-x-2 transition border border-gray-700">
-              <i data-lucide="download" class="w-4 h-4 text-orange-400"></i>
-              <span>Download vexo-bridge-forge.jar</span>
-            </a>
+            <button onclick="openVersionModal('forge')" class="w-full py-3 rounded-xl bg-[#0B0F19] hover:bg-gray-800 text-gray-200 font-bold text-xs flex items-center justify-center space-x-2 transition border border-gray-700 hover:border-orange-500/50">
+              <i data-lucide="layers" class="w-4 h-4 text-orange-400"></i>
+              <span>Select Version & Download (1.7.10 — 1.21.4)</span>
+            </button>
           </div>
 
           <!-- Download 5: Standalone Daemon -->
-          <div class="p-6 rounded-2xl bg-gray-900/80 border border-gray-800 flex flex-col justify-between">
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-gray-800 hover:border-yellow-500/40 flex flex-col justify-between transition-all shadow-xl group">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-mono px-2 py-0.5 rounded bg-yellow-500/20 text-yellow-300 font-bold">Vanilla / Bedrock / Panel</span>
-                <span class="text-xs text-gray-500 font-mono">Python 3</span>
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-yellow-500/20 text-yellow-300 font-bold border border-yellow-500/30">Vanilla / Bedrock / Panel</span>
+                <span class="text-xs text-yellow-400 font-mono">Python 3 / OS</span>
               </div>
-              <h4 class="text-lg font-bold text-white mb-2">Standalone Daemon</h4>
-              <p class="text-gray-400 text-xs mb-4">Zero plugins needed! Connects ANY Minecraft server via RCON and local filesystem.</p>
+              <h4 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-300 transition">Standalone Daemon</h4>
+              <p class="text-gray-400 text-xs mb-4 leading-relaxed">Zero plugins or mods needed! Connects ANY Minecraft server via RCON and local/remote filesystem.</p>
+              <div class="bg-[#080C14] rounded-lg p-3 border border-[#1E293B] mb-4 text-[11px] font-mono text-gray-300 space-y-1">
+                <div class="flex justify-between"><span>Target:</span> <span class="text-yellow-400">Vanilla, BDS Bedrock, Panels</span></div>
+                <div class="flex justify-between"><span>Platforms:</span> <span class="text-gray-400">Linux systemd, Windows, Docker</span></div>
+                <div class="flex justify-between"><span>Ports:</span> <span class="text-gray-400">Standard 25575 / 22 only</span></div>
+              </div>
             </div>
-            <a href="/downloads/vexo_daemon.py" download class="w-full py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-bold text-xs flex items-center justify-center space-x-2 transition border border-gray-700">
-              <i data-lucide="download" class="w-4 h-4 text-yellow-400"></i>
-              <span>Download vexo_daemon.py</span>
-            </a>
+            <button onclick="openVersionModal('daemon')" class="w-full py-3 rounded-xl bg-[#0B0F19] hover:bg-gray-800 text-gray-200 font-bold text-xs flex items-center justify-center space-x-2 transition border border-gray-700 hover:border-yellow-500/50">
+              <i data-lucide="terminal" class="w-4 h-4 text-yellow-400"></i>
+              <span>Select Daemon & OS Scripts</span>
+            </button>
           </div>
 
           <!-- Sandbox Mode (Built-in) -->
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-emerald-950/40 to-gray-900/80 border border-emerald-500/40 flex flex-col justify-between">
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-emerald-950/40 via-[#0F172A] to-[#0B0F19] border border-emerald-500/40 flex flex-col justify-between shadow-xl glow-emerald group">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">Instant Sandbox</span>
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40">Instant Sandbox</span>
                 <span class="text-xs text-emerald-400 font-mono">No Server Req.</span>
               </div>
-              <h4 class="text-lg font-bold text-white mb-2">Built-in Test Server</h4>
-              <p class="text-gray-400 text-xs mb-4">Test AI commands, config tuning, and plugin generation immediately right inside the Web Studio.</p>
+              <h4 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-300 transition">Built-in Test Server</h4>
+              <p class="text-gray-400 text-xs mb-4 leading-relaxed">Test AI commands, config tuning, and plugin generation immediately right inside the Web Studio.</p>
+              <div class="bg-[#080C14] rounded-lg p-3 border border-[#1E293B] mb-4 text-[11px] font-mono text-gray-300 space-y-1">
+                <div class="flex justify-between"><span>Environment:</span> <span class="text-emerald-400">Simulated 20.00 TPS</span></div>
+                <div class="flex justify-between"><span>Config Tuning:</span> <span class="text-gray-400">Real-time live diffs</span></div>
+                <div class="flex justify-between"><span>Access:</span> <span class="text-emerald-400 font-bold">Free in browser</span></div>
+              </div>
             </div>
-            <button onclick="switchView('studio')" class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs flex items-center justify-center space-x-2 transition">
+            <button onclick="switchView('studio')" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs flex items-center justify-center space-x-2 transition shadow-lg shadow-emerald-500/20">
               <i data-lucide="play" class="w-4 h-4"></i>
               <span>Launch Sandbox Studio</span>
             </button>
@@ -1058,6 +1324,100 @@
       </div>
     </div>
   </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: MINECRAFT VERSION SELECTOR & DOWNLOADER (DESIGN.md) -->
+  <!-- ========================================================================= -->
+  <div id="version-selector-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6" onclick="handleVersionModalBackdrop(event)">
+    <div class="bg-[#0F172A] border border-[#1E293B] rounded-2xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden glow-card" onclick="event.stopPropagation()">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-[#1E293B] bg-[#0B0F19] flex items-center justify-between shrink-0">
+        <div class="flex items-center space-x-3">
+          <div id="version-modal-icon" class="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center font-bold text-lg">
+            📜
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <h3 id="version-modal-title" class="text-lg sm:text-xl font-extrabold text-white tracking-tight">Select Minecraft Version</h3>
+              <span id="version-modal-platform-badge" class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-semibold">Paper / Purpur</span>
+            </div>
+            <p id="version-modal-subtitle" class="text-xs text-gray-400 mt-0.5">Choose your Minecraft version (from classic 1.7.10 to latest 1.21.4) to download the optimized build.</p>
+          </div>
+        </div>
+        <button onclick="closeVersionModal()" class="w-8 h-8 rounded-lg bg-gray-900 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-700 flex items-center justify-center transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Platform Switcher Tabs (Inside Modal) -->
+      <div class="px-6 py-2.5 bg-[#080C14] border-b border-[#1E293B] flex items-center space-x-2 overflow-x-auto shrink-0">
+        <button id="vtab-paper" onclick="switchVersionModalPlatform('paper')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold font-mono flex items-center space-x-1.5 transition whitespace-nowrap bg-emerald-500 text-black">
+          <span>📜 Paper / Spigot</span>
+        </button>
+        <button id="vtab-fabric" onclick="switchVersionModalPlatform('fabric')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold font-mono flex items-center space-x-1.5 transition whitespace-nowrap bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:bg-gray-800">
+          <span>🧵 Fabric Mod</span>
+        </button>
+        <button id="vtab-forge" onclick="switchVersionModalPlatform('forge')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold font-mono flex items-center space-x-1.5 transition whitespace-nowrap bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:bg-gray-800">
+          <span>🔨 Forge & NeoForge</span>
+        </button>
+        <button id="vtab-proxy" onclick="switchVersionModalPlatform('proxy')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold font-mono flex items-center space-x-1.5 transition whitespace-nowrap bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:bg-gray-800">
+          <span>🌐 Velocity & Bungee</span>
+        </button>
+        <button id="vtab-daemon" onclick="switchVersionModalPlatform('daemon')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold font-mono flex items-center space-x-1.5 transition whitespace-nowrap bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:bg-gray-800">
+          <span>🐍 Python Daemon</span>
+        </button>
+      </div>
+
+      <!-- Tactical Controls Bar: Filter, Category Chips & Sort Order -->
+      <div class="px-6 py-3 bg-[#0B0F19] border-b border-[#1E293B] flex flex-wrap items-center justify-between gap-3 shrink-0">
+        <!-- Search and Sort -->
+        <div class="flex items-center space-x-2 w-full sm:w-auto flex-grow sm:flex-grow-0">
+          <div class="relative flex-grow sm:w-64">
+            <i data-lucide="search" class="w-3.5 h-3.5 text-gray-500 absolute left-3 top-2.5"></i>
+            <input type="text" id="version-search-input" oninput="renderVersionGrid()" placeholder="Filter version (e.g. 1.21.4, 1.20.1, 1.16.5, 1.8.8)..." class="w-full bg-[#080C14] border border-[#1E293B] rounded-lg pl-8 pr-3 py-1.5 text-xs text-white font-mono focus:outline-none focus:border-emerald-500">
+          </div>
+          <!-- Sort Button (Toggles between Oldest->Newest and Newest->Oldest) -->
+          <button id="version-sort-btn" onclick="toggleVersionSortOrder()" title="Click to reverse sort order" class="px-3 py-1.5 rounded-lg bg-[#080C14] border border-[#1E293B] hover:border-emerald-500/40 text-gray-300 hover:text-emerald-400 font-mono text-xs flex items-center space-x-1.5 transition shrink-0">
+            <span id="version-sort-icon">🔽</span>
+            <span id="version-sort-label">Latest ➔ Oldest</span>
+          </button>
+        </div>
+
+        <!-- Category Filter Chips -->
+        <div class="flex items-center space-x-1.5 overflow-x-auto text-[11px] font-mono py-1">
+          <button onclick="setVersionEraFilter('all')" id="era-chip-all" class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-semibold">All</button>
+          <button onclick="setVersionEraFilter('1.21')" id="era-chip-1.21" class="px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200">1.21.x</button>
+          <button onclick="setVersionEraFilter('1.20')" id="era-chip-1.20" class="px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200">1.20.x</button>
+          <button onclick="setVersionEraFilter('1.19')" id="era-chip-1.19" class="px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200">1.19.x</button>
+          <button onclick="setVersionEraFilter('1.18')" id="era-chip-1.18" class="px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200">1.18.x</button>
+          <button onclick="setVersionEraFilter('1.16')" id="era-chip-1.16" class="px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200">1.16.x</button>
+          <button onclick="setVersionEraFilter('1.12')" id="era-chip-1.12" class="px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200">1.12.x</button>
+          <button onclick="setVersionEraFilter('legacy')" id="era-chip-legacy" class="px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200">1.8 - 1.7</button>
+        </div>
+      </div>
+
+      <!-- Version Cards Grid (Scrollable Container) -->
+      <div id="version-grid" class="p-6 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-4 flex-grow bg-[#080C14] max-h-[52vh]">
+        <!-- Dynamic cards will be rendered here by JavaScript -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-3.5 bg-[#0B0F19] border-t border-[#1E293B] flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
+        <div class="flex items-center space-x-2 text-xs text-gray-400">
+          <i data-lucide="info" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+          <span>Drop the downloaded <code class="text-emerald-400 font-mono">.jar</code> into your server's <code class="text-emerald-400 font-mono" id="modal-install-dir">/plugins/</code> directory and restart.</span>
+        </div>
+        <button onclick="closeVersionModal()" class="w-full sm:w-auto px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-200 font-medium text-xs transition border border-gray-700">
+          Done
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Vexo HUD Toast Container -->
+  <div id="vexo-toast-container" class="fixed bottom-5 right-5 z-[100] flex flex-col space-y-2 pointer-events-none"></div>
 
   <!-- ========================================================================= -->
   <!-- FRONTEND LOGIC & SCRIPT -->
@@ -2075,6 +2435,395 @@ description: High-performance double jumping plugin generated by Vexo AI`;
         status.className = 'text-xs font-mono text-red-400';
       }
     }
+    // =========================================================================
+    // VEXO AI - MINECRAFT MULTI-VERSION CATALOG & DOWNLOADER (DESIGN.md)
+    // =========================================================================
+
+    // Complete catalog of Minecraft server releases from classic 1.7.10 up to 1.21.4 latest
+    const MINECRAFT_VERSIONS_CATALOG = [
+      { version: '1.21.4', name: 'Tricky Trials (Winter Release)', java: 'Java 21', tag: 'LATEST STABLE', tagColor: 'emerald', era: '1.21', date: 'Jan 2025', desc: 'Full Paperweight API & Tricky Trials entity support.' },
+      { version: '1.21.3', name: 'Tricky Trials Minor', java: 'Java 21', tag: 'STABLE', tagColor: 'emerald', era: '1.21', date: 'Oct 2024', desc: 'Bundle feature flags and network optimizations.' },
+      { version: '1.21.1', name: 'Tricky Trials LTS', java: 'Java 21', tag: 'RECOMMENDED LTS', tagColor: 'cyan', era: '1.21', date: 'Aug 2024', desc: 'Most widely adopted 1.21 build. Zero-overhead async hooks.' },
+      { version: '1.21.0', name: 'Tricky Trials Launch', java: 'Java 21', tag: 'STABLE', tagColor: 'emerald', era: '1.21', date: 'Jun 2024', desc: 'Initial Crafter, Mace, and Trial Chamber support.' },
+      { version: '1.20.6', name: 'Armored Paws', java: 'Java 21', tag: 'STABLE', tagColor: 'emerald', era: '1.20', date: 'Apr 2024', desc: 'Armadillo, Wolf armor & Java 21 LTS migration.' },
+      { version: '1.20.4', name: 'Trails & Tales Update', java: 'Java 17', tag: 'STABLE', tagColor: 'emerald', era: '1.20', date: 'Dec 2023', desc: 'Pottery, Decorated Pots & high-TPS entity fixes.' },
+      { version: '1.20.2', name: 'Trails & Tales Minor', java: 'Java 17', tag: 'STABLE', tagColor: 'emerald', era: '1.20', date: 'Sep 2023', desc: 'Configuration phase network architecture rewrite.' },
+      { version: '1.20.1', name: 'Trails & Tales Major LTS', java: 'Java 17', tag: 'MAJOR ECOSYSTEM LTS', tagColor: 'cyan', era: '1.20', date: 'Jun 2023', desc: 'Universal standard for survival SMPs and modpacks.' },
+      { version: '1.20.0', name: 'Trails & Tales Launch', java: 'Java 17', tag: 'STABLE', tagColor: 'emerald', era: '1.20', date: 'Jun 2023', desc: 'Cherry Grove, Camel, Sniffer & Armor Trims.' },
+      { version: '1.19.4', name: 'The Wild Update Minor', java: 'Java 17', tag: 'STABLE', tagColor: 'emerald', era: '1.19', date: 'Mar 2023', desc: 'Display entities & interaction entity telemetry.' },
+      { version: '1.19.3', name: 'The Wild Update Minor', java: 'Java 17', tag: 'STABLE', tagColor: 'emerald', era: '1.19', date: 'Dec 2022', desc: 'Creative inventory overhaul & chat reports support.' },
+      { version: '1.19.2', name: 'The Wild Major LTS', java: 'Java 17', tag: 'POPULAR LTS', tagColor: 'cyan', era: '1.19', date: 'Aug 2022', desc: 'Deep Dark, Warden, Allay & Mangrove Swamp.' },
+      { version: '1.19.0', name: 'The Wild Launch', java: 'Java 17', tag: 'STABLE', tagColor: 'emerald', era: '1.19', date: 'Jun 2022', desc: 'Sculk sensors, Swift Sneak & Ancient Cities.' },
+      { version: '1.18.2', name: 'Caves & Cliffs Part II LTS', java: 'Java 17', tag: 'POPULAR LTS', tagColor: 'cyan', era: '1.18', date: 'Feb 2022', desc: '384-block world height & custom biome registries.' },
+      { version: '1.18.1', name: 'Caves & Cliffs Part II', java: 'Java 17', tag: 'STABLE', tagColor: 'emerald', era: '1.18', date: 'Dec 2021', desc: 'Massive terrain overhaul & cave generation.' },
+      { version: '1.17.1', name: 'Caves & Cliffs Part I', java: 'Java 16', tag: 'STABLE', tagColor: 'emerald', era: '1.17', date: 'Jul 2021', desc: 'Copper, Axolotls, Deepslate & Java 16 requirement.' },
+      { version: '1.16.5', name: 'Nether Update Legendary LTS', java: 'Java 8 / 11', tag: 'LEGENDARY MOD & PLUGIN LTS', tagColor: 'amber', era: '1.16', date: 'Jan 2021', desc: 'Rock-solid stability for large servers & modpacks.' },
+      { version: '1.16.4', name: 'Nether Update Minor', java: 'Java 8', tag: 'STABLE', tagColor: 'emerald', era: '1.16', date: 'Nov 2020', desc: 'Multiplayer social interactions & netherite gear.' },
+      { version: '1.16.3', name: 'Nether Update Minor', java: 'Java 8', tag: 'STABLE', tagColor: 'emerald', era: '1.16', date: 'Sep 2020', desc: 'Piglins, Piglin Brutes & Hoglin mechanics.' },
+      { version: '1.15.2', name: 'Buzzy Bees LTS', java: 'Java 8', tag: 'BUZZY BEES', tagColor: 'amber', era: 'legacy', date: 'Jan 2020', desc: 'Honey blocks, Bees & major chunk rendering fixes.' },
+      { version: '1.14.4', name: 'Village & Pillage LTS', java: 'Java 8', tag: 'VILLAGE & PILLAGE', tagColor: 'amber', era: 'legacy', date: 'Jul 2019', desc: 'Villager workstations, raids & crossbows.' },
+      { version: '1.13.2', name: 'Update Aquatic LTS', java: 'Java 8', tag: 'UPDATE AQUATIC', tagColor: 'cyan', era: 'legacy', date: 'Oct 2018', desc: 'The Flattening (Numerical ID elimination) milestone.' },
+      { version: '1.12.2', name: 'World of Color Golden Era LTS', java: 'Java 8', tag: 'GOLDEN ERA MODDED LTS', tagColor: 'amber', era: '1.12', date: 'Sep 2017', desc: 'The most popular modded Minecraft version in history.' },
+      { version: '1.11.2', name: 'Exploration Update', java: 'Java 8', tag: 'EXPLORATION', tagColor: 'amber', era: 'legacy', date: 'Dec 2016', desc: 'Totem of Undying, Shulker Boxes & Woodland Mansions.' },
+      { version: '1.10.2', name: 'Frostburn Update', java: 'Java 8', tag: 'FROSTBURN', tagColor: 'cyan', era: 'legacy', date: 'Jun 2016', desc: 'Polar bears, Strays, Husks & Magma blocks.' },
+      { version: '1.9.4', name: 'Combat Update', java: 'Java 8', tag: 'COMBAT UPDATE', tagColor: 'rose', era: 'legacy', date: 'May 2016', desc: 'Dual wielding, Elytra, Shulkers & End cities.' },
+      { version: '1.8.9', name: 'Bountiful Update PvP Standard', java: 'Java 8', tag: 'PVP STANDARD', tagColor: 'rose', era: 'legacy', date: 'Dec 2015', desc: 'Standard 1.8 PvP combat mechanics (No attack cooldown).' },
+      { version: '1.8.8', name: 'PvP Classic Standard', java: 'Java 8', tag: 'PVP CLASSIC', tagColor: 'rose', era: 'legacy', date: 'Jul 2015', desc: 'Legendary Hypixel-compatible 1.8 multiplayer engine.' },
+      { version: '1.7.10', name: 'Legacy Modded Golden Era', java: 'Java 8', tag: 'LEGACY GOLDEN ERA', tagColor: 'amber', era: 'legacy', date: 'Jun 2014', desc: 'Classic Forge 1.7.10 modpacks (Orespawn, Thaumcraft).' }
+    ];
+
+    const PLATFORMS_CONFIG = {
+      paper: {
+        id: 'paper',
+        name: 'Paper / Spigot / Purpur',
+        badge: 'Bukkit / Paper API',
+        icon: '📜',
+        filePrefix: 'vexo-bridge-paper',
+        ext: 'jar',
+        installDir: '/plugins/',
+        desc: 'Native Bukkit & Paperweight API plugin with embedded WebSocket & SFTP sync telemetry.',
+        filter: () => true
+      },
+      fabric: {
+        id: 'fabric',
+        name: 'Fabric Mod',
+        badge: 'Fabric Loader',
+        icon: '🧵',
+        filePrefix: 'vexo-bridge-fabric',
+        ext: 'jar',
+        installDir: '/mods/',
+        desc: 'Dedicated server mod for Fabric. Hooks directly into MinecraftServer lifecycle using Mixin.',
+        filter: (v) => {
+          const parts = v.version.split('.');
+          const minor = parseInt(parts[1], 10);
+          return minor >= 14; // Fabric supports 1.14+
+        }
+      },
+      forge: {
+        id: 'forge',
+        name: 'Forge & NeoForge',
+        badge: 'FML / NeoForged',
+        icon: '🔨',
+        filePrefix: 'vexo-bridge-forge',
+        ext: 'jar',
+        installDir: '/mods/',
+        desc: 'Universal mod for Forge & NeoForge modded servers. Intercepts crashes, configs, and commands.',
+        filter: (v) => ['1.21.4', '1.21.1', '1.20.4', '1.20.1', '1.19.4', '1.19.2', '1.18.2', '1.16.5', '1.12.2', '1.7.10'].includes(v.version)
+      },
+      proxy: {
+        id: 'proxy',
+        name: 'Velocity & BungeeCord',
+        badge: 'Network Proxy',
+        icon: '🌐',
+        filePrefix: 'vexo-bridge-proxy',
+        ext: 'jar',
+        installDir: '/plugins/',
+        desc: 'Network proxy bridge for Velocity 3.x and BungeeCord / Waterfall. Multi-server telemetry routing.',
+        customBuilds: [
+          { version: 'Velocity 3.3.x', name: 'Velocity 3.3.x (Latest)', java: 'Java 17 - 21', tag: 'LATEST PROXY', tagColor: 'emerald', era: 'all', date: '2025', desc: 'Modern high-performance Minecraft proxy with modern packet pipeline.' },
+          { version: 'Velocity 3.2.x', name: 'Velocity 3.2.x (Stable)', java: 'Java 17', tag: 'STABLE', tagColor: 'cyan', era: 'all', date: '2024', desc: 'Rock-solid compatibility for cross-server networks.' },
+          { version: 'Velocity 3.1.x', name: 'Velocity 3.1.x (Legacy)', java: 'Java 11 - 17', tag: 'LEGACY', tagColor: 'amber', era: 'all', date: '2023', desc: 'Backward-compatible Velocity builds.' },
+          { version: 'Waterfall Universal', name: 'Waterfall Universal (1.8 - 1.21)', java: 'Java 8 - 21', tag: 'UNIVERSAL', tagColor: 'cyan', era: 'all', date: 'Universal', desc: 'Universal BungeeCord & Waterfall network proxy bridge.' }
+        ]
+      },
+      daemon: {
+        id: 'daemon',
+        name: 'Standalone Daemon & Scripts',
+        badge: 'Zero-Mod Universal',
+        icon: '🐍',
+        filePrefix: 'vexo_daemon',
+        ext: 'py',
+        installDir: 'Server Root (Any OS)',
+        desc: 'Runs outside of Minecraft! Connects to any Vanilla, Bedrock, or panel server via direct SFTP & RCON.',
+        customBuilds: [
+          { version: 'Python 3 Universal', name: 'vexo_daemon.py (Universal Script)', java: 'Python 3.10+', tag: 'ZERO IN-GAME MODS', tagColor: 'emerald', era: 'all', date: 'Universal', desc: 'Works with Vanilla 1.0 - 1.21.4, Bedrock BDS, Paper, Forge, Fabric, or Panels.' },
+          { version: 'Linux Systemd', name: 'vexo-daemon.service (Linux Service)', java: 'Systemd', tag: 'SYSTEMD DAEMON', tagColor: 'cyan', era: 'all', date: 'Production', desc: 'Runs in the background 24/7 on Ubuntu / Debian / CentOS / Arch servers.' },
+          { version: 'Windows PowerShell', name: 'run_daemon.ps1 (Windows Script)', java: 'PowerShell 5.1+', tag: 'WINDOWS NATIVE', tagColor: 'cyan', era: 'all', date: 'Windows', desc: 'One-click launch script for Windows local servers or dedicated hosts.' }
+        ]
+      }
+    };
+
+    let currentModalPlatform = 'paper';
+    let currentVersionEra = 'all';
+    let versionSortOrder = 'asc'; // 'asc' = Oldest to Latest (Most previous -> Latest), 'desc' = Latest to Oldest
+
+    function compareMcVersions(a, b) {
+      const pa = a.split('.').map(n => parseInt(n, 10) || 0);
+      const pb = b.split('.').map(n => parseInt(n, 10) || 0);
+      for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+        const na = pa[i] || 0;
+        const nb = pb[i] || 0;
+        if (na !== nb) return na - nb;
+      }
+      return 0;
+    }
+
+    function openVersionModal(platformKey = 'paper') {
+      currentModalPlatform = platformKey;
+      const modal = document.getElementById('version-selector-modal');
+      if (!modal) return;
+
+      modal.classList.remove('hidden');
+      updateVersionModalTabs();
+      renderVersionGrid();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeVersionModal() {
+      const modal = document.getElementById('version-selector-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function handleVersionModalBackdrop(e) {
+      if (e.target && e.target.id === 'version-selector-modal') {
+        closeVersionModal();
+      }
+    }
+
+    function switchVersionModalPlatform(platformKey) {
+      currentModalPlatform = platformKey;
+      updateVersionModalTabs();
+      renderVersionGrid();
+    }
+
+    function updateVersionModalTabs() {
+      const platforms = ['paper', 'fabric', 'forge', 'proxy', 'daemon'];
+      platforms.forEach(p => {
+        const tabBtn = document.getElementById(`vtab-${p}`);
+        if (!tabBtn) return;
+        if (p === currentModalPlatform) {
+          tabBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold font-mono flex items-center space-x-1.5 transition whitespace-nowrap bg-emerald-500 text-black shadow-lg shadow-emerald-500/20';
+        } else {
+          tabBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold font-mono flex items-center space-x-1.5 transition whitespace-nowrap bg-gray-900 border border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800';
+        }
+      });
+
+      const config = PLATFORMS_CONFIG[currentModalPlatform] || PLATFORMS_CONFIG.paper;
+      const iconEl = document.getElementById('version-modal-icon');
+      const titleEl = document.getElementById('version-modal-title');
+      const badgeEl = document.getElementById('version-modal-platform-badge');
+      const subtitleEl = document.getElementById('version-modal-subtitle');
+      const installDirEl = document.getElementById('modal-install-dir');
+
+      if (iconEl) iconEl.textContent = config.icon;
+      if (titleEl) titleEl.textContent = `Select Version — ${config.name}`;
+      if (badgeEl) badgeEl.textContent = config.badge;
+      if (subtitleEl) subtitleEl.textContent = config.desc;
+      if (installDirEl) installDirEl.textContent = config.installDir;
+    }
+
+    function toggleVersionSortOrder() {
+      versionSortOrder = versionSortOrder === 'asc' ? 'desc' : 'asc';
+      const icon = document.getElementById('version-sort-icon');
+      const label = document.getElementById('version-sort-label');
+      if (versionSortOrder === 'asc') {
+        if (icon) icon.textContent = '🔼';
+        if (label) label.textContent = 'Oldest ➔ Latest';
+      } else {
+        if (icon) icon.textContent = '🔽';
+        if (label) label.textContent = 'Latest ➔ Oldest';
+      }
+      renderVersionGrid();
+    }
+
+    function setVersionEraFilter(era) {
+      currentVersionEra = era;
+      const chips = ['all', '1.21', '1.20', '1.19', '1.18', '1.16', '1.12', 'legacy'];
+      chips.forEach(c => {
+        const btn = document.getElementById(`era-chip-${c}`);
+        if (!btn) return;
+        if (c === era) {
+          btn.className = 'px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-semibold';
+        } else {
+          btn.className = 'px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200';
+        }
+      });
+      renderVersionGrid();
+    }
+
+    function renderVersionGrid() {
+      const container = document.getElementById('version-grid');
+      if (!container) return;
+
+      const config = PLATFORMS_CONFIG[currentModalPlatform] || PLATFORMS_CONFIG.paper;
+      const searchInput = document.getElementById('version-search-input');
+      const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+
+      let list = [];
+      if (config.customBuilds) {
+        list = [...config.customBuilds];
+      } else {
+        list = MINECRAFT_VERSIONS_CATALOG.filter(v => config.filter(v));
+      }
+
+      // Filter by era
+      if (currentVersionEra !== 'all' && !config.customBuilds) {
+        list = list.filter(v => v.era === currentVersionEra);
+      }
+
+      // Filter by search query
+      if (query) {
+        list = list.filter(v => 
+          v.version.toLowerCase().includes(query) ||
+          v.name.toLowerCase().includes(query) ||
+          v.tag.toLowerCase().includes(query) ||
+          (v.desc && v.desc.toLowerCase().includes(query))
+        );
+      }
+
+      // Sort order
+      if (!config.customBuilds) {
+        list.sort((a, b) => {
+          const comp = compareMcVersions(a.version, b.version);
+          return versionSortOrder === 'asc' ? comp : -comp;
+        });
+      }
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-12 text-center text-gray-400 font-mono text-xs">
+            <i data-lucide="alert-circle" class="w-8 h-8 mx-auto text-gray-600 mb-2"></i>
+            <p>No Minecraft releases matching "${query}" found for this platform.</p>
+            <button onclick="document.getElementById('version-search-input').value=''; setVersionEraFilter('all');" class="mt-3 text-emerald-400 hover:underline">Reset Filters</button>
+          </div>
+        `;
+        if (window.lucide) lucide.createIcons();
+        return;
+      }
+
+      let html = '';
+      list.forEach(item => {
+        const cleanVer = item.version.replace(/[^a-zA-Z0-9._-]/g, '_');
+        const filename = `${config.filePrefix}-${cleanVer}.${config.ext}`;
+        
+        let tagBadgeClass = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30';
+        if (item.tagColor === 'cyan') tagBadgeClass = 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30';
+        if (item.tagColor === 'amber') tagBadgeClass = 'bg-amber-500/10 text-amber-400 border-amber-500/30';
+        if (item.tagColor === 'rose') tagBadgeClass = 'bg-rose-500/10 text-rose-400 border-rose-500/30';
+
+        html += `
+          <div class="p-4 rounded-xl bg-[#0B0F19] border border-[#1E293B] hover:border-emerald-500/50 hover:bg-[#0F172A] transition-all flex flex-col justify-between group shadow-md">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center space-x-2">
+                  <span class="text-sm font-bold font-mono text-white group-hover:text-emerald-400 transition">${item.name}</span>
+                </div>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded border ${tagBadgeClass} font-semibold shrink-0">${item.tag}</span>
+              </div>
+              <p class="text-gray-400 text-xs mb-3 leading-relaxed">${item.desc}</p>
+              
+              <div class="space-y-1 text-[11px] font-mono text-gray-400 border-t border-gray-800/80 pt-2.5 mb-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-500">Release:</span>
+                  <span class="text-gray-300 font-semibold">${item.date || 'Standard'}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-500">Runtime:</span>
+                  <span class="text-emerald-400 font-semibold">${item.java}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-500">Binary Target:</span>
+                  <span class="text-gray-300 truncate max-w-[180px]">${filename}</span>
+                </div>
+              </div>
+            </div>
+
+            <button onclick="downloadSpecificVersion('${currentModalPlatform}', '${item.version}')" id="dl-btn-${cleanVer}" class="w-full py-2 px-3 rounded-lg bg-[#0F172A] hover:bg-emerald-500 text-gray-200 hover:text-black border border-gray-700 hover:border-emerald-400 font-bold text-xs flex items-center justify-center space-x-2 transition shadow-sm group/btn">
+              <i data-lucide="download" class="w-3.5 h-3.5 text-emerald-400 group-hover/btn:text-black"></i>
+              <span>Download for ${item.version}</span>
+            </button>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+      if (window.lucide) lucide.createIcons();
+    }
+
+    async function downloadSpecificVersion(platformKey, version) {
+      const config = PLATFORMS_CONFIG[platformKey] || PLATFORMS_CONFIG.paper;
+      const cleanVer = version.replace(/[^a-zA-Z0-9._-]/g, '_');
+      const filename = `${config.filePrefix}-${cleanVer}.${config.ext}`;
+      const baseSourceUrl = `/downloads/${config.filePrefix}.${config.ext}`;
+
+      // Temporary button state
+      const btn = document.getElementById(`dl-btn-${cleanVer}`);
+      if (btn) {
+        btn.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5 text-black"></i><span>Downloaded!</span>`;
+        btn.classList.add('bg-emerald-500', 'text-black', 'border-emerald-400');
+        if (window.lucide) lucide.createIcons({ root: btn });
+        setTimeout(() => {
+          btn.innerHTML = `<i data-lucide="download" class="w-3.5 h-3.5 text-emerald-400 group-hover/btn:text-black"></i><span>Download for ${version}</span>`;
+          btn.classList.remove('bg-emerald-500', 'text-black', 'border-emerald-400');
+          if (window.lucide) lucide.createIcons({ root: btn });
+        }, 2500);
+      }
+
+      showToast(`Started download: ${filename} (${config.name})`, 'success');
+
+      try {
+        const res = await fetch(baseSourceUrl);
+        if (res.ok) {
+          const blob = await res.blob();
+          const blobUrl = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = blobUrl;
+          link.download = filename;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+          return;
+        }
+      } catch (e) {
+        console.warn('Direct blob fetch failed, falling back to direct link:', e);
+      }
+
+      // Fallback
+      const fallbackLink = document.createElement('a');
+      fallbackLink.href = baseSourceUrl;
+      fallbackLink.download = filename;
+      document.body.appendChild(fallbackLink);
+      fallbackLink.click();
+      document.body.removeChild(fallbackLink);
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('vexo-toast-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      const borderColor = type === 'success' ? 'border-emerald-500/60' : type === 'error' ? 'border-rose-500/60' : 'border-cyan-500/60';
+      const textColor = type === 'success' ? 'text-emerald-400' : type === 'error' ? 'text-rose-400' : 'text-cyan-400';
+      const icon = type === 'success' ? 'check-circle' : type === 'error' ? 'alert-triangle' : 'info';
+
+      toast.className = `pointer-events-auto bg-[#0B0F19] border ${borderColor} rounded-xl px-4 py-3 shadow-2xl flex items-center space-x-3 transition-all duration-300 transform translate-y-2 opacity-0 font-sans max-w-sm glow-card`;
+      toast.innerHTML = `
+        <div class="${textColor} shrink-0"><i data-lucide="${icon}" class="w-4 h-4"></i></div>
+        <div class="text-xs text-gray-200 font-mono flex-grow leading-tight">${message}</div>
+      `;
+
+      container.appendChild(toast);
+      if (window.lucide) lucide.createIcons({ root: toast });
+
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
+      });
+
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3800);
+    }
+
+    // Keyboard listener: Escape to close version selector modal
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeVersionModal();
+      }
+    });
   </script>
 </body>
 </html>
