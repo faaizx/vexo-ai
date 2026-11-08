@@ -1,0 +1,69 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.connyai.bridge'
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs '../../lib'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: '../../lib', include: ['*.jar'])
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('jar', Jar) {
+    archiveFileName = 'conny-bridge-forge.jar'
+    from sourceSets.main.output
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes([
+            "Specification-Title"     : "connybridge",
+            "Specification-Vendor"    : "Conny AI Open Edition",
+            "Specification-Version"   : "1",
+            "Implementation-Title"    : "connybridge",
+            "Implementation-Version"  : project.version,
+            "Implementation-Vendor"   : "Conny AI Open Edition",
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+tasks.named('build') {
+    doLast {
+        copy {
+            from layout.buildDirectory.file('libs/conny-bridge-forge.jar')
+            into file("${projectDir}")
+        }
+        copy {
+            from layout.buildDirectory.file('libs/conny-bridge-forge.jar')
+            into file("${projectDir}/../../web/public/downloads")
+        }
+    }
+}

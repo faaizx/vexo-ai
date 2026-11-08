@@ -1,0 +1,15 @@
+name: ConnyBridge
+version: 1.0.0
+main: com.connyai.bridge.ConnyBridgePlugin
+api-version: 1.13
+author: Conny AI Open Edition
+description: Universal AI Bridge for Paper, Spigot, Bukkit and Purpur servers
+commands:
+  conny:
+    description: Manage Conny AI Server connection
+    permission: conny.admin
+    usage: /<command> [token|status|reload|link <token>]
+permissions:
+  conny.admin:
+    description: Allows administrative access to Conny bridge commands
+    default: op

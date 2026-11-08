@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "connybridge",
+  "version": "1.0.0",
+  "name": "Conny AI Fabric Bridge",
+  "description": "Universal AI Bridge for Fabric Dedicated Servers",
+  "authors": [
+    "Conny AI Open Edition"
+  ],
+  "contact": {
+    "homepage": "https://connyai.com"
+  },
+  "license": "MIT",
+  "icon": "assets/connybridge/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "server": [
+      "com.connyai.bridge.fabric.ConnyBridgeFabric"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "minecraft": ">=1.20"
+  }
+}

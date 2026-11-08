@@ -1,0 +1,36 @@
+{
+  "name": "vexo-ai-open-edition",
+  "version": "1.0.0",
+  "description": "Vexo AI - Open BYOK Minecraft Server AI Developer & Administrator",
+  "scripts": {
+    "start": "node web/server/server.js",
+    "dev": "node web/server/server.js",
+    "build": "npm install --prefix web",
+    "install:all": "cd web && npm install"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "serverless-http": "^4.0.0",
+    "ssh2-sftp-client": "^12.1.1",
+    "ws": "^8.22.0"
+  },
+  "keywords": [
+    "minecraft",
+    "vexo-ai",
+    "paper-plugin",
+    "fabric-mod",
+    "forge-mod",
+    "velocity-proxy",
+    "minecraft-server-ai",
+    "byok",
+    "gemini",
+    "nvidia",
+    "openai",
+    "claude",
+    "deepseek",
+    "ollama"
+  ],
+  "author": "Vexo AI Open Edition Team",
+  "license": "MIT"
+}

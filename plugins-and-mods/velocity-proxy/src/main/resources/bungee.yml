@@ -1,0 +1,5 @@
+name: ConnyBridgeProxy
+version: 1.0.0
+main: com.connyai.bridge.proxy.BungeeBridgePlugin
+author: Conny AI Open Edition
+description: Universal BungeeCord and WaterFall proxy bridge for Conny AI

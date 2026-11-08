@@ -1,0 +1,12 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="MIT"
+
+[[mods]]
+modId="connybridge"
+version="1.0.0"
+displayName="Conny AI Forge/NeoForge Bridge"
+description='''
+Universal Conny AI Bridge mod for Forge and NeoForge Minecraft dedicated servers.
+'''
+authors="Conny AI Open Edition"

@@ -1,0 +1,19 @@
+# =======================================================
+# Conny AI Bridge - Configuration (Paper / Spigot / Purpur)
+# =======================================================
+
+# Port for Conny Bridge HTTP API (Default: 25585)
+# Ensure this port is open or forwarded if connecting remotely,
+# or connect via reverse proxy / SSH tunnel / daemon.
+port: 25585
+
+# Secret server link token.
+# Set to 'auto' to automatically generate a secure random 32-character token.
+token: auto
+
+# Security Permissions
+allow-command-execution: true
+allow-file-access: true
+
+# Auto-backup configuration files before AI modifies them
+auto-backup-configs: true
