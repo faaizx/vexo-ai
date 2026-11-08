@@ -3,67 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vexo AI — The Autonomous Minecraft Server AI Developer & Admin (Open BYOK Edition)</title>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Google Fonts (Inter + JetBrains Mono) -->
+  <title>Vexo AI – AI Admin &amp; Plugin Builder for Minecraft Servers</title>
+  <meta name="description" content="Free, open-source AI assistant for Minecraft servers. Fix lag, edit configs, run console commands and build Java plugins in plain English. Works with Paper, Fabric, Forge and Velocity. Bring your own AI key.">
+  <link rel="canonical" href="https://vexomc-ai.netlify.app/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#080C14">
+
+  <!-- Social sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vexo AI">
+  <meta property="og:title" content="Vexo AI – AI Admin &amp; Plugin Builder for Minecraft Servers">
+  <meta property="og:description" content="Fix lag, tune configs, run console commands and build Java plugins for your Minecraft server in plain English. Free and open source. Bring your own AI key.">
+  <meta property="og:url" content="https://vexomc-ai.netlify.app/">
+  <meta property="og:image" content="https://vexomc-ai.netlify.app/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Vexo AI – the AI admin and plugin builder for Minecraft servers">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vexo AI – AI Admin &amp; Plugin Builder for Minecraft Servers">
+  <meta name="twitter:description" content="Fix lag, tune configs and build Java plugins for your Minecraft server in plain English. Free, open source, bring your own AI key.">
+  <meta name="twitter:image" content="https://vexomc-ai.netlify.app/assets/img/og-image.png">
+
+  <!-- Icons -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+
+  <!-- Styles (precompiled Tailwind; regenerate with `npm run build:css --prefix web`) -->
+  <link rel="stylesheet" href="/assets/css/app.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide icons (pinned version) -->
+  <script src="https://unpkg.com/lucide@1.70.0/dist/umd/lucide.min.js" defer></script>
 
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-          colors: {
-            brand: {
-              50: '#ecfdf5',
-              100: '#d1fae5',
-              400: '#34d399',
-              500: '#10b981',
-              600: '#059669',
-              700: '#047857',
-              dark: '#0B0F19',
-              darker: '#06090F',
-              card: '#111827',
-              border: '#1F2937'
-            }
-          }
-        }
-      }
-    }
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Vexo AI",
+    "url": "https://vexomc-ai.netlify.app/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Windows, macOS, Linux, Web",
+    "description": "Open-source AI assistant that administers Minecraft servers over SFTP and RCON: config tuning, lag and crash diagnosis, console commands and Java plugin generation. Bring your own AI key (Gemini, OpenAI, Claude, DeepSeek, Groq, NVIDIA NIM or Ollama).",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "license": "https://opensource.org/licenses/MIT",
+    "isAccessibleForFree": true,
+    "sameAs": ["https://github.com/faaizx/vexo-ai"]
+  }
   </script>
-
-  <style>
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #0b0f19; }
-    ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #374151; }
-
-    .glow-emerald {
-      box-shadow: 0 0 35px -8px rgba(16, 185, 129, 0.35);
-    }
-    .glow-card {
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
-    }
-    .grid-bg {
-      background-size: 32px 32px;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    }
-    .minecraft-badge {
-      text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
-    }
-  </style>
 </head>
 <body class="bg-[#080C14] text-gray-100 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-black">
 

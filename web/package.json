@@ -5,7 +5,8 @@
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
-    "dev": "node server/server.js"
+    "dev": "node server/server.js",
+    "build:css": "tailwindcss -c tailwind.config.js -i src/app.css -o public/assets/css/app.css --minify"
   },
   "keywords": [],
   "type": "commonjs",
@@ -15,5 +16,8 @@
     "serverless-http": "^4.0.0",
     "ssh2-sftp-client": "^12.1.1",
     "ws": "^8.22.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
   }
 }
