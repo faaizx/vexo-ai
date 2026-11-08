@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/downloads/(.*)",
+      "destination": "/web/public/downloads/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/web/public/$1"
+    }
+  ]
+}
