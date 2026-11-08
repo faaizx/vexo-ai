@@ -5,9 +5,12 @@ import CustomCursor from '@/components/CustomCursor';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Vexo AI — The Autonomous Minecraft Server AI Developer',
+  title: 'Vexo AI — The Autonomous Minecraft Server AI Developer & Admin',
   description:
-    'Awwwards-winning 3D Mission Control for Minecraft Servers. Autonomous config tuning, crash analysis, and Java bytecode compilation.',
+    'Autonomous AI administrator & Java plugin builder for Minecraft servers (1.7.10 — 26.3). Diagnose TPS lag, patch YAML configs in plain English, and deploy 100% BYOK privacy over standard SFTP & RCON.',
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({
@@ -30,10 +33,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-[#050505] text-gray-100 font-sans antialiased overflow-x-hidden selection:bg-[#00FF9D] selection:text-black">
+      <body className="bg-[#08090C] text-[#F8FAFC] font-sans antialiased overflow-x-hidden selection:bg-[#2DEB90] selection:text-[#05080A]">
         <CustomCursor />
         <SmoothScrolling>
-          <div className="relative min-h-screen bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]">
+          <div className="relative min-h-screen">
             {children}
           </div>
         </SmoothScrolling>

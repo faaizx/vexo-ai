@@ -1,119 +1,88 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from '@/components/MagneticButton';
 
-// SSR-safe dynamic import for Three.js WebGL canvas (crucial for Vercel builds)
+// SSR-safe dynamic import for the ambient Three.js WebGL canvas
 const Hero3D = dynamic(() => import('@/components/Hero3D'), {
   ssr: false,
-  loading: () => (
-    <div className="absolute inset-0 bg-[#050505] -z-10 flex items-center justify-center">
-      <div className="w-8 h-8 rounded-full border border-[#00FF9D]/30 border-t-[#00FF9D] animate-spin" />
-    </div>
-  ),
+  loading: () => null,
 });
 
 export default function LandingPage() {
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const heroSectionRef = useRef<HTMLElement>(null);
-  const canvasWrapRef = useRef<HTMLDivElement>(null);
+  const [airgapMode, setAirgapMode] = useState<'byok' | 'cloud'>('byok');
+  const [activeTab, setActiveTab] = useState<'all' | 'paper' | 'fabric' | 'forge' | 'proxy'>('all');
+  const [terminalStep, setTerminalStep] = useState(0);
 
+  // Terminal simulated live diagnostic events
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // 1. GSAP Staggered Mask-Up Text Reveal on Page Load
-    if (headlineRef.current) {
-      const words = headlineRef.current.querySelectorAll('.reveal-word');
-      gsap.fromTo(
-        words,
-        {
-          yPercent: 120,
-          opacity: 0,
-          rotateX: 45,
-        },
-        {
-          yPercent: 0,
-          opacity: 1,
-          rotateX: 0,
-          duration: 1.1,
-          stagger: 0.08,
-          ease: 'power4.out',
-          delay: 0.2,
-        }
-      );
-    }
-
-    // 2. ScrollTrigger: Animate 3D canvas on scroll down (scale down, move z backward, blur out)
-    if (canvasWrapRef.current && heroSectionRef.current) {
-      gsap.to(canvasWrapRef.current, {
-        scrollTrigger: {
-          trigger: heroSectionRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1.2,
-        },
-        scale: 0.65,
-        opacity: 0.2,
-        filter: 'blur(8px)',
-        transformOrigin: 'center center',
-        ease: 'none',
-      });
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
+    const timer = setInterval(() => {
+      setTerminalStep((prev) => (prev < 4 ? prev + 1 : prev));
+    }, 1400);
+    return () => clearInterval(timer);
   }, []);
 
   return (
-    <main className="relative flex min-h-screen flex-col overflow-hidden bg-[#050505] text-white">
-      {/* 3D WebGL Background (Instanced Floating Anti-Gravity Voxels) */}
-      <div ref={canvasWrapRef} className="fixed inset-0 pointer-events-none -z-10">
+    <main className="relative flex min-h-screen flex-col overflow-x-hidden bg-[#08090C] text-[#F8FAFC]">
+      {/* Ambient 3D Depth Layer (Restrained, Subdued) */}
+      <div className="fixed inset-0 pointer-events-none -z-10">
         <Hero3D />
       </div>
 
-      {/* Top Header with Glassmorphism */}
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0B0F19]/80 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
+      {/* Subtle Radial Gradient Glow at Top 20% (Rule 2) */}
+      <div 
+        className="pointer-events-none fixed inset-0 -z-10 opacity-70"
+        style={{
+          background: 'radial-gradient(circle 900px at 50% 18%, #12161F 0%, transparent 70%)',
+        }}
+      />
+
+      {/* ========================================================================= */}
+      {/* 1. TOP HEADER (Minimalist Glass Bar)                                      */}
+      {/* ========================================================================= */}
+      <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-[#08090C]/80 backdrop-blur-md">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
+          {/* Logo & Mark */}
           <div className="flex items-center space-x-3 cursor-pointer">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#00FF9D] to-emerald-700 font-bold text-black shadow-lg shadow-[#00FF9D]/25">
-              ⛏️
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.04] border border-white/[0.08] font-bold text-[#2DEB90] shadow-sm">
+              ⛏
             </div>
-            <div>
-              <div className="flex items-center space-x-2">
-                <span className="bg-gradient-to-r from-white via-emerald-200 to-[#00FF9D] bg-clip-text text-xl font-extrabold tracking-tight text-transparent">
-                  Vexo AI
-                </span>
-                <span className="rounded-full border border-[#00FF9D]/30 bg-[#00FF9D]/10 px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider text-[#00FF9D]">
-                  3D AWWWARDS
-                </span>
-              </div>
-              <div className="flex items-center space-x-1.5 font-mono text-[10px] text-gray-400">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#00FF9D] animate-pulse" />
-                <span>ONLINE • MC 26.3 • THREE.JS</span>
-              </div>
+            <div className="flex items-center space-x-2">
+              <span className="text-base font-bold tracking-tight text-white">
+                Vexo AI
+              </span>
+              <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-2 py-0.5 font-mono text-[10px] font-medium tracking-wider text-[#2DEB90]">
+                OPEN BYOK
+              </span>
             </div>
           </div>
 
-          <nav className="hidden items-center space-x-6 font-mono text-xs font-semibold uppercase tracking-wider text-gray-300 md:flex">
-            <a href="#features" className="transition hover:text-[#00FF9D]">// Features</a>
-            <a href="#platforms" className="transition hover:text-[#00FF9D]">// Platforms</a>
-            <a href="#downloads" className="text-[#00FF9D] transition">// Downloads (26.3)</a>
+          {/* Nav Links */}
+          <nav className="hidden items-center space-x-7 font-mono text-xs font-medium text-[#8B949E] md:flex">
+            <a href="#hero" className="transition hover:text-white">// Overview</a>
+            <a href="#terminal" className="transition hover:text-white">// Live Diagnostic</a>
+            <a href="#runtimes" className="transition hover:text-white">// Runtimes (26.3)</a>
+            <a href="#airgap" className="transition hover:text-white">// BYOK Enclave</a>
           </nav>
 
+          {/* Action CTAs */}
           <div className="flex items-center space-x-3">
-            <MagneticButton strength={0.25}>
-              <button className="flex items-center space-x-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 font-mono text-xs font-medium backdrop-blur-md transition hover:border-[#00FF9D]/50 hover:bg-white/10">
-                <span className="h-2 w-2 rounded-full bg-yellow-400 animate-pulse" />
+            <MagneticButton strength={0.2}>
+              <button 
+                onClick={() => alert('Connect API Key: Configure your Google Gemini, OpenAI, Claude, or Ollama tokens in 100% client-side localStorage.')}
+                className="flex items-center space-x-2 rounded-lg border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 font-mono text-xs font-medium text-[#8B949E] transition hover:border-white/[0.15] hover:text-white"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-[#2DEB90] animate-pulse" />
                 <span>Connect API Key</span>
               </button>
             </MagneticButton>
 
-            <MagneticButton strength={0.35}>
-              <button className="flex items-center space-x-2 rounded-lg bg-[#00FF9D] px-4 py-2 font-mono text-xs font-bold text-black shadow-lg shadow-[#00FF9D]/25 transition hover:bg-[#34D399]">
+            <MagneticButton strength={0.25}>
+              <button 
+                onClick={() => alert('Launching Vexo Server Studio: Direct connection via SFTP (port 22/2022) & RCON (port 25575).')}
+                className="flex items-center space-x-2 rounded-lg bg-[#2DEB90] px-4 py-2 font-mono text-xs font-bold text-[#05080A] shadow-md shadow-[#2DEB90]/10 transition hover:brightness-105 active:scale-[0.98]"
+              >
                 <span>Launch Studio</span>
               </button>
             </MagneticButton>
@@ -121,111 +90,492 @@ export default function LandingPage() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section ref={heroSectionRef} className="relative z-10 pt-16 pb-24 text-center px-4">
-        <div className="mx-auto max-w-5xl">
-          {/* Cockpit Status Pill */}
-          <div className="inline-flex items-center space-x-2 rounded-full border border-[#00FF9D]/40 bg-[#0B0F19]/80 px-3.5 py-1.5 font-mono text-xs text-[#00FF9D] shadow-xl backdrop-blur-md mb-6">
-            <span className="h-2 w-2 rounded-full bg-[#00FF9D] animate-pulse" />
-            <span className="font-bold text-white tracking-wider">VEXO MISSION CONTROL</span>
-            <span className="text-gray-500">//</span>
-            <span>MINECRAFT 26.3 COMPATIBLE</span>
-            <span className="text-gray-500">//</span>
-            <span className="text-cyan-400">100% BYOK ENCLAVE</span>
+      {/* ========================================================================= */}
+      {/* 2. HERO SECTION (Clean & Impactful - Rule 3)                               */}
+      {/* ========================================================================= */}
+      <section id="hero" className="relative z-10 pt-20 pb-20 text-center px-4 sm:px-6">
+        <div className="mx-auto max-w-4xl">
+          {/* Floating Mono Capsule Tag ABOVE Headline (Clean Telemetry - Rule 3) */}
+          <div className="inline-flex items-center space-x-2.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-1.5 font-mono text-xs text-[#8B949E] backdrop-blur-md mb-8">
+            <span className="h-2 w-2 rounded-full bg-[#2DEB90] animate-pulse" />
+            <span className="font-semibold text-white tracking-wider">VEXO-NODE-01</span>
+            <span className="text-white/20">//</span>
+            <span>MC 26.3 COMPATIBLE</span>
+            <span className="text-white/20">//</span>
+            <span className="text-[#2DEB90]">20.00 TPS</span>
+            <span className="text-white/20">//</span>
+            <span>100% BYOK ENCLAVE</span>
           </div>
 
-          {/* Staggered Masked Headline */}
-          <h1
-            ref={headlineRef}
-            className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.1] overflow-hidden"
-          >
-            <span className="inline-block overflow-hidden">
-              <span className="reveal-word inline-block mr-3 text-white">The</span>
-            </span>
-            <span className="inline-block overflow-hidden">
-              <span className="reveal-word inline-block mr-3 text-white">Autonomous</span>
-            </span>
-            <span className="inline-block overflow-hidden">
-              <span className="reveal-word inline-block mr-3 bg-gradient-to-r from-[#00FF9D] via-teal-200 to-cyan-400 bg-clip-text text-transparent text-glow-mint">
-                Minecraft Server AI
-              </span>
-            </span>
-            <span className="inline-block overflow-hidden">
-              <span className="reveal-word inline-block text-white">Developer</span>
-            </span>
+          {/* Headline (Rule 3: Pure white with subtle mint accent on Minecraft & AI Developer) */}
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.12] text-white">
+            The Autonomous <span className="text-[#2DEB90]">Minecraft</span> Server{' '}
+            <span className="text-[#2DEB90]">AI Developer</span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-3xl text-sm sm:text-base md:text-lg text-gray-300 font-normal leading-relaxed">
+          {/* Subtext (Rule 2: Cool Slate Gray #8B949E) */}
+          <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-[#8B949E] font-normal leading-relaxed">
             Stop wrestling with complex YAML syntax, obscure crash reports, and plugin jars.
             Connect your server, provide your API key, and manage, troubleshoot, and code plugins in plain English.
           </p>
 
-          {/* Magnetic CTA Buttons */}
+          {/* CTA Buttons (Rule 3) */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <MagneticButton strength={0.4}>
-              <button className="flex items-center space-x-2 rounded-xl bg-[#00FF9D] px-8 py-3.5 font-sans font-bold text-black shadow-xl shadow-[#00FF9D]/30 transition hover:bg-[#34D399]">
+            <MagneticButton strength={0.3}>
+              <button 
+                onClick={() => alert('Opening Server Studio: Zero installation required on client machine.')}
+                className="flex items-center space-x-2 rounded-xl bg-[#2DEB90] px-7 py-3.5 font-sans font-bold text-[#05080A] shadow-lg shadow-[#2DEB90]/15 transition hover:brightness-105 active:scale-[0.98]"
+              >
                 <span>Open Server Studio</span>
                 <span>→</span>
               </button>
             </MagneticButton>
 
-            <MagneticButton strength={0.35}>
-              <button className="flex items-center space-x-2 rounded-xl border border-white/10 bg-[#0F172A]/90 px-6 py-3.5 font-sans font-bold text-gray-200 backdrop-blur-md transition hover:border-[#00FF9D]/50 hover:bg-[#1E293B]">
+            <MagneticButton strength={0.25}>
+              <button 
+                onClick={() => alert('Connect via SFTP & RCON: Standard ports 22/25575. Zero extra open ports required.')}
+                className="flex items-center space-x-2 rounded-xl border border-white/[0.1] bg-white/[0.04] hover:bg-white/[0.08] px-6 py-3.5 font-sans font-semibold text-white backdrop-blur-md transition active:scale-[0.98]"
+              >
                 <span>Connect via SFTP & RCON</span>
               </button>
             </MagneticButton>
           </div>
 
-          {/* Floating Version Selector Pills (Glassmorphism) */}
-          <div className="mx-auto mt-8 max-w-4xl rounded-xl border border-white/10 bg-white/5 p-3 backdrop-blur-md flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
-            <div className="flex items-center space-x-2 pl-2 text-gray-400">
-              <span className="h-2 w-2 rounded-full bg-[#00FF9D]" />
-              <span className="font-bold text-gray-200 uppercase tracking-wider text-[11px]">Direct Version Select:</span>
+          {/* Monospace Direct Version Quick-Selector Capsule */}
+          <div className="mx-auto mt-10 max-w-3xl rounded-xl border border-white/[0.08] bg-white/[0.02] p-2.5 backdrop-blur-md flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
+            <div className="flex items-center space-x-2 pl-2 text-[#64748B]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#2DEB90]" />
+              <span className="font-semibold text-[#8B949E] uppercase tracking-wider text-[11px]">Direct Version Select:</span>
             </div>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-lg border border-[#00FF9D]/30 bg-[#0F172A] px-2.5 py-1 text-[#00FF9D] font-semibold">
-                Paper / Spigot (26.3)
+            <div className="flex flex-wrap items-center gap-1.5">
+              <span className="rounded-md border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 text-[#2DEB90] font-medium">
+                Paper (26.3)
               </span>
-              <span className="rounded-lg border border-cyan-500/30 bg-[#0F172A] px-2.5 py-1 text-cyan-400 font-semibold">
+              <span className="rounded-md border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 text-[#8B949E] font-medium">
                 Fabric (26.3)
               </span>
-              <span className="rounded-lg border border-amber-500/30 bg-[#0F172A] px-2.5 py-1 text-amber-400 font-semibold">
-                Forge & Neo (26.3)
+              <span className="rounded-md border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 text-[#8B949E] font-medium">
+                Forge / Neo (26.3)
               </span>
-              <span className="rounded-lg border border-purple-500/30 bg-[#0F172A] px-2.5 py-1 text-purple-400 font-semibold">
-                Velocity Proxy
+              <span className="rounded-md border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 text-[#8B949E] font-medium">
+                Velocity 3.3
               </span>
-              <span className="rounded-lg border border-yellow-500/30 bg-[#0F172A] px-2.5 py-1 text-yellow-400 font-semibold">
-                Vanilla Daemon
+              <span className="rounded-md border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 text-[#8B949E] font-medium">
+                Vanilla BDS
               </span>
-            </div>
-          </div>
-
-          {/* 4-Card Bento Telemetry Grid */}
-          <div className="mx-auto mt-8 grid max-w-5xl grid-cols-2 gap-3 text-left md:grid-cols-4 font-mono">
-            <div className="rounded-xl border border-white/10 bg-[#0F172A]/80 p-4 backdrop-blur-md shadow-xl transition hover:border-[#00FF9D]/40">
-              <div className="text-[10px] text-gray-400 font-bold tracking-wider uppercase mb-1">MC VERSIONS</div>
-              <div className="text-xl font-bold text-white">1.7.10 — 26.3</div>
-              <div className="text-xs text-[#00FF9D] mt-1">33+ Target Releases</div>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-[#0F172A]/80 p-4 backdrop-blur-md shadow-xl transition hover:border-cyan-500/40">
-              <div className="text-[10px] text-gray-400 font-bold tracking-wider uppercase mb-1">SERVER ENGINE</div>
-              <div className="text-xl font-bold text-white">20.00 TPS</div>
-              <div className="text-xs text-cyan-400 mt-1">0.0ms Jitter • Paper 26.3</div>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-[#0F172A]/80 p-4 backdrop-blur-md shadow-xl transition hover:border-amber-500/40">
-              <div className="text-[10px] text-gray-400 font-bold tracking-wider uppercase mb-1">BYOK ENGINES</div>
-              <div className="text-xl font-bold text-white">8+ Models</div>
-              <div className="text-xs text-amber-400 mt-1">Gemini, OpenAI, Claude...</div>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-[#0F172A]/80 p-4 backdrop-blur-md shadow-xl transition hover:border-purple-500/40">
-              <div className="text-[10px] text-gray-400 font-bold tracking-wider uppercase mb-1">SAFE AIRGAP</div>
-              <div className="text-xl font-bold text-white">SFTP + RCON</div>
-              <div className="text-xs text-purple-400 mt-1">Auto-Backup (*.bak)</div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* ========================================================================= */}
+      {/* 3. SECTION 2: TERMINAL & LIVE EXECUTION (Rule 4: 2-Column Showcase)        */}
+      {/* ========================================================================= */}
+      <section id="terminal" className="relative z-10 py-20 px-4 sm:px-6 border-t border-white/[0.06]">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left Column: Problem & Promise (Rule 4) */}
+            <div className="lg:col-span-5 space-y-6 text-left">
+              <div className="inline-flex items-center space-x-2 font-mono text-xs text-[#2DEB90]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#2DEB90]" />
+                <span className="tracking-wider uppercase">// AUTONOMOUS INTERVENTION</span>
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
+                English in.<br />
+                Synchronized execution out.
+              </h2>
+
+              <p className="text-base text-[#8B949E] leading-relaxed">
+                At 8:42 PM on Friday night, your 60-player survival SMP drops to 8.4 TPS.
+                Runaway villager brain ticking in the Nether hub is consuming 41% of server tick time.
+                A single broken indent in <code className="text-white font-mono text-xs bg-white/[0.05] px-1.5 py-0.5 rounded">paper-world-defaults.yml</code> bricks the reboot.
+              </p>
+
+              <div className="space-y-3 pt-2 font-mono text-xs text-[#8B949E]">
+                <div className="flex items-start space-x-3">
+                  <span className="text-[#2DEB90] mt-0.5">✓</span>
+                  <span>Automatic atomic configuration snapshot & backup (*.bak)</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <span className="text-[#2DEB90] mt-0.5">✓</span>
+                  <span>Surgical clamp of entity activation and despawn bounds</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <span className="text-[#2DEB90] mt-0.5">✓</span>
+                  <span>Synchronous reload dispatch with zero player disconnections</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <span className="text-[#2DEB90] mt-0.5">✓</span>
+                  <span>Immediate TPS restoration back to 20.00 (0.0ms tick jitter)</span>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <button 
+                  onClick={() => alert('Simulating autonomous live reload inspection across paper-world-defaults.yml.')}
+                  className="inline-flex items-center space-x-2 text-xs font-mono font-semibold text-[#2DEB90] hover:underline"
+                >
+                  <span>Inspect autonomous patch pipeline</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Right Column: Realistic macOS/Linux Glass Terminal Window (Rule 4) */}
+            <div className="lg:col-span-7">
+              <div className="terminal-window rounded-2xl overflow-hidden text-left">
+                {/* Titlebar with traffic light controls */}
+                <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.06] bg-white/[0.02]">
+                  <div className="flex items-center space-x-2">
+                    <span className="h-3 w-3 rounded-full bg-[#FF5F56] border border-[#E0443E]/50 inline-block" />
+                    <span className="h-3 w-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50 inline-block" />
+                    <span className="h-3 w-3 rounded-full bg-[#27C93F] border border-[#1AAB29]/50 inline-block" />
+                  </div>
+                  <div className="font-mono text-xs text-[#64748B] flex items-center space-x-2">
+                    <span>vexo-agent@paper-26.3-survival: ~</span>
+                  </div>
+                  <div className="flex items-center space-x-1.5 font-mono text-[11px] text-[#2DEB90] bg-[#2DEB90]/10 border border-[#2DEB90]/20 px-2 py-0.5 rounded-full">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#2DEB90] animate-pulse" />
+                    <span>TPS RECOVERY: +11.6</span>
+                  </div>
+                </div>
+
+                {/* Monospace Terminal Body */}
+                <div className="p-5 font-mono text-xs leading-relaxed space-y-3.5 text-[#8B949E]">
+                  {/* Step 1: Admin Command */}
+                  <div className="flex items-center space-x-2 text-white">
+                    <span className="text-[#2DEB90] font-bold">admin@server:~$</span>
+                    <span className="bg-white/[0.05] px-2 py-0.5 rounded text-white font-medium">
+                      "Fix the Nether hub entity lag immediately."
+                    </span>
+                  </div>
+
+                  {/* Step 2: AI Diagnostic */}
+                  <div className="text-[#8B949E] pl-2 border-l border-white/[0.1] space-y-1">
+                    <div className="text-white flex items-center space-x-2">
+                      <span className="text-[#2DEB90]">⚡ Vexo AI:</span>
+                      <span>Profiling live JVM tick stack...</span>
+                    </div>
+                    <div className="text-[#64748B]">
+                      Villager brain ticking (Chunk [-14, 22]): consuming 41.2% tick budget.
+                    </div>
+                  </div>
+
+                  {/* Step 3: Verified Diff */}
+                  <div className="bg-[#05070B] border border-white/[0.06] rounded-xl p-3.5 space-y-1.5">
+                    <div className="text-[11px] text-[#64748B] pb-1 border-b border-white/[0.05] flex justify-between">
+                      <span>paper-world-defaults.yml (atomic patch)</span>
+                      <span className="text-[#2DEB90]">Auto-Backup Created</span>
+                    </div>
+                    <div className="text-[#EF4444] bg-[#EF4444]/10 px-2 py-0.5 rounded">
+                      - entity-activation-range.animals: 32
+                    </div>
+                    <div className="text-[#2DEB90] bg-[#2DEB90]/10 px-2 py-0.5 rounded">
+                      + entity-activation-range.animals: 16
+                    </div>
+                    <div className="text-[#EF4444] bg-[#EF4444]/10 px-2 py-0.5 rounded">
+                      - despawn-ranges.monster.hard: 128
+                    </div>
+                    <div className="text-[#2DEB90] bg-[#2DEB90]/10 px-2 py-0.5 rounded">
+                      + despawn-ranges.monster.hard: 96 (despawn soft: 32)
+                    </div>
+                    <div className="text-[#2DEB90] bg-[#2DEB90]/10 px-2 py-0.5 rounded">
+                      + tick-inactive-villagers: false
+                    </div>
+                  </div>
+
+                  {/* Step 4: Synchronous Execution Results */}
+                  <div className="space-y-1 text-xs">
+                    <div className="text-[#8B949E] flex items-center space-x-2">
+                      <span className="text-[#2DEB90]">✓</span>
+                      <span>Backup: <span className="text-white">paper-world-defaults.yml.vexo.bak</span> written to disk.</span>
+                    </div>
+                    <div className="text-[#8B949E] flex items-center space-x-2">
+                      <span className="text-[#2DEB90]">✓</span>
+                      <span>Dispatched <code className="text-white bg-white/[0.08] px-1 rounded">/paper reload</code> synchronously.</span>
+                    </div>
+                    <div className="text-[#2DEB90] font-semibold flex items-center space-x-2 pt-1">
+                      <span>✓</span>
+                      <span>Server stabilized at 20.00 TPS (0.0ms tick jitter, 0 players dropped).</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer status indicator */}
+                <div className="px-4 py-2 border-t border-white/[0.04] bg-white/[0.01] flex items-center justify-between text-[11px] font-mono text-[#64748B]">
+                  <span>SFTP Direct Socket: Port 22</span>
+                  <span>RCON Handshake: Verified</span>
+                  <span>JVM: OpenJDK 21 64-Bit</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 4. SECTION 3: RUNTIME BENTO GRID (Rule 5: 4-Column Responsive Layout)      */}
+      {/* ========================================================================= */}
+      <section id="runtimes" className="relative z-10 py-20 px-4 sm:px-6 border-t border-white/[0.06]">
+        <div className="mx-auto max-w-7xl">
+          {/* Section Header */}
+          <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
+            <div className="inline-flex items-center space-x-2 font-mono text-xs text-[#2DEB90]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#2DEB90]" />
+              <span className="tracking-wider uppercase">// MULTI-VERSION MATRIX</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+              Universal Native Coverage
+            </h2>
+            <p className="text-base text-[#8B949E]">
+              From legacy 1.7.10 PvP classic to cutting-edge Minecraft 26.3. Precompiled runtime bridge binaries engineered for zero port overhead.
+            </p>
+          </div>
+
+          {/* 4-Column Bento Grid (Rule 5) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            {/* Card 1: Paper */}
+            <div className="glass-card rounded-2xl p-6 flex flex-col justify-between text-left transition duration-300">
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-mono text-[11px] font-semibold text-[#2DEB90] uppercase tracking-wider">
+                    BUKKIT / SPIGOT / PAPER
+                  </span>
+                  <span className="h-2 w-2 rounded-full bg-[#2DEB90]" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">VexoBridge Paper</h3>
+                <p className="text-xs text-[#8B949E] leading-relaxed mb-6">
+                  Direct hook into Bukkit event scheduler and spark profiler. Zero overhead for survival SMP and minigame networks.
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-white/[0.06] font-mono text-xs space-y-2">
+                <div className="flex justify-between items-center text-[#8B949E]">
+                  <span>Support:</span>
+                  <span className="text-white font-medium">1.7.10 — 26.3</span>
+                </div>
+                <div className="flex justify-between items-center text-[#8B949E]">
+                  <span>Tag:</span>
+                  <span className="rounded bg-white/[0.04] px-2 py-0.5 text-[#2DEB90] text-[11px]">
+                    Paper 1.20+
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2: Fabric */}
+            <div className="glass-card rounded-2xl p-6 flex flex-col justify-between text-left transition duration-300">
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-mono text-[11px] font-semibold text-[#06B6D4] uppercase tracking-wider">
+                    FABRIC SERVER MOD
+                  </span>
+                  <span className="h-2 w-2 rounded-full bg-[#06B6D4]" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">VexoBridge Fabric</h3>
+                <p className="text-xs text-[#8B949E] leading-relaxed mb-6">
+                  Lightweight Mixin bytecode hook into dedicated server tick loop. Compatible with Lithium and FerriteCore.
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-white/[0.06] font-mono text-xs space-y-2">
+                <div className="flex justify-between items-center text-[#8B949E]">
+                  <span>Support:</span>
+                  <span className="text-white font-medium">1.14.4 — 26.3</span>
+                </div>
+                <div className="flex justify-between items-center text-[#8B949E]">
+                  <span>Tag:</span>
+                  <span className="rounded bg-white/[0.04] px-2 py-0.5 text-[#06B6D4] text-[11px]">
+                    Fabric 0.16+
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: Forge & NeoForge */}
+            <div className="glass-card rounded-2xl p-6 flex flex-col justify-between text-left transition duration-300">
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-mono text-[11px] font-semibold text-[#F59E0B] uppercase tracking-wider">
+                    FORGE & NEOFORGE
+                  </span>
+                  <span className="h-2 w-2 rounded-full bg-[#F59E0B]" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">VexoBridge Forge</h3>
+                <p className="text-xs text-[#8B949E] leading-relaxed mb-6">
+                  Engineered for ATM9, DawnCraft, and heavy modpacks. Automates mod config reloads and entity crash guards.
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-white/[0.06] font-mono text-xs space-y-2">
+                <div className="flex justify-between items-center text-[#8B949E]">
+                  <span>Support:</span>
+                  <span className="text-white font-medium">1.7.10 — 26.3</span>
+                </div>
+                <div className="flex justify-between items-center text-[#8B949E]">
+                  <span>Tag:</span>
+                  <span className="rounded bg-white/[0.04] px-2 py-0.5 text-[#F59E0B] text-[11px]">
+                    Forge 1.20+
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 4: Velocity Proxy */}
+            <div className="glass-card rounded-2xl p-6 flex flex-col justify-between text-left transition duration-300">
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-mono text-[11px] font-semibold text-[#A855F7] uppercase tracking-wider">
+                    PROXY NETWORKS
+                  </span>
+                  <span className="h-2 w-2 rounded-full bg-[#A855F7]" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Velocity & Bungee</h3>
+                <p className="text-xs text-[#8B949E] leading-relaxed mb-6">
+                  Controls routing, multi-server permissions, and global cross-server chat across Velocity 3.x networks.
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-white/[0.06] font-mono text-xs space-y-2">
+                <div className="flex justify-between items-center text-[#8B949E]">
+                  <span>Support:</span>
+                  <span className="text-white font-medium">Cross-Server Sync</span>
+                </div>
+                <div className="flex justify-between items-center text-[#8B949E]">
+                  <span>Tag:</span>
+                  <span className="rounded bg-white/[0.04] px-2 py-0.5 text-[#A855F7] text-[11px]">
+                    Velocity 3.3+
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 5. SECTION 4: AIRGAP ENCLAVE & ZERO-KNOWLEDGE BYOK                        */}
+      {/* ========================================================================= */}
+      <section id="airgap" className="relative z-10 py-20 px-4 sm:px-6 border-t border-white/[0.06]">
+        <div className="mx-auto max-w-4xl text-center">
+          <div className="inline-flex items-center space-x-2 font-mono text-xs text-[#2DEB90] mb-3">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#2DEB90]" />
+            <span className="tracking-wider uppercase">// SOVEREIGN ARCHITECTURE</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+            Your Server. Your Keys. <span className="text-[#2DEB90]">Zero Lock-in.</span>
+          </h2>
+
+          <p className="mx-auto mt-4 max-w-xl text-base text-[#8B949E]">
+            Never pay a monthly per-server fee or upload server credentials to a third-party SaaS database.
+          </p>
+
+          {/* Interactive Airgap Switcher Box */}
+          <div className="mx-auto mt-8 max-w-2xl glass-card rounded-2xl p-6 text-left">
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-white/[0.06]">
+              <span className="font-mono text-xs text-[#8B949E]">ENCLAVE MODE:</span>
+              <div className="inline-flex rounded-lg border border-white/[0.08] bg-[#05070B] p-1 font-mono text-xs">
+                <button
+                  onClick={() => setAirgapMode('byok')}
+                  className={`px-3 py-1 rounded-md transition ${
+                    airgapMode === 'byok'
+                      ? 'bg-[#2DEB90] text-[#05080A] font-bold shadow-sm'
+                      : 'text-[#8B949E] hover:text-white'
+                  }`}
+                >
+                  100% BYOK Airgap
+                </button>
+                <button
+                  onClick={() => setAirgapMode('cloud')}
+                  className={`px-3 py-1 rounded-md transition ${
+                    airgapMode === 'cloud'
+                      ? 'bg-red-500/80 text-white font-bold shadow-sm'
+                      : 'text-[#8B949E] hover:text-white'
+                  }`}
+                >
+                  SaaS Cloud
+                </button>
+              </div>
+            </div>
+
+            <div className="pt-4 font-mono text-xs leading-relaxed">
+              {airgapMode === 'byok' ? (
+                <div className="space-y-2 text-[#2DEB90]">
+                  <div className="flex items-center space-x-2">
+                    <span>✓</span>
+                    <span>ENCLAVE STATUS: AES-GCM Client-Side Isolation Active.</span>
+                  </div>
+                  <div className="text-[#8B949E] flex items-center space-x-2">
+                    <span className="text-[#2DEB90]">✓</span>
+                    <span>LLM Keys (Gemini, Claude, OpenAI, Ollama) stored exclusively in your browser localStorage.</span>
+                  </div>
+                  <div className="text-[#8B949E] flex items-center space-x-2">
+                    <span className="text-[#2DEB90]">✓</span>
+                    <span>SFTP & RCON connect directly between your machine and your Minecraft host. Zero intermediary servers.</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-2 text-red-400">
+                  <div className="flex items-center space-x-2">
+                    <span>⚠️</span>
+                    <span>CENTRALIZED CLOUD MODE:</span>
+                  </div>
+                  <div className="text-[#8B949E]">
+                    ✗ Your server credentials and AI API tokens pass through a centralized cloud relay.
+                  </div>
+                  <div className="text-[#8B949E]">
+                    ✗ Monthly recurring subscription fees applied per server instance.
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Final Call to Action Buttons */}
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <MagneticButton strength={0.3}>
+              <button 
+                onClick={() => alert('Launching Vexo Studio: Ready for Minecraft 1.7.10 — 26.3.')}
+                className="flex items-center space-x-2 rounded-xl bg-[#2DEB90] px-8 py-3.5 font-sans font-bold text-[#05080A] shadow-lg shadow-[#2DEB90]/15 transition hover:brightness-105 active:scale-[0.98]"
+              >
+                <span>Launch Vexo Studio</span>
+                <span>→</span>
+              </button>
+            </MagneticButton>
+
+            <a 
+              href="#hero"
+              className="flex items-center space-x-2 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] px-6 py-3.5 font-sans font-semibold text-white transition active:scale-[0.98]"
+            >
+              <span>Back to Top ↑</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 6. MINIMALIST FOOTER                                                      */}
+      {/* ========================================================================= */}
+      <footer className="relative z-10 border-t border-white/[0.06] bg-[#05070B] py-8 px-4 sm:px-6 font-mono text-xs text-[#64748B]">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center space-x-2">
+            <span className="font-bold text-white">Vexo AI</span>
+            <span>—</span>
+            <span>Open BYOK Edition</span>
+          </div>
+          <div className="flex items-center space-x-4">
+            <span>Paper • Fabric • Forge • Velocity</span>
+            <span>//</span>
+            <span className="text-[#2DEB90]">MC 1.7.10 — 26.3 Verified</span>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }

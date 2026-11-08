@@ -1,736 +1,598 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Primary SEO Meta Tags -->
-  <title>Vexo AI — The Autonomous Minecraft Server AI Developer & Admin (Open BYOK)</title>
-  <meta name="title" content="Vexo AI — The Autonomous Minecraft Server AI Developer & Admin (Open BYOK)">
-  <meta name="description" content="Autonomous AI Minecraft server administrator & Java plugin builder (1.7.10 — 26.3). Optimize configs, fix TPS lag, inspect crashes & compile plugins using your own API key (Gemini, NVIDIA, OpenAI, Claude, Ollama).">
+  <title>Vexo AI — The Autonomous Minecraft Server AI Developer & Admin</title>
+  <meta name="title" content="Vexo AI — The Autonomous Minecraft Server AI Developer & Admin">
+  <meta name="description" content="Autonomous AI administrator & Java plugin builder for Minecraft servers (1.7.10 — 26.3). Diagnose TPS lag, patch YAML configs in plain English, and deploy 100% BYOK privacy over standard SFTP & RCON.">
   <meta name="keywords" content="minecraft server ai, vexo ai, minecraft bot, spigot ai plugin, paper minecraft ai, fabric server ai, minecraft config optimizer, spark profiler ai, byok minecraft, minecraft admin assistant, minecraft server manager, minecraft 26.3, rcon web console, sftp minecraft">
   <meta name="author" content="Vexo AI Team">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://vexo-ai.vercel.app/">
 
-  <!-- Open Graph / Facebook / Discord Embeds -->
+  <!-- Open Graph / Discord -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://vexo-ai.vercel.app/">
   <meta property="og:site_name" content="Vexo AI">
   <meta property="og:title" content="Vexo AI — Autonomous Minecraft Server AI Developer & Admin">
   <meta property="og:description" content="Manage Paper, Spigot, Fabric, Forge & Bedrock servers with plain English. Zero extra open ports. Free BYOK support for Gemini, NVIDIA, OpenAI, Claude & Ollama.">
-  <meta property="og:locale" content="en_US">
 
-  <!-- Twitter / X Cards -->
+  <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://vexo-ai.vercel.app/">
   <meta name="twitter:title" content="Vexo AI — Autonomous Minecraft Server AI Developer & Admin">
   <meta name="twitter:description" content="Autonomous AI administrator & Java plugin builder for Minecraft servers (1.7.10 — 26.3). Connect via SFTP & RCON with your own API key.">
 
-  <!-- Favicon & Web App Manifest -->
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#07090E">
-  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#08090C">
 
-  <!-- Structured Data / JSON-LD Schema Markup (Google Search) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebApplication",
-        "@id": "https://vexo-ai.vercel.app/#webapp",
-        "name": "Vexo AI",
-        "url": "https://vexo-ai.vercel.app/",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "Windows, Linux, macOS, Docker",
-        "description": "Autonomous AI administrator and Java plugin developer for Minecraft servers supporting Bukkit, Spigot, Paper, Purpur, Fabric, Forge, NeoForge, Velocity, BungeeCord, and Bedrock from 1.7.10 up to 26.3.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        },
-        "featureList": [
-          "Autonomous YAML and server.properties configuration tuning",
-          "Real-time RCON console command dispatch with safety guardrails",
-          "SFTP file reading and writing with zero extra port requirements",
-          "Custom Java Minecraft plugin builder with JDK compilation",
-          "Spark profiler and latest.log crash diagnostic assistant",
-          "Multi-version binary releases covering Minecraft 1.7.10 through 26.3",
-          "Client-side Bring Your Own Key (BYOK) privacy for Google Gemini, NVIDIA NIM, OpenAI, Anthropic Claude, DeepSeek, Groq, and Ollama"
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://vexo-ai.vercel.app/#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Is Vexo AI free to use?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, Vexo AI is 100% free and open-source under the Bring Your Own Key (BYOK) model. You never pay a subscription fee; you only use your own raw API tokens (or free local Ollama)."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Which Minecraft versions does Vexo AI support?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Vexo AI supports every Minecraft release from legacy 1.7.10 and 1.8.8 PvP Classic all the way up to the latest Minecraft 26.3 release across Paper, Spigot, Fabric, Forge, NeoForge, and Velocity."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does Vexo AI require opening extra ports on my Minecraft host?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. Vexo AI uses standard SFTP (port 2022 or 22) and standard RCON (port 25575) already provided by standard game hosts, eliminating the need for extra open bridge ports."
-            }
-          }
-        ]
-      }
-    ]
-  }
-  </script>
-
-  <!-- Google Fonts: Space Grotesk (Display) & JetBrains Mono (Text & Telemetry) -->
+  <!-- Google Fonts: Space Grotesk & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS & Lucide Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- ScrollCraft Engine CSS -->
-  <link rel="stylesheet" href="/scrollcraft.css">
-
   <style>
+    :root {
+      --vexo-mint: #2DEB90;
+      --vexo-dark: #08090C;
+    }
 
-  :root {
-    --sc-canvas:     #07090E;
-    --sc-surface:    #0E131F;
-    --sc-ink:        #F4F6F8;
-    --sc-ink-soft:   #8E99A8;
-    --sc-accent:     #00FF9D;
-    --sc-accent-ink: #05070B;
-    --sc-font-display: "Space Grotesk", system-ui, sans-serif;
-    --sc-font-text:    "JetBrains Mono", monospace;
-    --sc-font-mono:    "JetBrains Mono", monospace;
-  }
+    body {
+      background-color: #08090C;
+      background-image: radial-gradient(circle 900px at 50% 18%, #12161F 0%, #08090C 100%);
+      background-attachment: fixed;
+      color: #F8FAFC;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-  /* Typography Design Floor */
-  .sc-display {
-    font-family: var(--sc-font-display);
-    font-weight: 700;
-    letter-spacing: var(--sc-track-tight);
-    line-height: var(--sc-leading-tight);
-    text-wrap: balance;
-    color: var(--sc-ink);
-  }
-  .sc-body {
-    font-family: var(--sc-font-text);
-    font-size: var(--sc-t-base);
-    line-height: var(--sc-leading-body);
-    color: var(--sc-ink-soft);
-    max-width: var(--sc-measure);
-    text-wrap: pretty;
-  }
-  .mint-text {
-    color: var(--sc-accent);
-  }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-  /* Site Navigation Bar */
-  .site-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3.5rem;
-    z-index: var(--sc-z-chrome);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 var(--sc-gutter);
-    background: color-mix(in oklab, var(--sc-canvas) 85%, transparent);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--sc-hairline);
-  }
-  .site-bar__mark {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-family: var(--sc-font-display);
-    font-weight: 700;
-    font-size: var(--sc-t-base);
-    color: var(--sc-ink);
-    text-decoration: none;
-  }
-  .site-bar__glyph {
-    width: 2rem;
-    height: 2rem;
-    border-radius: var(--sc-r-sm);
-    background: var(--sc-surface);
-    border: 1px solid color-mix(in oklab, var(--sc-accent) 30%, transparent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--sc-accent);
-    font-size: 1rem;
-  }
-  .site-bar__badge {
-    font-family: var(--sc-font-mono);
-    font-size: var(--sc-t-xs);
-    color: var(--sc-accent);
-    background: color-mix(in oklab, var(--sc-accent) 12%, transparent);
-    border: 1px solid color-mix(in oklab, var(--sc-accent) 25%, transparent);
-    padding: 0.15rem 0.5rem;
-    border-radius: var(--sc-r-pill);
-    letter-spacing: var(--sc-track-wide);
-  }
-  .site-bar__actions {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #08090C; }
+    ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #2DEB90; }
 
-  /* Dimensional Hero Planes */
-  .hero-stage {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .hero-plane {
-    position: absolute;
-    inset: 0;
-    will-change: transform;
-    pointer-events: none;
-  }
-  .hero-plane--bg {
-    background-image: 
-      radial-gradient(ellipse 80% 50% at 50% 20%, color-mix(in oklab, var(--sc-accent) 8%, transparent) 0%, transparent 60%),
-      linear-gradient(to right, color-mix(in oklab, var(--sc-ink) 4%, transparent) 1px, transparent 1px),
-      linear-gradient(to bottom, color-mix(in oklab, var(--sc-ink) 4%, transparent) 1px, transparent 1px);
-    background-size: 100% 100%, 32px 32px, 32px 32px;
-  }
-  .hero-plane--subject {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .hero-monolith {
-    width: 22rem;
-    height: 28rem;
-    border-radius: var(--sc-r-lg);
-    background: linear-gradient(165deg, var(--sc-surface) 0%, color-mix(in oklab, var(--sc-canvas) 90%, black) 100%);
-    border: 1px solid var(--sc-hairline-strong);
-    box-shadow: var(--sc-e3);
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-monolith::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--sc-accent), transparent);
-  }
-  .hero-plane--fg {
-    z-index: 15;
-    padding: var(--sc-gutter);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-  .hud-bracket {
-    font-family: var(--sc-font-mono);
-    font-size: var(--sc-t-xs);
-    color: var(--sc-ink-soft);
-    background: color-mix(in oklab, var(--sc-surface) 80%, transparent);
-    border: 1px solid var(--sc-hairline);
-    padding: 0.6rem 1rem;
-    border-radius: var(--sc-r-md);
-    box-shadow: var(--sc-e1);
-  }
-  .hud-bracket strong {
-    color: var(--sc-accent);
-  }
-
-  /* Tension Section Layout */
-  .tension-stage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: var(--sc-maxw);
-    margin: 0 auto;
-    padding: 0 var(--sc-gutter);
-    height: 100%;
-  }
-  .tension-line {
-    font-family: var(--sc-font-display);
-    font-size: clamp(1.8rem, 3.5vw, 3.2rem);
-    font-weight: 600;
-    line-height: 1.25;
-    margin-bottom: 2rem;
-    letter-spacing: var(--sc-track-tight);
-    color: var(--sc-ink);
-  }
-  .tension-line.highlight {
-    color: var(--sc-accent);
-  }
-
-  /* Turn Section (Two-Column Flow + Reveal) */
-  .turn-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: var(--sc-gutter);
-    align-items: center;
-    max-width: var(--sc-maxw);
-    margin: 0 auto;
-    padding: var(--sc-section) var(--sc-gutter);
-  }
-  @media (max-width: 860px) {
-    .turn-grid { grid-template-columns: 1fr; }
-  }
-  .console-frame {
-    background: var(--sc-surface);
-    border: 1px solid var(--sc-hairline-strong);
-    border-radius: var(--sc-r-md);
-    box-shadow: var(--sc-e3);
-    overflow: hidden;
-    font-family: var(--sc-font-mono);
-    font-size: var(--sc-t-xs);
-  }
-  .console-header {
-    background: color-mix(in oklab, var(--sc-surface) 70%, black);
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--sc-hairline);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .console-body {
-    padding: 1.25rem;
-    line-height: 1.7;
-    color: var(--sc-ink-soft);
-  }
-  .diff-del { color: #FF5A5F; background: rgba(255, 90, 95, 0.1); padding: 0.1rem 0.3rem; }
-  .diff-add { color: var(--sc-accent); background: rgba(0, 255, 157, 0.1); padding: 0.1rem 0.3rem; }
-
-  /* Substance / Range (Horizontal Pan Rail) */
-  .rail-wrap {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-  }
-  .platform-card {
-    flex: 0 0 clamp(18rem, 28vw, 24rem);
-    background: var(--sc-surface);
-    border: 1px solid var(--sc-hairline);
-    border-radius: var(--sc-r-md);
-    padding: 1.75rem;
-    box-shadow: var(--sc-e2);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 24rem;
-  }
-  .platform-card:hover {
-    border-color: color-mix(in oklab, var(--sc-accent) 40%, transparent);
-  }
-
-  /* Signature Move: Airgap Enclave Toggle */
-  .airgap-box {
-    margin-top: 2rem;
-    background: var(--sc-surface);
-    border: 1px solid var(--sc-hairline-strong);
-    border-radius: var(--sc-r-md);
-    padding: 1.5rem;
-    max-width: 34rem;
-    box-shadow: var(--sc-e2);
-    text-align: left;
-  }
-  .airgap-toggle {
-    display: inline-flex;
-    background: var(--sc-canvas);
-    border: 1px solid var(--sc-hairline);
-    border-radius: var(--sc-r-pill);
-    padding: 0.25rem;
-    margin-bottom: 1rem;
-  }
-  .airgap-btn {
-    font-family: var(--sc-font-mono);
-    font-size: var(--sc-t-xs);
-    border: none;
-    background: transparent;
-    color: var(--sc-ink-soft);
-    padding: 0.4rem 1rem;
-    border-radius: var(--sc-r-pill);
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .airgap-btn.active {
-    background: var(--sc-accent);
-    color: var(--sc-accent-ink);
-    font-weight: 700;
-  }
-
-  /* CTA Button Design */
-  .cta-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: var(--sc-accent);
-    color: var(--sc-accent-ink);
-    font-family: var(--sc-font-display);
-    font-weight: 700;
-    font-size: var(--sc-t-base);
-    padding: 0.85rem 2rem;
-    border-radius: var(--sc-r-pill);
-    text-decoration: none;
-    box-shadow: var(--sc-e2);
-    transition: transform var(--sc-d-fast) var(--sc-ease-out);
-  }
-  .cta-primary:hover {
-    transform: translateY(-2px);
-  }
-  .cta-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: var(--sc-surface);
-    color: var(--sc-ink);
-    font-family: var(--sc-font-display);
-    font-weight: 600;
-    font-size: var(--sc-t-base);
-    padding: 0.85rem 1.75rem;
-    border-radius: var(--sc-r-pill);
-    border: 1px solid var(--sc-hairline-strong);
-    text-decoration: none;
-  }
-
-
-    /* Studio UI styling adaptations */
-    .bento-hud-card {
-      background: linear-gradient(145deg, rgba(15, 23, 42, 0.9) 0%, rgba(11, 15, 25, 0.95) 100%);
-      border: 1px solid #1E293B;
-      position: relative;
-      overflow: hidden;
+    /* Glass Surface with Delicate Top Highlight (Rule 2) */
+    .glass-card {
+      background: rgba(13, 17, 23, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .pulse-beacon {
-      box-shadow: 0 0 0 0 rgba(0, 255, 157, 0.7);
-      animation: pulse-ring 2s infinite cubic-bezier(0.66, 0, 0, 1);
+    .glass-card:hover {
+      border-color: rgba(45, 235, 144, 0.3);
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(45, 235, 144, 0.08);
     }
-    @keyframes pulse-ring {
-      0% { box-shadow: 0 0 0 0 rgba(0, 255, 157, 0.7); }
-      70% { box-shadow: 0 0 0 8px rgba(0, 255, 157, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(0, 255, 157, 0); }
+
+    .terminal-window {
+      background: rgba(9, 12, 18, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
   </style>
 </head>
-<body class="bg-[#07090E] text-[#F4F6F8] font-sans antialiased min-h-screen flex flex-col selection:bg-[#00FF9D] selection:text-black">
+<body class="selection:bg-[#2DEB90] selection:text-[#05080A]">
 
-<span data-sc-progress></span>
-<div class="sc-grain" aria-hidden="true"></div>
-
-<!-- Chrome: Minimalist Site Bar -->
-<header class="site-bar">
-  <a class="site-bar__mark" href="#top" onclick="switchView('landing')">
-    <div class="site-bar__glyph">⛏</div>
-    <span>Vexo AI</span>
-    <span class="site-bar__badge">OPEN BYOK</span>
-  </a>
-  <div class="site-bar__actions">
-    <span class="hud-bracket" style="display: inline-block;">MC <strong>26.3</strong> READY</span>
-    <button onclick="openByokModal()" class="hud-bracket" style="cursor: pointer; background: transparent; border: 1px solid var(--sc-hairline); display: flex; align-items: center; gap: 0.35rem;">
-      <span id="byok-status-dot" style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #EAB308;"></span>
-      <span id="byok-status-text">API Key</span>
-    </button>
-    <button id="view-toggle-btn" class="cta-primary" onclick="toggleView()" style="padding: 0.4rem 1.1rem; font-size: var(--sc-t-xs); border: none; cursor: pointer;" data-sc-magnet="0.2">
-      <span id="view-toggle-text">Launch Studio</span>
-    </button>
-  </div>
-</header>
-
-<!-- ========================================================================= -->
-<!-- VIEW 1: VEXO AI SCROLL-CRAFT CINEMATIC EXPERIENCE                         -->
-<!-- ========================================================================= -->
-<main id="landing-view">
-
-
-  <!-- ======================================================================= -->
-  <!-- ACT 1 · RECOGNITION: Dimensional Hero (pin + parallax)                   -->
-  <!-- ======================================================================= -->
-  <section data-sc-act="pin" data-sc-span="2.2" data-sc-drift="#07090E">
-    <div data-sc-stage class="hero-stage">
-      <!-- Plane 1: Background Bedrock/Grid Matrix -->
-      <div class="hero-plane hero-plane--bg" data-sc-parallax="-0.35"></div>
-
-      <!-- Plane 2: Midground Subject (Vexo Core Server Monolith) -->
-      <div class="hero-plane hero-plane--subject" data-sc-parallax="-0.15">
-        <div class="hero-monolith">
-          <div style="padding: 1.5rem; font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); color: var(--sc-ink-soft);">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; border-bottom: 1px solid var(--sc-hairline); padding-bottom: 0.5rem;">
-              <span style="color: var(--sc-accent);">● VEXO-NODE-01</span>
-              <span>20.00 TPS</span>
-            </div>
-            <div style="line-height: 1.6; color: var(--sc-ink-soft);">
-              JVM: OpenJDK 21 64-Bit<br>
-              BRIDGE: Paperweight 26.3<br>
-              PORT: 25565 / RCON 25575<br>
-              BYOK: CLIENT-SIDE AIRGAP
-            </div>
-          </div>
+  <!-- ========================================================================= -->
+  <!-- 1. TOP HEADER (Minimalist Glass Bar)                                      -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-50 border-b border-white/[0.06] bg-[#08090C]/85 backdrop-blur-md">
+    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
+      <!-- Logo & Mark -->
+      <a href="#hero" onclick="switchView('landing')" class="flex items-center space-x-3 cursor-pointer">
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.04] border border-white/[0.08] font-bold text-[#2DEB90] shadow-sm">
+          ⛏
         </div>
+        <div class="flex items-center space-x-2">
+          <span class="text-base font-bold tracking-tight text-white">
+            Vexo AI
+          </span>
+          <span class="rounded-full border border-white/[0.08] bg-white/[0.03] px-2 py-0.5 font-mono text-[10px] font-medium tracking-wider text-[#2DEB90]">
+            OPEN BYOK
+          </span>
+        </div>
+      </a>
+
+      <!-- Nav Links -->
+      <nav class="hidden items-center space-x-7 font-mono text-xs font-medium text-[#8B949E] md:flex">
+        <a href="#hero" class="transition hover:text-white">// Overview</a>
+        <a href="#terminal-section" class="transition hover:text-white">// Live Diagnostic</a>
+        <a href="#runtimes" class="transition hover:text-white">// Runtimes (26.3)</a>
+        <a href="#airgap" class="transition hover:text-white">// BYOK Enclave</a>
+      </nav>
+
+      <!-- Action CTAs -->
+      <div class="flex items-center space-x-3">
+        <button 
+          onclick="openByokModal()"
+          class="flex items-center space-x-2 rounded-lg border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 font-mono text-xs font-medium text-[#8B949E] transition hover:border-white/[0.15] hover:text-white cursor-pointer"
+        >
+          <span id="byok-status-dot" class="h-1.5 w-1.5 rounded-full bg-[#2DEB90] animate-pulse"></span>
+          <span id="byok-status-text">Connect API Key</span>
+        </button>
+
+        <button 
+          id="view-toggle-btn"
+          onclick="toggleView()"
+          class="flex items-center space-x-2 rounded-lg bg-[#2DEB90] px-4 py-2 font-mono text-xs font-bold text-[#05080A] shadow-md shadow-[#2DEB90]/10 transition hover:brightness-105 active:scale-[0.98] cursor-pointer"
+        >
+          <span id="view-toggle-text">Launch Studio</span>
+        </button>
       </div>
+    </div>
+  </header>
 
-      <!-- Plane 3: Typography Plane (Pure White + Mint Green, Zero Gradients) -->
-      <div class="sc-copy sc-copy--center" data-sc-cue="0 0.82 0" style="z-index: 10;">
-        <div style="font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); color: var(--sc-accent); letter-spacing: var(--sc-track-wide); margin-bottom: 1rem;">
-          [SYS_CORE // VEXO-OS v2.4] · MINECRAFT 26.3 · 100% BYOK ENCLAVE
+  <!-- ========================================================================= -->
+  <!-- VIEW 1: VEXO AI OVERHAULED LANDING PAGE (Continuous Scroll, Zero Hijacking)-->
+  <!-- ========================================================================= -->
+  <main id="landing-view" class="flex-grow">
+    
+    <!-- HERO SECTION (Clean & Impactful - Rule 3) -->
+    <section id="hero" class="relative z-10 pt-20 pb-20 text-center px-4 sm:px-6">
+      <div class="mx-auto max-w-4xl">
+        <!-- Floating Mono Capsule Tag ABOVE Headline (Clean Telemetry - Rule 3) -->
+        <div class="inline-flex items-center space-x-2.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-1.5 font-mono text-xs text-[#8B949E] backdrop-blur-md mb-8">
+          <span class="h-2 w-2 rounded-full bg-[#2DEB90] animate-pulse"></span>
+          <span class="font-semibold text-white tracking-wider">VEXO-NODE-01</span>
+          <span class="text-white/20">//</span>
+          <span>MC 26.3 COMPATIBLE</span>
+          <span class="text-white/20">//</span>
+          <span class="text-[#2DEB90]">20.00 TPS</span>
+          <span class="text-white/20">//</span>
+          <span>100% BYOK ENCLAVE</span>
         </div>
-        <h1 class="sc-display sc-display--xl" data-sc-kinetic="lines">
-          The Autonomous <span class="mint-text">Minecraft</span> Server <span class="mint-text">AI Developer</span>
+
+        <!-- Headline (Rule 3: Pure white with subtle mint accent on Minecraft & AI Developer) -->
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.12] text-white">
+          The Autonomous <span class="text-[#2DEB90]">Minecraft</span> Server <span class="text-[#2DEB90]">AI Developer</span>
         </h1>
-        <p class="sc-body" style="margin: 1.25rem auto 0; max-width: 48ch;">
+
+        <!-- Subtext (Rule 2: Cool Slate Gray #8B949E) -->
+        <p class="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-[#8B949E] font-normal leading-relaxed">
           Stop wrestling with complex YAML syntax, obscure crash reports, and plugin jars.
           Connect your server, provide your API key, and manage, troubleshoot, and code plugins in plain English.
         </p>
-        <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
-          <button class="cta-primary" onclick="launchVexoStudio()" data-sc-magnet="0.26" style="cursor: pointer; border: none;">Open Server Studio →</button>
-          <button class="cta-secondary" onclick="openConnectServerModal()" style="cursor: pointer;">Connect via SFTP & RCON</button>
+
+        <!-- CTA Buttons (Rule 3) -->
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <button 
+            onclick="switchView('studio')"
+            class="flex items-center space-x-2 rounded-xl bg-[#2DEB90] px-7 py-3.5 font-sans font-bold text-[#05080A] shadow-lg shadow-[#2DEB90]/15 transition hover:brightness-105 active:scale-[0.98] cursor-pointer"
+          >
+            <span>Open Server Studio</span>
+            <span>→</span>
+          </button>
+
+          <button 
+            onclick="openConnectServerModal()"
+            class="flex items-center space-x-2 rounded-xl border border-white/[0.1] bg-white/[0.04] hover:bg-white/[0.08] px-6 py-3.5 font-sans font-semibold text-white backdrop-blur-md transition active:scale-[0.98] cursor-pointer"
+          >
+            <span>Connect via SFTP & RCON</span>
+          </button>
         </div>
-      </div>
 
-      <!-- Plane 4: Foreground Floating Telemetry Brackets -->
-      <div class="hero-plane hero-plane--fg" data-sc-parallax="0.25">
-        <div class="hud-bracket">TELEMETRY: <strong>20.00 TPS</strong> · 0.0ms JITTER</div>
-        <div class="hud-bracket">ENCRYPTION: <strong>LOCAL BYOK</strong> · NO CLOUD LOGS</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================================================================= -->
-  <!-- ACT 2 · TENSION: pin + kinetic (The Cost of Manual Admin)                -->
-  <!-- ======================================================================= -->
-  <section data-sc-act="pin" data-sc-span="3.2" data-sc-drift="#080B12">
-    <div data-sc-stage class="tension-stage">
-      <p class="tension-line" data-sc-cue="0 0.32 0">
-        At 8:42 PM on Friday night, your 60-player survival SMP drops to 8.4 TPS.
-      </p>
-      <p class="tension-line" data-sc-cue="0.26 0.60">
-        Runaway villager brain ticking in the Nether hub is consuming 41% of server tick time.
-      </p>
-      <p class="tension-line" data-sc-cue="0.54 0.88">
-        A single missing space in <span class="mint-text">paper-world-defaults.yml</span> bricks the reboot.
-      </p>
-      <p class="tension-line highlight" data-sc-cue="0.82">
-        You are manually grepping 4,000 lines of latest.log while Discord is in flames.
-      </p>
-    </div>
-  </section>
-
-  <!-- ======================================================================= -->
-  <!-- ACT 3 · TURN: flow + reveal (Autonomous Diagnostic & Patch)             -->
-  <!-- ======================================================================= -->
-  <section class="sc-section" data-sc-act="flow" data-sc-drift="#0A0E17">
-    <div class="turn-grid">
-      <div class="sc-stack" data-sc-in data-sc-stagger="70">
-        <div style="font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); color: var(--sc-accent);">
-          // AUTONOMOUS INTERVENTION
-        </div>
-        <h2 class="sc-display sc-display--lg">Plain English in. Synchronized execution out.</h2>
-        <p class="sc-body">
-          Vexo inspects the live JVM stack, pinpoints the ticking bottleneck, writes an atomic configuration backup, safely clamps entity activation parameters, and dispatches a synchronous reload.
-        </p>
-        <p class="sc-body">
-          Zero YAML syntax mistakes. Zero server restarts required. Your players stay online.
-        </p>
-      </div>
-
-      <figure data-sc-reveal="left" data-sc-reveal-at="0.15 0.65">
-        <div class="console-frame">
-          <div class="console-header">
-            <span>vexo-agent@paper-26.3-survival: ~</span>
-            <span style="color: var(--sc-accent);">TPS RECOVERY: +11.6</span>
+        <!-- Monospace Direct Version Quick-Selector Capsule -->
+        <div class="mx-auto mt-10 max-w-3xl rounded-xl border border-white/[0.08] bg-white/[0.02] p-2.5 backdrop-blur-md flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
+          <div class="flex items-center space-x-2 pl-2 text-[#64748B]">
+            <span class="h-1.5 w-1.5 rounded-full bg-[#2DEB90]"></span>
+            <span class="font-semibold text-[#8B949E] uppercase tracking-wider text-[11px]">Direct Version Select:</span>
           </div>
-          <div class="console-body">
-            <div><span style="color: var(--sc-ink);">Admin:</span> "Fix the Nether hub entity lag immediately."</div>
-            <div style="margin: 0.75rem 0; color: var(--sc-accent);">⚡ Vexo AI executing verified patch on paper-world-defaults.yml:</div>
-            <div class="diff-del">- entity-activation-range.animals: 32</div>
-            <div class="diff-add">+ entity-activation-range.animals: 16</div>
-            <div class="diff-del">- despawn-ranges.monster.hard: 128</div>
-            <div class="diff-add">+ despawn-ranges.monster.hard: 96 (despawn soft: 32)</div>
-            <div class="diff-add">+ tick-inactive-villagers: false</div>
-            <div style="margin-top: 0.75rem; color: var(--sc-ink-soft);">
-              ✓ Backup: <span style="color: var(--sc-ink);">paper-world-defaults.yml.vexo.bak</span><br>
-              ✓ Executed: <span style="color: var(--sc-ink);">/paper reload</span> synchronously.<br>
-              <span style="color: var(--sc-accent);">✓ TPS recovered to 20.00 (0.0ms tick jitter).</span>
+          <div class="flex flex-wrap items-center gap-1.5">
+            <button onclick="openVersionModal('paper')" class="rounded-md border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 text-[#2DEB90] font-medium hover:bg-white/[0.06] transition">
+              Paper (26.3)
+            </button>
+            <button onclick="openVersionModal('fabric')" class="rounded-md border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 text-[#8B949E] font-medium hover:text-white hover:bg-white/[0.06] transition">
+              Fabric (26.3)
+            </button>
+            <button onclick="openVersionModal('forge')" class="rounded-md border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 text-[#8B949E] font-medium hover:text-white hover:bg-white/[0.06] transition">
+              Forge / Neo (26.3)
+            </button>
+            <button onclick="openVersionModal('velocity')" class="rounded-md border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 text-[#8B949E] font-medium hover:text-white hover:bg-white/[0.06] transition">
+              Velocity 3.3
+            </button>
+            <button onclick="openVersionModal('standalone')" class="rounded-md border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 text-[#8B949E] font-medium hover:text-white hover:bg-white/[0.06] transition">
+              Vanilla BDS
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: TERMINAL & LIVE EXECUTION (Rule 4: 2-Column Spotlight Showcase) -->
+    <section id="terminal-section" class="relative z-10 py-20 px-4 sm:px-6 border-t border-white/[0.06]">
+      <div class="mx-auto max-w-7xl">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Left Column: Problem & Promise (Rule 4) -->
+          <div class="lg:col-span-5 space-y-6 text-left">
+            <div class="inline-flex items-center space-x-2 font-mono text-xs text-[#2DEB90]">
+              <span class="h-1.5 w-1.5 rounded-full bg-[#2DEB90]"></span>
+              <span class="tracking-wider uppercase">// AUTONOMOUS INTERVENTION</span>
+            </div>
+
+            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
+              English in.<br>
+              Synchronized execution out.
+            </h2>
+
+            <p class="text-base text-[#8B949E] leading-relaxed">
+              At 8:42 PM on Friday night, your 60-player survival SMP drops to 8.4 TPS.
+              Runaway villager brain ticking in the Nether hub is consuming 41% of server tick time.
+              A single broken indent in <code class="text-white font-mono text-xs bg-white/[0.05] px-1.5 py-0.5 rounded">paper-world-defaults.yml</code> bricks the reboot.
+            </p>
+
+            <div class="space-y-3 pt-2 font-mono text-xs text-[#8B949E]">
+              <div class="flex items-start space-x-3">
+                <span class="text-[#2DEB90] mt-0.5">✓</span>
+                <span>Automatic atomic configuration snapshot & backup (*.bak)</span>
+              </div>
+              <div class="flex items-start space-x-3">
+                <span class="text-[#2DEB90] mt-0.5">✓</span>
+                <span>Surgical clamp of entity activation and despawn bounds</span>
+              </div>
+              <div class="flex items-start space-x-3">
+                <span class="text-[#2DEB90] mt-0.5">✓</span>
+                <span>Synchronous reload dispatch with zero player disconnections</span>
+              </div>
+              <div class="flex items-start space-x-3">
+                <span class="text-[#2DEB90] mt-0.5">✓</span>
+                <span>Immediate TPS restoration back to 20.00 (0.0ms tick jitter)</span>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <button 
+                onclick="switchView('studio'); setStudioTab('profiler');"
+                class="inline-flex items-center space-x-2 text-xs font-mono font-semibold text-[#2DEB90] hover:underline cursor-pointer"
+              >
+                <span>Inspect autonomous patch pipeline in Studio</span>
+                <span>→</span>
+              </button>
             </div>
           </div>
-        </div>
-      </figure>
-    </div>
-  </section>
 
-  <!-- ======================================================================= -->
-  <!-- ACT 4 · SUBSTANCE: pan (The Universal Platform Matrix 1.7.10 — 26.3)     -->
-  <!-- ======================================================================= -->
-  <section id="platforms" data-sc-act="pan" data-sc-span="3.4" data-sc-drift="#07090E">
-    <div data-sc-stage class="rail-wrap">
-      <div class="rail" data-sc-pan="0.25">
-        <div style="flex: 0 0 22rem; margin-right: 2rem;">
-          <div style="font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); color: var(--sc-accent); margin-bottom: 0.5rem;">
-            // MULTI-VERSION MATRIX
+          <!-- Right Column: Realistic macOS/Linux Glass Terminal Window (Rule 4) -->
+          <div class="lg:col-span-7">
+            <div class="terminal-window rounded-2xl overflow-hidden text-left">
+              <!-- Titlebar with traffic light controls -->
+              <div class="flex items-center justify-between px-4 py-3 border-b border-white/[0.06] bg-white/[0.02]">
+                <div class="flex items-center space-x-2">
+                  <span class="h-3 w-3 rounded-full bg-[#FF5F56] border border-[#E0443E]/50 inline-block"></span>
+                  <span class="h-3 w-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50 inline-block"></span>
+                  <span class="h-3 w-3 rounded-full bg-[#27C93F] border border-[#1AAB29]/50 inline-block"></span>
+                </div>
+                <div class="font-mono text-xs text-[#64748B] flex items-center space-x-2">
+                  <span>vexo-agent@paper-26.3-survival: ~</span>
+                </div>
+                <div class="flex items-center space-x-1.5 font-mono text-[11px] text-[#2DEB90] bg-[#2DEB90]/10 border border-[#2DEB90]/20 px-2 py-0.5 rounded-full">
+                  <span class="h-1.5 w-1.5 rounded-full bg-[#2DEB90] animate-pulse"></span>
+                  <span>TPS RECOVERY: +11.6</span>
+                </div>
+              </div>
+
+              <!-- Monospace Terminal Body -->
+              <div class="p-5 font-mono text-xs leading-relaxed space-y-3.5 text-[#8B949E]">
+                <div class="flex items-center space-x-2 text-white">
+                  <span class="text-[#2DEB90] font-bold">admin@server:~$</span>
+                  <span class="bg-white/[0.05] px-2 py-0.5 rounded text-white font-medium">
+                    "Fix the Nether hub entity lag immediately."
+                  </span>
+                </div>
+
+                <div class="text-[#8B949E] pl-2 border-l border-white/[0.1] space-y-1">
+                  <div class="text-white flex items-center space-x-2">
+                    <span class="text-[#2DEB90]">⚡ Vexo AI:</span>
+                    <span>Profiling live JVM tick stack...</span>
+                  </div>
+                  <div class="text-[#64748B]">
+                    Villager brain ticking (Chunk [-14, 22]): consuming 41.2% tick budget.
+                  </div>
+                </div>
+
+                <div class="bg-[#05070B] border border-white/[0.06] rounded-xl p-3.5 space-y-1.5">
+                  <div class="text-[11px] text-[#64748B] pb-1 border-b border-white/[0.05] flex justify-between">
+                    <span>paper-world-defaults.yml (atomic patch)</span>
+                    <span class="text-[#2DEB90]">Auto-Backup Created</span>
+                  </div>
+                  <div class="text-[#EF4444] bg-[#EF4444]/10 px-2 py-0.5 rounded">
+                    - entity-activation-range.animals: 32
+                  </div>
+                  <div class="text-[#2DEB90] bg-[#2DEB90]/10 px-2 py-0.5 rounded">
+                    + entity-activation-range.animals: 16
+                  </div>
+                  <div class="text-[#EF4444] bg-[#EF4444]/10 px-2 py-0.5 rounded">
+                    - despawn-ranges.monster.hard: 128
+                  </div>
+                  <div class="text-[#2DEB90] bg-[#2DEB90]/10 px-2 py-0.5 rounded">
+                    + despawn-ranges.monster.hard: 96 (despawn soft: 32)
+                  </div>
+                  <div class="text-[#2DEB90] bg-[#2DEB90]/10 px-2 py-0.5 rounded">
+                    + tick-inactive-villagers: false
+                  </div>
+                </div>
+
+                <div class="space-y-1 text-xs">
+                  <div class="text-[#8B949E] flex items-center space-x-2">
+                    <span class="text-[#2DEB90]">✓</span>
+                    <span>Backup: <span class="text-white">paper-world-defaults.yml.vexo.bak</span> written to disk.</span>
+                  </div>
+                  <div class="text-[#8B949E] flex items-center space-x-2">
+                    <span class="text-[#2DEB90]">✓</span>
+                    <span>Dispatched <code class="text-white bg-white/[0.08] px-1 rounded">/paper reload</code> synchronously.</span>
+                  </div>
+                  <div class="text-[#2DEB90] font-semibold flex items-center space-x-2 pt-1">
+                    <span>✓</span>
+                    <span>Server stabilized at 20.00 TPS (0.0ms tick jitter, 0 players dropped).</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Footer status indicator -->
+              <div class="px-4 py-2 border-t border-white/[0.04] bg-white/[0.01] flex items-center justify-between text-[11px] font-mono text-[#64748B]">
+                <span>SFTP Direct Socket: Port 22</span>
+                <span>RCON Handshake: Verified</span>
+                <span>JVM: OpenJDK 21 64-Bit</span>
+              </div>
+            </div>
           </div>
-          <h2 class="sc-display sc-display--md">Universal Native Coverage</h2>
-          <p class="sc-body" style="margin-top: 0.75rem;">
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: RUNTIME BENTO GRID (Rule 5: 4-Column Responsive Layout) -->
+    <section id="runtimes" class="relative z-10 py-20 px-4 sm:px-6 border-t border-white/[0.06]">
+      <div class="mx-auto max-w-7xl">
+        <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
+          <div class="inline-flex items-center space-x-2 font-mono text-xs text-[#2DEB90]">
+            <span class="h-1.5 w-1.5 rounded-full bg-[#2DEB90]"></span>
+            <span class="tracking-wider uppercase">// MULTI-VERSION MATRIX</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+            Universal Native Coverage
+          </h2>
+          <p class="text-base text-[#8B949E]">
             From legacy 1.7.10 PvP classic to cutting-edge Minecraft 26.3. Precompiled runtime bridge binaries engineered for zero port overhead.
           </p>
         </div>
 
-        <!-- Item 1: Paper -->
-        <article class="platform-card" data-sc-tilt="4" style="cursor: pointer;" onclick="openVersionModal('paper')">
-          <div>
-            <div style="font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); color: var(--sc-accent); margin-bottom: 0.5rem;">BUKKIT / SPIGOT / PAPER</div>
-            <h3 class="sc-display" style="font-size: var(--sc-t-lg);">VexoBridge Paper</h3>
-            <p class="sc-body" style="font-size: var(--sc-t-xs); margin-top: 0.5rem;">
-              Direct hook into Bukkit event scheduler and spark profiler. Zero overhead for survival SMP and minigame networks.
-            </p>
-          </div>
-          <div style="font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); border-top: 1px solid var(--sc-hairline); padding-top: 0.75rem;">
-            <div style="display: flex; justify-content: space-between;"><span>Versions:</span> <strong style="color: var(--sc-accent);">1.7.10 — 26.3</strong></div>
-            <div style="display: flex; justify-content: space-between; margin-top: 0.25rem;"><span>Builds:</span> <span>33 Target Releases</span></div>
-          </div>
-        </article>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Card 1: Paper -->
+          <div onclick="openVersionModal('paper')" class="glass-card rounded-2xl p-6 flex flex-col justify-between text-left cursor-pointer">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="font-mono text-[11px] font-semibold text-[#2DEB90] uppercase tracking-wider">
+                  BUKKIT / SPIGOT / PAPER
+                </span>
+                <span class="h-2 w-2 rounded-full bg-[#2DEB90] inline-block"></span>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">VexoBridge Paper</h3>
+              <p class="text-xs text-[#8B949E] leading-relaxed mb-6">
+                Direct hook into Bukkit event scheduler and spark profiler. Zero overhead for survival SMP and minigame networks.
+              </p>
+            </div>
 
-        <!-- Item 2: Fabric -->
-        <article class="platform-card" data-sc-tilt="4" style="cursor: pointer;" onclick="openVersionModal('fabric')">
-          <div>
-            <div style="font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); color: #06B6D4; margin-bottom: 0.5rem;">FABRIC SERVER MOD</div>
-            <h3 class="sc-display" style="font-size: var(--sc-t-lg);">VexoBridge Fabric</h3>
-            <p class="sc-body" style="font-size: var(--sc-t-xs); margin-top: 0.5rem;">
-              Lightweight Mixin bytecode hook into dedicated server tick loop. Compatible with Lithium and FerriteCore.
-            </p>
+            <div class="pt-4 border-t border-white/[0.06] font-mono text-xs space-y-2">
+              <div class="flex justify-between items-center text-[#8B949E]">
+                <span>Support:</span>
+                <span class="text-white font-medium">1.7.10 — 26.3</span>
+              </div>
+              <div class="flex justify-between items-center text-[#8B949E]">
+                <span>Tag:</span>
+                <span class="rounded bg-white/[0.04] px-2 py-0.5 text-[#2DEB90] text-[11px]">
+                  Paper 1.20+
+                </span>
+              </div>
+            </div>
           </div>
-          <div style="font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); border-top: 1px solid var(--sc-hairline); padding-top: 0.75rem;">
-            <div style="display: flex; justify-content: space-between;"><span>Versions:</span> <strong style="color: #06B6D4;">1.14.4 — 26.3</strong></div>
-            <div style="display: flex; justify-content: space-between; margin-top: 0.25rem;"><span>Loader:</span> <span>Fabric Loader 0.16+</span></div>
-          </div>
-        </article>
 
-        <!-- Item 3: Forge & NeoForge -->
-        <article class="platform-card" data-sc-tilt="4" style="cursor: pointer;" onclick="openVersionModal('forge')">
-          <div>
-            <div style="font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); color: #F59E0B; margin-bottom: 0.5rem;">FORGE & NEOFORGE</div>
-            <h3 class="sc-display" style="font-size: var(--sc-t-lg);">VexoBridge Forge</h3>
-            <p class="sc-body" style="font-size: var(--sc-t-xs); margin-top: 0.5rem;">
-              Engineered for ATM9, DawnCraft, and heavy modpacks. Automates mod config reloads and entity crash guards.
-            </p>
-          </div>
-          <div style="font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); border-top: 1px solid var(--sc-hairline); padding-top: 0.75rem;">
-            <div style="display: flex; justify-content: space-between;"><span>Versions:</span> <strong style="color: #F59E0B;">1.7.10 — 26.3</strong></div>
-            <div style="display: flex; justify-content: space-between; margin-top: 0.25rem;"><span>Target:</span> <span>FML / NeoForged 20+</span></div>
-          </div>
-        </article>
+          <!-- Card 2: Fabric -->
+          <div onclick="openVersionModal('fabric')" class="glass-card rounded-2xl p-6 flex flex-col justify-between text-left cursor-pointer">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="font-mono text-[11px] font-semibold text-[#06B6D4] uppercase tracking-wider">
+                  FABRIC SERVER MOD
+                </span>
+                <span class="h-2 w-2 rounded-full bg-[#06B6D4] inline-block"></span>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">VexoBridge Fabric</h3>
+              <p class="text-xs text-[#8B949E] leading-relaxed mb-6">
+                Lightweight Mixin bytecode hook into dedicated server tick loop. Compatible with Lithium and FerriteCore.
+              </p>
+            </div>
 
-        <!-- Item 4: Velocity Proxy -->
-        <article class="platform-card" data-sc-tilt="4" style="cursor: pointer;" onclick="openVersionModal('velocity')">
-          <div>
-            <div style="font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); color: #8B5CF6; margin-bottom: 0.5rem;">PROXY NETWORKS</div>
-            <h3 class="sc-display" style="font-size: var(--sc-t-lg);">Velocity & Bungee</h3>
-            <p class="sc-body" style="font-size: var(--sc-t-xs); margin-top: 0.5rem;">
-              Controls routing, multi-server permissions, and global chat across Velocity 3.x and BungeeCord networks.
-            </p>
+            <div class="pt-4 border-t border-white/[0.06] font-mono text-xs space-y-2">
+              <div class="flex justify-between items-center text-[#8B949E]">
+                <span>Support:</span>
+                <span class="text-white font-medium">1.14.4 — 26.3</span>
+              </div>
+              <div class="flex justify-between items-center text-[#8B949E]">
+                <span>Tag:</span>
+                <span class="rounded bg-white/[0.04] px-2 py-0.5 text-[#06B6D4] text-[11px]">
+                  Fabric 0.16+
+                </span>
+              </div>
+            </div>
           </div>
-          <div style="font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); border-top: 1px solid var(--sc-hairline); padding-top: 0.75rem;">
-            <div style="display: flex; justify-content: space-between;"><span>Protocol:</span> <strong style="color: #8B5CF6;">Cross-Server Sync</strong></div>
-            <div style="display: flex; justify-content: space-between; margin-top: 0.25rem;"><span>Drop-in:</span> <span>/plugins/ folder</span></div>
-          </div>
-        </article>
 
-        <!-- Item 5: Standalone Daemon -->
-        <article class="platform-card" data-sc-tilt="4" style="cursor: pointer;" onclick="openVersionModal('standalone')">
-          <div>
-            <div style="font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); color: #EAB308; margin-bottom: 0.5rem;">ZERO-PLUGIN / VANILLA</div>
-            <h3 class="sc-display" style="font-size: var(--sc-t-lg);">Standalone Daemon</h3>
-            <p class="sc-body" style="font-size: var(--sc-t-xs); margin-top: 0.5rem;">
-              Zero mods needed. Connects ANY server (Vanilla, Bedrock BDS, Pterodactyl panels) via RCON and remote filesystem.
-            </p>
+          <!-- Card 3: Forge & NeoForge -->
+          <div onclick="openVersionModal('forge')" class="glass-card rounded-2xl p-6 flex flex-col justify-between text-left cursor-pointer">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="font-mono text-[11px] font-semibold text-[#F59E0B] uppercase tracking-wider">
+                  FORGE & NEOFORGE
+                </span>
+                <span class="h-2 w-2 rounded-full bg-[#F59E0B] inline-block"></span>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">VexoBridge Forge</h3>
+              <p class="text-xs text-[#8B949E] leading-relaxed mb-6">
+                Engineered for ATM9, DawnCraft, and heavy modpacks. Automates mod config reloads and entity crash guards.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-white/[0.06] font-mono text-xs space-y-2">
+              <div class="flex justify-between items-center text-[#8B949E]">
+                <span>Support:</span>
+                <span class="text-white font-medium">1.7.10 — 26.3</span>
+              </div>
+              <div class="flex justify-between items-center text-[#8B949E]">
+                <span>Tag:</span>
+                <span class="rounded bg-white/[0.04] px-2 py-0.5 text-[#F59E0B] text-[11px]">
+                  Forge 1.20+
+                </span>
+              </div>
+            </div>
           </div>
-          <div style="font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); border-top: 1px solid var(--sc-hairline); padding-top: 0.75rem;">
-            <div style="display: flex; justify-content: space-between;"><span>Compatibility:</span> <strong style="color: #EAB308;">MC 1.0 — 26.3</strong></div>
-            <div style="display: flex; justify-content: space-between; margin-top: 0.25rem;"><span>Ports:</span> <span>25575 / 22 only</span></div>
+
+          <!-- Card 4: Velocity Proxy -->
+          <div onclick="openVersionModal('velocity')" class="glass-card rounded-2xl p-6 flex flex-col justify-between text-left cursor-pointer">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="font-mono text-[11px] font-semibold text-[#A855F7] uppercase tracking-wider">
+                  PROXY NETWORKS
+                </span>
+                <span class="h-2 w-2 rounded-full bg-[#A855F7] inline-block"></span>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">Velocity & Bungee</h3>
+              <p class="text-xs text-[#8B949E] leading-relaxed mb-6">
+                Controls routing, multi-server permissions, and global cross-server chat across Velocity 3.x networks.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-white/[0.06] font-mono text-xs space-y-2">
+              <div class="flex justify-between items-center text-[#8B949E]">
+                <span>Support:</span>
+                <span class="text-white font-medium">Cross-Server Sync</span>
+              </div>
+              <div class="flex justify-between items-center text-[#8B949E]">
+                <span>Tag:</span>
+                <span class="rounded bg-white/[0.04] px-2 py-0.5 text-[#A855F7] text-[11px]">
+                  Velocity 3.3+
+                </span>
+              </div>
+            </div>
           </div>
-        </article>
+
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ======================================================================= -->
-  <!-- ACT 5 · COMMITMENT & SIGNATURE MOVE: pin + magnet                        -->
-  <!-- ======================================================================= -->
-  <section id="join" data-sc-act="pin" data-sc-span="1.35" data-sc-drift="#06080D">
-    <div data-sc-stage class="hero-stage" data-sc-spotlight>
-      <div class="sc-copy sc-copy--center" style="max-width: 44rem; text-align: center;">
-        <h2 class="sc-display sc-display--lg" data-sc-cue="0.06" data-sc-kinetic="lines">
-          Your Server. Your Keys. <span class="mint-text">Zero Lock-in.</span>
+    <!-- SECTION 4: AIRGAP ENCLAVE & ZERO-KNOWLEDGE BYOK -->
+    <section id="airgap" class="relative z-10 py-20 px-4 sm:px-6 border-t border-white/[0.06]">
+      <div class="mx-auto max-w-4xl text-center">
+        <div class="inline-flex items-center space-x-2 font-mono text-xs text-[#2DEB90] mb-3">
+          <span class="h-1.5 w-1.5 rounded-full bg-[#2DEB90]"></span>
+          <span class="tracking-wider uppercase">// SOVEREIGN ARCHITECTURE</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+          Your Server. Your Keys. <span class="text-[#2DEB90]">Zero Lock-in.</span>
         </h2>
-        <p class="sc-body" style="margin: 1rem auto 0; text-align: center;">
+
+        <p class="mx-auto mt-4 max-w-xl text-base text-[#8B949E]">
           Never pay a monthly per-server fee or upload server credentials to a third-party SaaS database.
         </p>
 
-        <!-- Signature Move: Airgap Enclave Interactive Cryptographic Switcher -->
-        <div class="airgap-box" style="margin: 1.5rem auto 0;" data-sc-cue="0.08">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-            <span style="font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); color: var(--sc-ink-soft);">SIGNATURE ARCHITECTURE:</span>
-            <div class="airgap-toggle">
-              <button class="airgap-btn" id="btn-cloud" onclick="toggleAirgapMode('cloud')">SaaS Cloud</button>
-              <button class="airgap-btn active" id="btn-byok" onclick="toggleAirgapMode('byok')">100% BYOK Airgap</button>
+        <!-- Interactive Airgap Switcher Box -->
+        <div class="mx-auto mt-8 max-w-2xl glass-card rounded-2xl p-6 text-left">
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-white/[0.06]">
+            <span class="font-mono text-xs text-[#8B949E]">ENCLAVE MODE:</span>
+            <div class="inline-flex rounded-lg border border-white/[0.08] bg-[#05070B] p-1 font-mono text-xs">
+              <button
+                id="btn-byok"
+                onclick="toggleAirgapMode('byok')"
+                class="px-3 py-1 rounded-md transition bg-[#2DEB90] text-[#05080A] font-bold shadow-sm cursor-pointer"
+              >
+                100% BYOK Airgap
+              </button>
+              <button
+                id="btn-cloud"
+                onclick="toggleAirgapMode('cloud')"
+                class="px-3 py-1 rounded-md transition text-[#8B949E] hover:text-white cursor-pointer"
+              >
+                SaaS Cloud
+              </button>
             </div>
           </div>
-          <div id="airgap-status-text" style="font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); line-height: 1.6; color: var(--sc-accent);">
-            ✓ ENCLAVE STATUS: AES-GCM Client-Side Isolation Active.<br>
-            ✓ LLM Keys (Gemini, Claude, OpenAI, Ollama) stored exclusively in your browser localStorage.<br>
-            ✓ SFTP & RCON connect directly between your machine and your Minecraft host. Zero intermediary servers.
+
+          <div id="airgap-status-text" class="pt-4 font-mono text-xs leading-relaxed space-y-2 text-[#2DEB90]">
+            <div class="flex items-center space-x-2">
+              <span>✓</span>
+              <span>ENCLAVE STATUS: AES-GCM Client-Side Isolation Active.</span>
+            </div>
+            <div class="text-[#8B949E] flex items-center space-x-2">
+              <span class="text-[#2DEB90]">✓</span>
+              <span>LLM Keys (Gemini, Claude, OpenAI, Ollama) stored exclusively in your browser localStorage.</span>
+            </div>
+            <div class="text-[#8B949E] flex items-center space-x-2">
+              <span class="text-[#2DEB90]">✓</span>
+              <span>SFTP & RCON connect directly between your machine and your Minecraft host. Zero intermediary servers.</span>
+            </div>
           </div>
         </div>
 
-        <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;" data-sc-cue="0.06" data-sc-rise="0">
-          <a class="cta-primary" href="javascript:void(0)" onclick="launchVexoStudio()" data-sc-magnet="0.26">
-            Launch Vexo Studio
-          </a>
-          <button class="cta-secondary" onclick="openConnectServerModal()" style="cursor: pointer;">
-            Connect Server (SFTP/RCON)
+        <!-- Final Call to Action Buttons -->
+        <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+          <button 
+            onclick="switchView('studio')"
+            class="flex items-center space-x-2 rounded-xl bg-[#2DEB90] px-8 py-3.5 font-sans font-bold text-[#05080A] shadow-lg shadow-[#2DEB90]/15 transition hover:brightness-105 active:scale-[0.98] cursor-pointer"
+          >
+            <span>Launch Vexo Studio</span>
+            <span>→</span>
           </button>
-          <a class="cta-secondary" href="#top">
-            Back to Top ↑
+
+          <a 
+            href="#hero"
+            class="flex items-center space-x-2 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] px-6 py-3.5 font-sans font-semibold text-white transition active:scale-[0.98]"
+          >
+            <span>Back to Top ↑</span>
           </a>
         </div>
       </div>
+    </section>
 
-      <footer style="position: absolute; bottom: 1.5rem; left: var(--sc-gutter); right: var(--sc-gutter); display: flex; justify-content: space-between; font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); color: var(--sc-ink-soft); border-top: 1px solid var(--sc-hairline); padding-top: 1rem;">
-        <span>Vexo AI · Open BYOK Edition</span>
-        <span>Minecraft 1.7.10 — 26.3 Verified</span>
-      </footer>
-    </div>
-  </section>
+    <!-- MINIMALIST FOOTER -->
+    <footer class="relative z-10 border-t border-white/[0.06] bg-[#05070B] py-8 px-4 sm:px-6 font-mono text-xs text-[#64748B]">
+      <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center space-x-2">
+          <span class="font-bold text-white">Vexo AI</span>
+          <span>—</span>
+          <span>Open BYOK Edition</span>
+        </div>
+        <div class="flex items-center space-x-4">
+          <span>Paper • Fabric • Forge • Velocity</span>
+          <span>//</span>
+          <span class="text-[#2DEB90]">MC 1.7.10 — 26.3 Verified</span>
+        </div>
+      </div>
+    </footer>
+  </main>
 
-
-</main>
-
-<!-- ========================================================================= -->
-<!-- VIEW 2: VEXO AI WEB STUDIO / CHAT DASHBOARD                               -->
-<!-- ========================================================================= -->
-<main id="studio-view" class="hidden flex-grow flex flex-col overflow-hidden h-[calc(100vh-65px)]">
+  <!-- ========================================================================= -->
+  <!-- VIEW 2: VEXO AI WEB STUDIO / CHAT DASHBOARD                               -->
+  <!-- ========================================================================= -->
+  <main id="studio-view" class="hidden flex-grow flex flex-col overflow-hidden h-[calc(100vh-65px)]">
     <!-- Sub-header / Status Toolbar -->
     <div class="bg-[#0D121F] border-b border-gray-800 px-4 py-2 flex flex-wrap items-center justify-between text-xs gap-3">
       <!-- Server selection & active status -->
@@ -1070,7 +932,12 @@
 <!-- ========================================================================= -->
 <!-- MODALS                                                                    -->
 <!-- ========================================================================= -->
-<!-- MODAL: BRING YOUR OWN KEY (BYOK) SETTINGS -->
+
+
+  <!-- ========================================================================= -->
+  <!-- MODALS                                                                    -->
+  <!-- ========================================================================= -->
+  <!-- MODAL: BRING YOUR OWN KEY (BYOK) SETTINGS -->
   <!-- ========================================================================= -->
   <div id="byok-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-[#0E1424] border border-gray-800 rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-2xl">
@@ -1455,7 +1322,11 @@
   
 
 <script src="/scrollcraft.js"></script>
-<script>
+
+
+  <!-- Studio & App Script Engine -->
+  <script>
+  
 
     // State management
     const defaultServers = [
@@ -1510,48 +1381,57 @@
     // Initialize UI on load
     
 
-  // Bespoke Signature Move: Interactive Airgap Mode Switcher
-  function toggleAirgapMode(mode) {
-    const btnCloud = document.getElementById('btn-cloud');
-    const btnByok = document.getElementById('btn-byok');
-    const statusText = document.getElementById('airgap-status-text');
-    if (!btnCloud || !btnByok || !statusText) return;
+  
 
-    if (mode === 'byok') {
-      btnByok.classList.add('active');
-      btnCloud.classList.remove('active');
-      statusText.innerHTML = `
-        <span style="color: var(--sc-accent);">✓ ENCLAVE STATUS: AES-GCM Client-Side Isolation Active.</span><br>
-        ✓ LLM Keys (Gemini, Claude, OpenAI, Ollama) stored exclusively in your browser localStorage.<br>
-        ✓ SFTP & RCON connect directly between your machine and your Minecraft host. Zero intermediary servers.
-      `;
-    } else {
-      btnCloud.classList.add('active');
-      btnByok.classList.remove('active');
-      statusText.innerHTML = `
-        <span style="color: #FF5A5F;">⚠️ SAAS CLOUD MODE:</span><br>
-        ✗ Your server credentials and AI API tokens pass through a centralized cloud relay.<br>
-        ✗ Monthly recurring subscription fees applied per server instance.<br>
-        <span style="color: var(--sc-ink-soft);">→ Switch back to 100% BYOK Airgap to restore zero-knowledge client isolation.</span>
-      `;
-    }
-  }
+    // Bespoke Interactive Airgap Mode Switcher
+    function toggleAirgapMode(mode) {
+      const btnCloud = document.getElementById('btn-cloud');
+      const btnByok = document.getElementById('btn-byok');
+      const statusText = document.getElementById('airgap-status-text');
+      if (!btnCloud || !btnByok || !statusText) return;
 
-  function launchVexoStudio() {
-    switchView('studio');
-  }
+      if (mode === 'byok') {
+        btnByok.className = 'px-3 py-1 rounded-md transition bg-[#2DEB90] text-[#05080A] font-bold shadow-sm cursor-pointer';
+        btnCloud.className = 'px-3 py-1 rounded-md transition text-[#8B949E] hover:text-white cursor-pointer';
+        statusText.className = 'pt-4 font-mono text-xs leading-relaxed space-y-2 text-[#2DEB90]';
+        statusText.innerHTML = `
+          <div class="flex items-center space-x-2">
+            <span>✓</span>
+            <span>ENCLAVE STATUS: AES-GCM Client-Side Isolation Active.</span>
+          </div>
+          <div class="text-[#8B949E] flex items-center space-x-2">
+            <span class="text-[#2DEB90]">✓</span>
+            <span>LLM Keys (Gemini, Claude, OpenAI, Ollama) stored exclusively in your browser localStorage.</span>
+          </div>
+          <div class="text-[#8B949E] flex items-center space-x-2">
+            <span class="text-[#2DEB90]">✓</span>
+            <span>SFTP & RCON connect directly between your machine and your Minecraft host. Zero intermediary servers.</span>
+          </div>
+        `;
+      } else {
+        btnCloud.className = 'px-3 py-1 rounded-md transition bg-red-500/80 text-white font-bold shadow-sm cursor-pointer';
+        btnByok.className = 'px-3 py-1 rounded-md transition text-[#8B949E] hover:text-white cursor-pointer';
+        statusText.className = 'pt-4 font-mono text-xs leading-relaxed space-y-2 text-red-400';
+        statusText.innerHTML = `
+          <div class="flex items-center space-x-2">
+            <span>⚠️</span>
+            <span>CENTRALIZED CLOUD MODE:</span>
+          </div>
+          <div class="text-[#8B949E]">
+            ✗ Your server credentials and AI API tokens pass through a centralized cloud relay.
+          </div>
+          <div class="text-[#8B949E]">
+            ✗ Monthly recurring subscription fees applied per server instance.
+          </div>
+        `;
+      }
+    }
 
-  // Hook ScrollCraft Engine on Page Load
-  window.addEventListener('DOMContentLoaded', () => {
-    try {
-      ScrollCraft.mount(document.body);
-    } catch (err) {
-      console.warn('ScrollCraft init note:', err.message);
-    }
-    if (typeof lucide !== 'undefined') {
-      lucide.createIcons();
-    }
-  });
-</script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    });
+  </script>
 </body>
 </html>

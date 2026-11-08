@@ -7,14 +7,14 @@ import * as THREE from 'three';
 
 function VoxelAntiGravityGrid() {
   const meshRef = useRef<THREE.InstancedMesh>(null);
-  const count = 125; // 5x5x5 floating server/voxel cluster
+  const count = 64; // Restrained 4x4x4 floating server cluster
   const dummy = useMemo(() => new THREE.Object3D(), []);
 
-  // Compute 5x5x5 grid positions with individual levitation speeds & phases
+  // Compute 4x4x4 grid positions with individual levitation speeds & phases
   const voxels = useMemo(() => {
     const temp = [];
-    const size = 5;
-    const spacing = 1.35;
+    const size = 4;
+    const spacing = 1.6;
     const offset = ((size - 1) * spacing) / 2;
 
     for (let x = 0; x < size; x++) {
@@ -24,9 +24,9 @@ function VoxelAntiGravityGrid() {
             baseX: x * spacing - offset,
             baseY: y * spacing - offset,
             baseZ: z * spacing - offset,
-            speed: 0.6 + Math.random() * 0.8,
+            speed: 0.5 + Math.random() * 0.5,
             offset: Math.random() * Math.PI * 2,
-            scale: 0.72 + Math.random() * 0.28,
+            scale: 0.65 + Math.random() * 0.25,
           });
         }
       }
@@ -39,13 +39,13 @@ function VoxelAntiGravityGrid() {
     const time = state.clock.getElapsedTime();
 
     voxels.forEach((v, i) => {
-      // Harmonic anti-gravity levitation
-      const floatY = Math.sin(time * v.speed + v.offset) * 0.35;
-      const floatX = Math.cos(time * 0.4 * v.speed + v.offset) * 0.15;
-      const rotY = time * 0.25 + (v.baseX + v.baseZ) * 0.1;
+      // Subtle organic levitation
+      const floatY = Math.sin(time * v.speed + v.offset) * 0.25;
+      const floatX = Math.cos(time * 0.3 * v.speed + v.offset) * 0.1;
+      const rotY = time * 0.15 + (v.baseX + v.baseZ) * 0.08;
 
       dummy.position.set(v.baseX + floatX, v.baseY + floatY, v.baseZ);
-      dummy.rotation.set(time * 0.1, rotY, Math.sin(time * 0.15 + v.offset) * 0.2);
+      dummy.rotation.set(time * 0.08, rotY, Math.sin(time * 0.1 + v.offset) * 0.15);
       dummy.scale.setScalar(v.scale);
       dummy.updateMatrix();
 
@@ -53,26 +53,25 @@ function VoxelAntiGravityGrid() {
     });
 
     meshRef.current.instanceMatrix.needsUpdate = true;
-    meshRef.current.rotation.y = time * 0.08;
-    meshRef.current.rotation.x = Math.sin(time * 0.05) * 0.15;
+    meshRef.current.rotation.y = time * 0.04;
   });
 
   return (
     <instancedMesh
       ref={meshRef}
       args={[undefined, undefined, count]}
-      castShadow
-      receiveShadow
     >
-      <boxGeometry args={[0.9, 0.9, 0.9]} />
-      {/* Dark metallic core with #00FF9D neon green emissive glow */}
+      <boxGeometry args={[0.95, 0.95, 0.95]} />
+      {/* Restrained dark obsidian metal with very subtle #2DEB90 edge glow */}
       <meshStandardMaterial
-        color="#080C14"
-        emissive="#00FF9D"
-        emissiveIntensity={0.65}
+        color="#0B0E14"
+        emissive="#2DEB90"
+        emissiveIntensity={0.16}
         wireframe={true}
-        roughness={0.25}
-        metalness={0.85}
+        roughness={0.4}
+        metalness={0.9}
+        transparent={true}
+        opacity={0.35}
       />
     </instancedMesh>
   );
@@ -82,12 +81,12 @@ function SceneCameraRig() {
   const { camera } = useThree();
 
   useFrame((state) => {
-    // Subtle mouse parallax tilt
-    const targetX = state.pointer.x * 2.2;
-    const targetY = state.pointer.y * 1.4 + 0.5;
+    // Subtle, restrained mouse parallax tilt
+    const targetX = state.pointer.x * 1.2;
+    const targetY = state.pointer.y * 0.8 + 0.3;
 
-    camera.position.x += (targetX - camera.position.x) * 0.05;
-    camera.position.y += (targetY - camera.position.y) * 0.05;
+    camera.position.x += (targetX - camera.position.x) * 0.03;
+    camera.position.y += (targetY - camera.position.y) * 0.03;
     camera.lookAt(0, 0, 0);
   });
 
@@ -98,17 +97,17 @@ export default function Hero3D() {
   return (
     <div
       id="hero-3d-canvas-wrap"
-      className="absolute inset-0 w-full h-full pointer-events-none -z-10 overflow-hidden"
+      className="absolute inset-0 w-full h-full pointer-events-none -z-10 overflow-hidden opacity-60"
     >
       <Canvas
-        camera={{ position: [0, 1.2, 9], fov: 45 }}
+        camera={{ position: [0, 0.8, 8.5], fov: 42 }}
         gl={{ antialias: true, alpha: true }}
       >
-        <ambientLight intensity={0.4} />
-        <pointLight position={[10, 10, 10]} intensity={1.5} color="#00FF9D" />
-        <pointLight position={[-10, -10, -5]} intensity={0.8} color="#06B6D4" />
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} intensity={1.0} color="#2DEB90" />
+        <pointLight position={[-10, -10, -5]} intensity={0.6} color="#06B6D4" />
 
-        <Float speed={1.5} rotationIntensity={0.4} floatIntensity={0.6}>
+        <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.4}>
           <VoxelAntiGravityGrid />
         </Float>
 

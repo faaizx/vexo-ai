@@ -3,14 +3,23 @@
 @tailwind utilities;
 
 :root {
-  --vexo-mint: #00FF9D;
-  --vexo-dark: #050505;
+  --vexo-mint: #2DEB90;
+  --vexo-dark: #08090C;
 }
 
-html, body {
-  background-color: #050505;
+html {
+  background-color: #08090C;
   color: #F8FAFC;
-  cursor: none; /* Hidden for CustomCursor */
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: radial-gradient(circle 900px at 50% 18%, #12161F 0%, #08090C 100%);
+  background-attachment: fixed;
+  color: #F8FAFC;
+  min-height: 100vh;
 }
 
 /* Custom Scrollbar */
@@ -19,22 +28,45 @@ html, body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B0F19;
+  background: #08090C;
 }
 ::-webkit-scrollbar-thumb {
   background: #1E293B;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00FF9D;
+  background: #2DEB90;
 }
 
-.text-glow-mint {
-  text-shadow: 0 0 25px rgba(0, 255, 157, 0.45), 0 0 50px rgba(0, 255, 157, 0.2);
-}
-
-.glass-panel {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
+/* Glass Surface with Delicate Top Highlight (Rule 2) */
+.glass-card {
+  background: rgba(13, 17, 23, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.glass-card-subtle {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* Restrained Hover Glow */
+.glass-card:hover {
+  border-color: rgba(45, 235, 144, 0.25);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(45, 235, 144, 0.08);
+}
+
+/* Monospace Terminal Styling */
+.terminal-window {
+  background: rgba(9, 12, 18, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
