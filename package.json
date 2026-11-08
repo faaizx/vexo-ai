@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node web/server/server.js",
     "dev": "node web/server/server.js",
-    "build": "npm install --prefix web",
+    "build": "node -e \"const fs=require('fs'); if(!fs.existsSync('public')) fs.cpSync('web/public','public',{recursive:true});\"",
     "install:all": "cd web && npm install"
   },
   "dependencies": {

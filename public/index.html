@@ -1,0 +1,2926 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>Vexo AI — The Autonomous Minecraft Server AI Developer & Admin (Open BYOK)</title>
+  <meta name="title" content="Vexo AI — The Autonomous Minecraft Server AI Developer & Admin (Open BYOK)">
+  <meta name="description" content="Autonomous AI Minecraft server administrator & Java plugin builder (1.7.10 — 26.3). Optimize configs, fix TPS lag, inspect crashes & compile plugins using your own API key (Gemini, NVIDIA, OpenAI, Claude, Ollama).">
+  <meta name="keywords" content="minecraft server ai, vexo ai, minecraft bot, spigot ai plugin, paper minecraft ai, fabric server ai, minecraft config optimizer, spark profiler ai, byok minecraft, minecraft admin assistant, minecraft server manager, minecraft 26.3, rcon web console, sftp minecraft">
+  <meta name="author" content="Vexo AI Team">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://vexo-ai.vercel.app/">
+
+  <!-- Open Graph / Facebook / Discord Embeds -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vexo-ai.vercel.app/">
+  <meta property="og:site_name" content="Vexo AI">
+  <meta property="og:title" content="Vexo AI — Autonomous Minecraft Server AI Developer & Admin">
+  <meta property="og:description" content="Manage Paper, Spigot, Fabric, Forge & Bedrock servers with plain English. Zero extra open ports. Free BYOK support for Gemini, NVIDIA, OpenAI, Claude & Ollama.">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://vexo-ai.vercel.app/">
+  <meta name="twitter:title" content="Vexo AI — Autonomous Minecraft Server AI Developer & Admin">
+  <meta name="twitter:description" content="Autonomous AI administrator & Java plugin builder for Minecraft servers (1.7.10 — 26.3). Connect via SFTP & RCON with your own API key.">
+
+  <!-- Favicon & Web App Manifest -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#080C14">
+  <meta name="color-scheme" content="dark">
+
+  <!-- Structured Data / JSON-LD Schema Markup (Google Search) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://vexo-ai.vercel.app/#webapp",
+        "name": "Vexo AI",
+        "url": "https://vexo-ai.vercel.app/",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Windows, Linux, macOS, Docker",
+        "description": "Autonomous AI administrator and Java plugin developer for Minecraft servers supporting Bukkit, Spigot, Paper, Purpur, Fabric, Forge, NeoForge, Velocity, BungeeCord, and Bedrock from 1.7.10 up to 26.3.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Autonomous YAML and server.properties configuration tuning",
+          "Real-time RCON console command dispatch with safety guardrails",
+          "SFTP file reading and writing with zero extra port requirements",
+          "Custom Java Minecraft plugin builder with JDK compilation",
+          "Spark profiler and latest.log crash diagnostic assistant",
+          "Multi-version binary releases covering Minecraft 1.7.10 through 26.3",
+          "Client-side Bring Your Own Key (BYOK) privacy for Google Gemini, NVIDIA NIM, OpenAI, Anthropic Claude, DeepSeek, Groq, and Ollama"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://vexo-ai.vercel.app/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is Vexo AI free to use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Vexo AI is 100% free and open-source under the Bring Your Own Key (BYOK) model. You never pay a subscription fee; you only use your own raw API tokens (or free local Ollama)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which Minecraft versions does Vexo AI support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Vexo AI supports every Minecraft release from legacy 1.7.10 and 1.8.8 PvP Classic all the way up to the latest Minecraft 26.3 release across Paper, Spigot, Fabric, Forge, NeoForge, and Velocity."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Vexo AI require opening extra ports on my Minecraft host?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Vexo AI uses standard SFTP (port 2022 or 22) and standard RCON (port 25575) already provided by standard game hosts, eliminating the need for extra open bridge ports."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts (Inter + JetBrains Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              300: '#6ee7b7',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              root: '#080C14',
+              surface: '#0B0F19',
+              dark: '#0B0F19',
+              darker: '#06090F',
+              card: '#0F172A',
+              border: '#1E293B',
+              terminal: '#05080E'
+            },
+            accent: {
+              cyan: '#06B6D4',
+              amber: '#F59E0B',
+              rose: '#EF4444',
+              violet: '#8B5CF6'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0b0f19; }
+    ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #374151; }
+
+    .glow-emerald {
+      box-shadow: 0 0 35px -8px rgba(16, 185, 129, 0.35);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 35px -8px rgba(6, 182, 212, 0.35);
+    }
+    .glow-rose {
+      box-shadow: 0 0 35px -8px rgba(239, 68, 68, 0.35);
+    }
+    .glow-card {
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+    }
+    .grid-bg {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+    .minecraft-badge {
+      text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+    }
+  </style>
+</head>
+<body class="bg-[#080C14] text-gray-100 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-black">
+
+  <!-- ========================================================================= -->
+  <!-- TOP NAVIGATION BAR -->
+  <!-- ========================================================================= -->
+  <header class="border-b border-gray-800/80 bg-[#0B0F19]/90 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="switchView('landing')">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-400 to-green-600 flex items-center justify-center shadow-lg shadow-emerald-500/20 font-bold text-black text-lg">
+          ⛏️
+        </div>
+        <div>
+          <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-emerald-200 to-emerald-400 bg-clip-text text-transparent">Vexo</span>
+          <span class="text-xs ml-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-mono font-medium">OPEN BYOK</span>
+        </div>
+      </div>
+
+      <!-- Nav links -->
+      <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-gray-300">
+        <button onclick="switchView('landing'); scrollToSection('features')" class="hover:text-emerald-400 transition">Features</button>
+        <button onclick="switchView('landing'); scrollToSection('platforms')" class="hover:text-emerald-400 transition">Supported Platforms</button>
+        <button onclick="switchView('landing'); scrollToSection('downloads')" class="hover:text-emerald-400 transition">Downloads</button>
+        <button onclick="switchView('landing'); scrollToSection('comparison')" class="hover:text-emerald-400 transition">BYOK vs Official</button>
+      </nav>
+
+      <!-- Action buttons -->
+      <div class="flex items-center space-x-3">
+        <!-- BYOK Key Config Button -->
+        <button onclick="openByokModal()" class="flex items-center space-x-2 text-xs font-medium px-3 py-1.5 rounded-lg border border-gray-700 bg-gray-800/70 hover:bg-gray-700/80 hover:border-emerald-500/50 transition">
+          <span id="byok-status-dot" class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span>
+          <span id="byok-status-text">Connect API Key</span>
+          <i data-lucide="key" class="w-3.5 h-3.5 text-gray-400"></i>
+        </button>
+
+        <!-- Studio toggle button -->
+        <button id="view-toggle-btn" onclick="toggleView()" class="flex items-center space-x-2 text-xs font-semibold px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black transition shadow-lg shadow-emerald-500/25">
+          <i data-lucide="terminal" class="w-4 h-4"></i>
+          <span id="view-toggle-text">Launch Studio</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 1: VEXO AI LANDING PAGE -->
+  <!-- ========================================================================= -->
+  <main id="landing-view" class="flex-grow">
+    <!-- Hero Section -->
+    <section class="relative pt-16 pb-20 overflow-hidden grid-bg border-b border-gray-800/60">
+      <div class="max-w-7xl mx-auto px-4 relative z-10 text-center">
+        <!-- Floating badge -->
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 text-xs font-medium mb-6">
+          <span class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span>Open Edition: Bring Your Own API Key — Free Forever</span>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight">
+          The Autonomous <span class="bg-gradient-to-r from-emerald-400 via-green-300 to-teal-200 bg-clip-text text-transparent">Minecraft Server</span> AI Developer
+        </h1>
+
+        <p class="mt-6 text-lg md:text-xl text-gray-400 max-w-2xl mx-auto font-normal">
+          Stop wrestling with complex YAML syntax, obscure crash reports, and plugin jars.
+          Connect your server, provide your API key, and manage, troubleshoot, and code plugins in plain English.
+        </p>
+
+        <!-- CTAs -->
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="switchView('studio')" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-base transition flex items-center justify-center space-x-2 shadow-xl shadow-emerald-500/30">
+            <span>Open Server Studio</span>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </button>
+          <button onclick="openConnectServerModal()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gray-900/90 hover:bg-gray-800 border border-gray-700 text-gray-200 font-semibold text-base transition flex items-center justify-center space-x-2">
+            <i data-lucide="server" class="w-5 h-5 text-emerald-400"></i>
+            <span>Connect via SFTP & RCON</span>
+          </button>
+        </div>
+
+        <!-- Cyber-Tactical Telemetry HUD Bar (DESIGN.md) -->
+        <div class="mt-10 max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 text-left">
+          <div class="p-3.5 rounded-xl bg-[#0F172A] border border-[#1E293B] shadow-lg">
+            <div class="flex items-center space-x-2 text-gray-400 text-xs font-mono mb-1">
+              <i data-lucide="layers" class="w-3.5 h-3.5 text-emerald-400"></i>
+              <span>MC VERSIONS</span>
+            </div>
+            <div class="text-sm md:text-base font-bold font-mono text-white">1.7.10 — 26.3</div>
+            <div class="text-[10px] text-emerald-400 font-mono mt-0.5">33+ Target Builds (Latest 26.3)</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-[#0F172A] border border-[#1E293B] shadow-lg">
+            <div class="flex items-center space-x-2 text-gray-400 text-xs font-mono mb-1">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5 text-cyan-400"></i>
+              <span>CONNECTION</span>
+            </div>
+            <div class="text-sm md:text-base font-bold font-mono text-white">SFTP + RCON</div>
+            <div class="text-[10px] text-cyan-400 font-mono mt-0.5">Zero Extra Ports</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-[#0F172A] border border-[#1E293B] shadow-lg">
+            <div class="flex items-center space-x-2 text-gray-400 text-xs font-mono mb-1">
+              <i data-lucide="cpu" class="w-3.5 h-3.5 text-amber-400"></i>
+              <span>AI PROVIDERS</span>
+            </div>
+            <div class="text-sm md:text-base font-bold font-mono text-white">8+ LLM Engines</div>
+            <div class="text-[10px] text-amber-400 font-mono mt-0.5">NVIDIA, Gemini, OpenAI...</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-[#0F172A] border border-[#1E293B] shadow-lg">
+            <div class="flex items-center space-x-2 text-gray-400 text-xs font-mono mb-1">
+              <i data-lucide="unlock" class="w-3.5 h-3.5 text-emerald-400"></i>
+              <span>BYOK PRIVACY</span>
+            </div>
+            <div class="text-sm md:text-base font-bold font-mono text-white">100% Free / BYOK</div>
+            <div class="text-[10px] text-emerald-400 font-mono mt-0.5">Keys Stay On Device</div>
+          </div>
+        </div>
+
+        <!-- Hero Preview Card (Interactive Mockup) -->
+        <div class="mt-14 max-w-4xl mx-auto rounded-2xl border border-gray-800 bg-[#0d131f]/90 glow-emerald overflow-hidden text-left shadow-2xl">
+          <!-- Terminal header -->
+          <div class="px-4 py-3 bg-[#111927] border-b border-gray-800/80 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+              <span class="text-xs font-mono text-gray-400 ml-2">vexo-agent@survival-smp: ~</span>
+            </div>
+            <div class="flex items-center space-x-2 text-xs font-mono text-emerald-400">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>TPS: 20.00 | MSPT: 32ms</span>
+            </div>
+          </div>
+
+          <!-- Terminal content -->
+          <div class="p-6 space-y-4 font-mono text-xs md:text-sm">
+            <div class="flex items-start space-x-3">
+              <span class="text-blue-400 font-bold shrink-0">Admin:</span>
+              <span class="text-gray-200">"We are having server lag during peak hours with 40 players. Can you inspect spark profiler and optimize entity ticking?"</span>
+            </div>
+
+            <div class="p-4 rounded-xl bg-gray-900/80 border border-emerald-500/30 text-gray-300 space-y-2">
+              <div class="flex items-center space-x-2 text-emerald-400 font-bold">
+                <i data-lucide="bot" class="w-4 h-4"></i>
+                <span>Vexo AI:</span>
+              </div>
+              <p>I inspected your <code class="text-emerald-300">paper-world-defaults.yml</code> and recent logs. Villager brain ticking and runaway item entities in your Nether hub are consuming 41% of tick time.</p>
+              
+              <div class="bg-black/50 p-3 rounded border border-gray-800 text-xs font-mono space-y-1">
+                <div class="text-yellow-400">⚡ Applying optimizations to paper-world-defaults.yml:</div>
+                <div class="text-red-400">- entity-activation-range.animals: 32</div>
+                <div class="text-emerald-400">+ entity-activation-range.animals: 16</div>
+                <div class="text-red-400">- despawn-ranges.monster.hard: 128</div>
+                <div class="text-emerald-400">+ despawn-ranges.monster.hard: 96 (despawn soft: 32)</div>
+                <div class="text-emerald-400">+ tick-inactive-villagers: false</div>
+              </div>
+              <p class="text-xs text-gray-400">✓ Changes written with backup. Dispatched <code class="text-gray-200">/paper reload</code> synchronously. Expected TPS recovery: +4.8 TPS.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 border-b border-gray-800/60 max-w-7xl mx-auto px-4">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold font-mono text-emerald-400 uppercase tracking-widest mb-2">Engineered for Server Owners</h2>
+        <h3 class="text-3xl md:text-4xl font-extrabold text-white">Everything You Need to Run & Scale</h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="p-6 rounded-2xl bg-gray-900/60 border border-gray-800 hover:border-emerald-500/40 transition">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-5">
+            <i data-lucide="sliders" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-2">Autonomous Config Tuning</h4>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Directly edits <code class="text-emerald-400">server.properties</code>, <code class="text-emerald-400">spigot.yml</code>, <code class="text-emerald-400">paper-world-defaults.yml</code>, and plugin configs. Eliminates syntax mistakes and automates optimal performance.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="p-6 rounded-2xl bg-gray-900/60 border border-gray-800 hover:border-emerald-500/40 transition">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-5">
+            <i data-lucide="code-2" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-2">Custom Java Plugin Builder</h4>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Need a double-jump plugin, auto-replant crops, or custom kill rewards? Vexo writes Java code, generates <code class="text-purple-300">plugin.yml</code>, compiles the <code class="text-purple-300">.jar</code>, and deploys it live.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="p-6 rounded-2xl bg-gray-900/60 border border-gray-800 hover:border-emerald-500/40 transition">
+          <div class="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 mb-5">
+            <i data-lucide="activity" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-2">Lag & Crash Profiler</h4>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Upload or inspect crash logs (<code class="text-teal-300">latest.log</code>) and spark profilers. Vexo pinpoints ticking entity lag, memory leaks, and broken plugin hooks in seconds.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="p-6 rounded-2xl bg-gray-900/60 border border-gray-800 hover:border-emerald-500/40 transition">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-5">
+            <i data-lucide="terminal" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-2">Live Console & Guardrails</h4>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Execute console commands with full ANSI color streaming. Built-in safety warnings prevent accidental server stops, dangerous wipes, or syntax crashes.
+          </p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="p-6 rounded-2xl bg-gray-900/60 border border-gray-800 hover:border-emerald-500/40 transition">
+          <div class="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 mb-5">
+            <i data-lucide="key" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-2">Bring Your Own Key (BYOK)</h4>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Plug in your own Gemini, OpenAI, Claude, DeepSeek, Groq, or Ollama API key. Zero monthly subscriptions. Complete privacy—your key stays on your machine.
+          </p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="p-6 rounded-2xl bg-gray-900/60 border border-gray-800 hover:border-emerald-500/40 transition">
+          <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 mb-5">
+            <i data-lucide="server" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-xl font-bold text-white mb-2">Multi-Server Workspaces</h4>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Manage your entire BungeeCord / Velocity network, survival SMP, creative plots, and minigame servers from a single unified control room.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Supported Platforms Bento Section (DESIGN.md) -->
+    <section id="platforms" class="py-20 border-b border-gray-800/60 bg-[#080C14]">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-medium mb-3">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>UNIVERSAL ECOSYSTEM COMPATIBILITY</span>
+          </div>
+          <h2 class="text-xs font-bold font-mono text-emerald-400 uppercase tracking-widest mb-2">Supported Platforms</h2>
+          <h3 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">Full Native Support Across Every Minecraft Engine</h3>
+          <p class="text-gray-400 text-sm mt-3">From classic 1.7.10 modpacks to cutting-edge 26.3 releases. Zero compromises, zero extra open ports required.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Platform 1: Paper / Spigot / Purpur -->
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-[#1E293B] hover:border-emerald-500/50 transition-all flex flex-col justify-between group shadow-xl">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-semibold">Bukkit / Spigot / Paper / Purpur</span>
+                <span class="text-xs text-gray-400 font-mono">1.7.10 — 26.3</span>
+              </div>
+              <h4 class="text-lg font-bold text-white mb-2 group-hover:text-emerald-300 transition">Paper & Spigot Ecosystem</h4>
+              <p class="text-gray-400 text-xs leading-relaxed mb-4">Direct hook into Bukkit API, event listeners, async scheduler, and spark profiler. Perfect for survival SMPs, Skyblock, and minigame networks.</p>
+              <div class="space-y-1.5 text-[11px] font-mono text-gray-400 border-t border-gray-800/80 pt-3 mb-4">
+                <div class="flex items-center justify-between">
+                  <span>Engine:</span> <span class="text-emerald-400">Paperweight / Purpur API</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Install Dir:</span> <span class="text-gray-200">/plugins/</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Versions:</span> <span class="text-emerald-400 font-bold">33+ releases (1.7.10 - 26.3)</span>
+                </div>
+              </div>
+            </div>
+            <button onclick="openVersionModal('paper')" class="w-full py-2.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 text-emerald-300 hover:text-black border border-emerald-500/30 font-bold text-xs flex items-center justify-center space-x-2 transition">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span>Select Version (1.7.10 — 26.3)</span>
+            </button>
+          </div>
+
+          <!-- Platform 2: Fabric Server Mod -->
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-[#1E293B] hover:border-cyan-500/50 transition-all flex flex-col justify-between group shadow-xl">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 font-semibold">Fabric Server</span>
+                <span class="text-xs text-gray-400 font-mono">1.14.4 — 26.3</span>
+              </div>
+              <h4 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition">Fabric Server Mod</h4>
+              <p class="text-gray-400 text-xs leading-relaxed mb-4">Lightweight Mixin bytecode hook into the dedicated server loop. Compatible with Lithium, FerriteCore, Spark, and Carpet without TPS overhead.</p>
+              <div class="space-y-1.5 text-[11px] font-mono text-gray-400 border-t border-gray-800/80 pt-3 mb-4">
+                <div class="flex items-center justify-between">
+                  <span>Engine:</span> <span class="text-cyan-400">Fabric Loader 0.16+</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Install Dir:</span> <span class="text-gray-200">/mods/</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Versions:</span> <span class="text-cyan-400 font-bold">19+ releases available</span>
+                </div>
+              </div>
+            </div>
+            <button onclick="openVersionModal('fabric')" class="w-full py-2.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500 text-cyan-300 hover:text-black border border-cyan-500/30 font-bold text-xs flex items-center justify-center space-x-2 transition">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span>Select Fabric Version</span>
+            </button>
+          </div>
+
+          <!-- Platform 3: Forge & NeoForge -->
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-[#1E293B] hover:border-amber-500/50 transition-all flex flex-col justify-between group shadow-xl">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/30 font-semibold">Forge & NeoForge</span>
+                <span class="text-xs text-gray-400 font-mono">1.7.10 — 26.3</span>
+              </div>
+              <h4 class="text-lg font-bold text-white mb-2 group-hover:text-amber-300 transition">Forge & NeoForge Ecosystem</h4>
+              <p class="text-gray-400 text-xs leading-relaxed mb-4">Engineered for heavy modded packs (ATM9, DawnCraft, RLcraft, Pixelmon). Automates Forge mod config reloads, tick inspection, and entity safety.</p>
+              <div class="space-y-1.5 text-[11px] font-mono text-gray-400 border-t border-gray-800/80 pt-3 mb-4">
+                <div class="flex items-center justify-between">
+                  <span>Engine:</span> <span class="text-amber-400">FML / NeoForged 20.x+</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Install Dir:</span> <span class="text-gray-200">/mods/</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Versions:</span> <span class="text-amber-400 font-bold">14+ key releases (1.7 - 26.3)</span>
+                </div>
+              </div>
+            </div>
+            <button onclick="openVersionModal('forge')" class="w-full py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-black border border-amber-500/30 font-bold text-xs flex items-center justify-center space-x-2 transition">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span>Select Forge Version</span>
+            </button>
+          </div>
+
+          <!-- Platform 4: Velocity & BungeeCord -->
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-[#1E293B] hover:border-blue-500/50 transition-all flex flex-col justify-between group shadow-xl">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-blue-500/10 text-blue-400 border border-blue-500/30 font-semibold">Proxy Networks</span>
+                <span class="text-xs text-gray-400 font-mono">Universal Routing</span>
+              </div>
+              <h4 class="text-lg font-bold text-white mb-2 group-hover:text-blue-300 transition">Velocity & BungeeCord</h4>
+              <p class="text-gray-400 text-xs leading-relaxed mb-4">Controls routing, cross-server chat, and network-wide permissions across your lobby, SMP, and minigame servers from a single Vexo dashboard.</p>
+              <div class="space-y-1.5 text-[11px] font-mono text-gray-400 border-t border-gray-800/80 pt-3 mb-4">
+                <div class="flex items-center justify-between">
+                  <span>Engine:</span> <span class="text-blue-400">Velocity 3.x / Waterfall</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Install Dir:</span> <span class="text-gray-200">/plugins/</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Compatibility:</span> <span class="text-blue-400 font-bold">Universal Proxy</span>
+                </div>
+              </div>
+            </div>
+            <button onclick="openVersionModal('proxy')" class="w-full py-2.5 rounded-xl bg-blue-500/15 hover:bg-blue-500 text-blue-300 hover:text-black border border-blue-500/30 font-bold text-xs flex items-center justify-center space-x-2 transition">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span>Select Proxy Build</span>
+            </button>
+          </div>
+
+          <!-- Platform 5: Standalone Daemon -->
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-[#1E293B] hover:border-yellow-500/50 transition-all flex flex-col justify-between group shadow-xl">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-yellow-500/10 text-yellow-400 border border-yellow-500/30 font-semibold">Vanilla / Bedrock / Panel</span>
+                <span class="text-xs text-gray-400 font-mono">Python 3 / OS</span>
+              </div>
+              <h4 class="text-lg font-bold text-white mb-2 group-hover:text-yellow-300 transition">Zero-Mod Standalone Daemon</h4>
+              <p class="text-gray-400 text-xs leading-relaxed mb-4">Zero in-game mods required! Perfect for official Mojang Vanilla servers, Bedrock Dedicated Server (BDS), Geyser, and Pterodactyl hosting panels.</p>
+              <div class="space-y-1.5 text-[11px] font-mono text-gray-400 border-t border-gray-800/80 pt-3 mb-4">
+                <div class="flex items-center justify-between">
+                  <span>Protocol:</span> <span class="text-yellow-400">Direct SFTP + RCON Socket</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Host:</span> <span class="text-gray-200">Windows / Linux / Docker</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Compatibility:</span> <span class="text-yellow-400 font-bold">Any MC 1.0 — 26.3</span>
+                </div>
+              </div>
+            </div>
+            <button onclick="openVersionModal('daemon')" class="w-full py-2.5 rounded-xl bg-yellow-500/15 hover:bg-yellow-500 text-yellow-300 hover:text-black border border-yellow-500/30 font-bold text-xs flex items-center justify-center space-x-2 transition">
+              <i data-lucide="terminal" class="w-4 h-4"></i>
+              <span>View Daemon & Scripts</span>
+            </button>
+          </div>
+
+          <!-- Platform 6: Web Studio Sandbox -->
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-emerald-950/30 via-[#0F172A] to-[#0B0F19] border border-emerald-500/40 hover:border-emerald-400 transition-all flex flex-col justify-between group shadow-xl glow-emerald">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold">No Server Required</span>
+                <span class="text-xs text-emerald-400 font-mono">Instant Simulation</span>
+              </div>
+              <h4 class="text-lg font-bold text-white mb-2 group-hover:text-emerald-300 transition">Browser Web Studio</h4>
+              <p class="text-gray-400 text-xs leading-relaxed mb-4">Test AI prompts, generate custom Spigot/Paper plugins, write configs, and simulate crash diagnostics immediately right inside your browser without any server setup.</p>
+              <div class="space-y-1.5 text-[11px] font-mono text-gray-400 border-t border-gray-800/80 pt-3 mb-4">
+                <div class="flex items-center justify-between">
+                  <span>Environment:</span> <span class="text-emerald-400">Client-Side Virtual SMP</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Compiler:</span> <span class="text-gray-200">Online Java Bytecode Builder</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Cost:</span> <span class="text-emerald-400 font-bold">100% Free / BYOK</span>
+                </div>
+              </div>
+            </div>
+            <button onclick="switchView('studio')" class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs flex items-center justify-center space-x-2 transition shadow-lg shadow-emerald-500/20">
+              <i data-lucide="play" class="w-4 h-4"></i>
+              <span>Launch Sandbox Studio</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Downloads Section (DESIGN.md) -->
+    <section id="downloads" class="py-20 border-b border-gray-800/60 bg-[#090D17]">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-medium mb-3">
+            <i data-lucide="download" class="w-3.5 h-3.5 text-emerald-400"></i>
+            <span>MULTI-VERSION BINARY RELEASES (UP TO 26.3)</span>
+          </div>
+          <h2 class="text-xs font-bold font-mono text-emerald-400 uppercase tracking-widest mb-2">Bridge Plugins & Mods</h2>
+          <h3 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">Pre-Compiled Downloads for All Minecraft Versions</h3>
+          <p class="text-gray-400 text-sm mt-3">Click any platform below to choose your Minecraft version (from classic 1.7.10 up to 26.3 latest) and download instantly.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Download 1: Paper / Spigot -->
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-emerald-500/40 flex flex-col justify-between hover:border-emerald-400 transition-all shadow-xl group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">Paper / Spigot / Purpur</span>
+                <span class="text-xs text-emerald-400 font-mono">33 Builds (26.3)</span>
+              </div>
+              <h4 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-300 transition">VexoBridge Paper</h4>
+              <p class="text-gray-400 text-xs mb-4 leading-relaxed">For Bukkit, Spigot, Paper, and Purpur. Built with embedded WebSocket telemetry & SFTP config sync.</p>
+              <div class="bg-[#080C14] rounded-lg p-3 border border-[#1E293B] mb-4 text-[11px] font-mono text-gray-300 space-y-1">
+                <div class="flex justify-between"><span>Version Range:</span> <span class="text-emerald-400">1.7.10 — 26.3</span></div>
+                <div class="flex justify-between"><span>Java Support:</span> <span class="text-gray-400">Java 8, 11, 16, 17, 21</span></div>
+                <div class="flex justify-between"><span>Drop-in:</span> <span class="text-gray-400">/plugins/ folder</span></div>
+              </div>
+            </div>
+            <button onclick="openVersionModal('paper')" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs flex items-center justify-center space-x-2 transition shadow-lg shadow-emerald-500/20">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span>Select Version & Download (1.7.10 — 26.3)</span>
+            </button>
+          </div>
+
+          <!-- Download 2: Velocity / Bungee -->
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-gray-800 hover:border-cyan-500/40 flex flex-col justify-between transition-all shadow-xl group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30">Velocity & BungeeCord</span>
+                <span class="text-xs text-cyan-400 font-mono">Proxy Suite</span>
+              </div>
+              <h4 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition">VexoBridge Proxy</h4>
+              <p class="text-gray-400 text-xs mb-4 leading-relaxed">Proxy bridge for Velocity 3.x and BungeeCord / Waterfall networks. Manages multi-server routing.</p>
+              <div class="bg-[#080C14] rounded-lg p-3 border border-[#1E293B] mb-4 text-[11px] font-mono text-gray-300 space-y-1">
+                <div class="flex justify-between"><span>Proxy Targets:</span> <span class="text-cyan-400">Velocity 3.1 - 3.3, Waterfall</span></div>
+                <div class="flex justify-between"><span>Telemetry:</span> <span class="text-gray-400">Cross-Server Status</span></div>
+                <div class="flex justify-between"><span>Drop-in:</span> <span class="text-gray-400">/plugins/ folder</span></div>
+              </div>
+            </div>
+            <button onclick="openVersionModal('proxy')" class="w-full py-3 rounded-xl bg-[#0B0F19] hover:bg-gray-800 text-gray-200 font-bold text-xs flex items-center justify-center space-x-2 transition border border-gray-700 hover:border-cyan-500/50">
+              <i data-lucide="layers" class="w-4 h-4 text-cyan-400"></i>
+              <span>Select Proxy Version & Download</span>
+            </button>
+          </div>
+
+          <!-- Download 3: Fabric -->
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-gray-800 hover:border-blue-500/40 flex flex-col justify-between transition-all shadow-xl group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-blue-500/20 text-blue-300 font-bold border border-blue-500/30">Fabric Mod</span>
+                <span class="text-xs text-blue-400 font-mono">19 Builds (26.3)</span>
+              </div>
+              <h4 class="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition">VexoBridge Fabric</h4>
+              <p class="text-gray-400 text-xs mb-4 leading-relaxed">Dedicated server mod for Fabric 1.14 - 26.3. Hooks into MinecraftServer lifecycle using Mixin.</p>
+              <div class="bg-[#080C14] rounded-lg p-3 border border-[#1E293B] mb-4 text-[11px] font-mono text-gray-300 space-y-1">
+                <div class="flex justify-between"><span>Version Range:</span> <span class="text-blue-400">1.14.4 — 26.3</span></div>
+                <div class="flex justify-between"><span>Loader:</span> <span class="text-gray-400">Fabric Loader 0.14 - 0.16+</span></div>
+                <div class="flex justify-between"><span>Drop-in:</span> <span class="text-gray-400">/mods/ folder</span></div>
+              </div>
+            </div>
+            <button onclick="openVersionModal('fabric')" class="w-full py-3 rounded-xl bg-[#0B0F19] hover:bg-gray-800 text-gray-200 font-bold text-xs flex items-center justify-center space-x-2 transition border border-gray-700 hover:border-blue-500/50">
+              <i data-lucide="layers" class="w-4 h-4 text-blue-400"></i>
+              <span>Select Version & Download (1.14 — 26.3)</span>
+            </button>
+          </div>
+
+          <!-- Download 4: Forge / NeoForge -->
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-gray-800 hover:border-orange-500/40 flex flex-col justify-between transition-all shadow-xl group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-orange-500/20 text-orange-300 font-bold border border-orange-500/30">Forge & NeoForge</span>
+                <span class="text-xs text-orange-400 font-mono">14 Builds (26.3)</span>
+              </div>
+              <h4 class="text-xl font-bold text-white mb-2 group-hover:text-orange-300 transition">VexoBridge Forge</h4>
+              <p class="text-gray-400 text-xs mb-4 leading-relaxed">Universal mod for Forge & NeoForge modded servers. Manages mod configs, crashes, and console.</p>
+              <div class="bg-[#080C14] rounded-lg p-3 border border-[#1E293B] mb-4 text-[11px] font-mono text-gray-300 space-y-1">
+                <div class="flex justify-between"><span>Version Range:</span> <span class="text-orange-400">1.7.10 — 26.3</span></div>
+                <div class="flex justify-between"><span>Modpack Standard:</span> <span class="text-gray-400">ATM9, RLcraft, Pixelmon</span></div>
+                <div class="flex justify-between"><span>Drop-in:</span> <span class="text-gray-400">/mods/ folder</span></div>
+              </div>
+            </div>
+            <button onclick="openVersionModal('forge')" class="w-full py-3 rounded-xl bg-[#0B0F19] hover:bg-gray-800 text-gray-200 font-bold text-xs flex items-center justify-center space-x-2 transition border border-gray-700 hover:border-orange-500/50">
+              <i data-lucide="layers" class="w-4 h-4 text-orange-400"></i>
+              <span>Select Version & Download (1.7.10 — 26.3)</span>
+            </button>
+          </div>
+
+          <!-- Download 5: Standalone Daemon -->
+          <div class="p-6 rounded-2xl bg-[#0F172A] border border-gray-800 hover:border-yellow-500/40 flex flex-col justify-between transition-all shadow-xl group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-yellow-500/20 text-yellow-300 font-bold border border-yellow-500/30">Vanilla / Bedrock / Panel</span>
+                <span class="text-xs text-yellow-400 font-mono">Python 3 / OS</span>
+              </div>
+              <h4 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-300 transition">Standalone Daemon</h4>
+              <p class="text-gray-400 text-xs mb-4 leading-relaxed">Zero plugins or mods needed! Connects ANY Minecraft server via RCON and local/remote filesystem.</p>
+              <div class="bg-[#080C14] rounded-lg p-3 border border-[#1E293B] mb-4 text-[11px] font-mono text-gray-300 space-y-1">
+                <div class="flex justify-between"><span>Target:</span> <span class="text-yellow-400">Vanilla, BDS Bedrock, Panels</span></div>
+                <div class="flex justify-between"><span>Platforms:</span> <span class="text-gray-400">Linux systemd, Windows, Docker</span></div>
+                <div class="flex justify-between"><span>Ports:</span> <span class="text-gray-400">Standard 25575 / 22 only</span></div>
+              </div>
+            </div>
+            <button onclick="openVersionModal('daemon')" class="w-full py-3 rounded-xl bg-[#0B0F19] hover:bg-gray-800 text-gray-200 font-bold text-xs flex items-center justify-center space-x-2 transition border border-gray-700 hover:border-yellow-500/50">
+              <i data-lucide="terminal" class="w-4 h-4 text-yellow-400"></i>
+              <span>Select Daemon & OS Scripts</span>
+            </button>
+          </div>
+
+          <!-- Sandbox Mode (Built-in) -->
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-emerald-950/40 via-[#0F172A] to-[#0B0F19] border border-emerald-500/40 flex flex-col justify-between shadow-xl glow-emerald group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40">Instant Sandbox</span>
+                <span class="text-xs text-emerald-400 font-mono">No Server Req.</span>
+              </div>
+              <h4 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-300 transition">Built-in Test Server</h4>
+              <p class="text-gray-400 text-xs mb-4 leading-relaxed">Test AI commands, config tuning, and plugin generation immediately right inside the Web Studio.</p>
+              <div class="bg-[#080C14] rounded-lg p-3 border border-[#1E293B] mb-4 text-[11px] font-mono text-gray-300 space-y-1">
+                <div class="flex justify-between"><span>Environment:</span> <span class="text-emerald-400">Simulated 20.00 TPS</span></div>
+                <div class="flex justify-between"><span>Config Tuning:</span> <span class="text-gray-400">Real-time live diffs</span></div>
+                <div class="flex justify-between"><span>Access:</span> <span class="text-emerald-400 font-bold">Free in browser</span></div>
+              </div>
+            </div>
+            <button onclick="switchView('studio')" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs flex items-center justify-center space-x-2 transition shadow-lg shadow-emerald-500/20">
+              <i data-lucide="play" class="w-4 h-4"></i>
+              <span>Launch Sandbox Studio</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Section: Official vs BYOK -->
+    <section id="comparison" class="py-20 border-b border-gray-800/60 max-w-5xl mx-auto px-4">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold font-mono text-emerald-400 uppercase tracking-widest mb-2">Transparent Comparison</h2>
+        <h3 class="text-3xl md:text-4xl font-extrabold text-white">Closed SaaS Subscriptions vs. Vexo Open BYOK</h3>
+      </div>
+
+      <div class="overflow-hidden rounded-2xl border border-gray-800 bg-gray-900/60">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-gray-800 bg-gray-950/60">
+              <th class="p-4 font-semibold text-gray-400">Feature</th>
+              <th class="p-4 font-semibold text-gray-400">Standard SaaS AI (Subscription)</th>
+              <th class="p-4 font-bold text-emerald-400 bg-emerald-950/20">Vexo Open BYOK Edition</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-800/60">
+            <tr>
+              <td class="p-4 font-medium text-gray-200">Monthly Cost</td>
+              <td class="p-4 text-red-400">$15 to $75 / month recurring</td>
+              <td class="p-4 text-emerald-400 font-bold bg-emerald-950/20">$0 Free Forever (Only pay your raw API tokens)</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-medium text-gray-200">AI Model Freedom</td>
+              <td class="p-4 text-gray-400">Locked to internal provider</td>
+              <td class="p-4 text-emerald-300 bg-emerald-950/20">Choose Gemini, Claude, GPT-4o, DeepSeek, Groq, or Ollama</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-medium text-gray-200">Offline / Local LLM</td>
+              <td class="p-4 text-red-400">Not supported (cloud only)</td>
+              <td class="p-4 text-emerald-300 bg-emerald-950/20">Full Ollama support (100% free, runs offline on your GPU)</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-medium text-gray-200">Data Privacy</td>
+              <td class="p-4 text-gray-400">Stored on 3rd party servers</td>
+              <td class="p-4 text-emerald-300 bg-emerald-950/20">Your API keys and server configs never leave your machine</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-medium text-gray-200">Custom Java Plugin Builder</td>
+              <td class="p-4 text-yellow-400">Limited to higher subscription tiers</td>
+              <td class="p-4 text-emerald-300 bg-emerald-950/20">Unlimited code generation & real JDK javac compilation</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-medium text-gray-200">Supported Platforms</td>
+              <td class="p-4 text-gray-400">Paper, Fabric, Forge, Velocity</td>
+              <td class="p-4 text-emerald-300 bg-emerald-950/20">Paper, Fabric, Forge, NeoForge, Velocity, Bungee, & Daemon</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800/60 text-center text-xs text-gray-500">
+      <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div>Vexo AI Open Edition — Built for the Minecraft Server Developer Community.</div>
+        <div class="flex items-center space-x-6">
+          <button onclick="scrollToSection('downloads')" class="hover:text-emerald-400">Downloads</button>
+          <button onclick="openByokModal()" class="hover:text-emerald-400">Connect API Key</button>
+          <button onclick="switchView('studio')" class="hover:text-emerald-400 font-bold text-emerald-400">Launch Studio</button>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 2: VEXO AI WEB STUDIO / CHAT DASHBOARD -->
+  <!-- ========================================================================= -->
+  <main id="studio-view" class="hidden flex-grow flex flex-col overflow-hidden h-[calc(100vh-65px)]">
+    <!-- Sub-header / Status Toolbar -->
+    <div class="bg-[#0D121F] border-b border-gray-800 px-4 py-2 flex flex-wrap items-center justify-between text-xs gap-3">
+      <!-- Server selection & active status -->
+      <div class="flex items-center space-x-3">
+        <div class="flex items-center space-x-1.5">
+          <div class="flex items-center space-x-1.5 bg-gray-900 border border-gray-700/80 rounded-lg px-2.5 py-1">
+            <i data-lucide="server" class="w-4 h-4 text-emerald-400"></i>
+            <select id="server-select" onchange="onServerSelectChange(this.value)" class="bg-transparent text-gray-200 font-semibold focus:outline-none cursor-pointer">
+              <!-- Dynamically populated options -->
+            </select>
+          </div>
+
+          <!-- + Connect Server Button -->
+          <button onclick="openConnectServerModal()" class="flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-semibold transition">
+            <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i>
+            <span>Connect Server</span>
+          </button>
+        </div>
+
+        <div id="status-pill" onclick="openConnectServerModal()" title="Click to view server details & settings" class="cursor-pointer flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono hover:border-emerald-500/60 transition">
+          <span id="status-dot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="status-text">ONLINE | 19.98 TPS | 42ms MSPT | 1.8GB RAM | 6 Players</span>
+        </div>
+      </div>
+
+      <!-- Studio Mode Tabs -->
+      <div class="flex items-center space-x-1 bg-gray-900/80 p-1 rounded-lg border border-gray-800 font-medium">
+        <button onclick="setStudioTab('chat')" id="tab-btn-chat" class="px-3 py-1 rounded bg-emerald-500 text-black font-semibold transition flex items-center space-x-1.5">
+          <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+          <span>AI Chat</span>
+        </button>
+        <button onclick="setStudioTab('console')" id="tab-btn-console" class="px-3 py-1 rounded hover:bg-gray-800 text-gray-300 transition flex items-center space-x-1.5">
+          <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+          <span>Console</span>
+        </button>
+        <button onclick="setStudioTab('files')" id="tab-btn-files" class="px-3 py-1 rounded hover:bg-gray-800 text-gray-300 transition flex items-center space-x-1.5">
+          <i data-lucide="folder" class="w-3.5 h-3.5"></i>
+          <span>Files & Configs</span>
+        </button>
+        <button onclick="setStudioTab('builder')" id="tab-btn-builder" class="px-3 py-1 rounded hover:bg-gray-800 text-gray-300 transition flex items-center space-x-1.5">
+          <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+          <span>Java Plugin Builder</span>
+        </button>
+        <button onclick="setStudioTab('profiler')" id="tab-btn-profiler" class="px-3 py-1 rounded hover:bg-gray-800 text-gray-300 transition flex items-center space-x-1.5">
+          <i data-lucide="activity" class="w-3.5 h-3.5"></i>
+          <span>Lag Profiler</span>
+        </button>
+      </div>
+
+      <!-- Active Model info -->
+      <div class="flex items-center space-x-2">
+        <button onclick="openByokModal()" class="flex items-center space-x-1.5 px-2.5 py-1 rounded bg-gray-800/80 border border-gray-700 text-gray-300 hover:text-white transition">
+          <span id="active-model-badge">⚡ Gemini 2.5 Flash</span>
+          <i data-lucide="chevron-down" class="w-3 h-3 text-gray-400"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- TAB 1: AI CHAT ASSISTANT -->
+    <div id="studio-tab-chat" class="flex-grow flex overflow-hidden">
+      <!-- Left sidebar: quick prompt presets -->
+      <div class="w-64 border-r border-gray-800 bg-[#0A0E18] p-4 hidden lg:flex flex-col justify-between shrink-0">
+        <div>
+          <div class="text-xs font-bold font-mono text-gray-400 uppercase tracking-wider mb-3">Quick Presets</div>
+          <div class="space-y-2">
+            <button onclick="sendQuickPrompt('Optimize my server.properties and paper configs for high TPS with 40 players')" class="w-full text-left p-2.5 rounded-lg bg-gray-900/80 hover:bg-gray-800 border border-gray-800 text-xs text-gray-200 transition">
+              <div class="font-semibold text-emerald-400 flex items-center space-x-1 mb-0.5">
+                <i data-lucide="zap" class="w-3 h-3"></i>
+                <span>Optimize for 20 TPS</span>
+              </div>
+              <div class="text-gray-400 text-[11px]">Tuning view distance & entity limits</div>
+            </button>
+
+            <button onclick="sendQuickPrompt('Diagnose my server logs for crash causes and performance bottlenecks')" class="w-full text-left p-2.5 rounded-lg bg-gray-900/80 hover:bg-gray-800 border border-gray-800 text-xs text-gray-200 transition">
+              <div class="font-semibold text-cyan-400 flex items-center space-x-1 mb-0.5">
+                <i data-lucide="activity" class="w-3 h-3"></i>
+                <span>Diagnose latest.log</span>
+              </div>
+              <div class="text-gray-400 text-[11px]">Inspect crash reports & errors</div>
+            </button>
+
+            <button onclick="sendQuickPrompt('Create a custom Java Paper plugin called DoubleJump with permission check and particle effects')" class="w-full text-left p-2.5 rounded-lg bg-gray-900/80 hover:bg-gray-800 border border-gray-800 text-xs text-gray-200 transition">
+              <div class="font-semibold text-purple-400 flex items-center space-x-1 mb-0.5">
+                <i data-lucide="code" class="w-3 h-3"></i>
+                <span>Code DoubleJump Plugin</span>
+              </div>
+              <div class="text-gray-400 text-[11px]">Compiles Java plugin to .jar</div>
+            </button>
+
+            <button onclick="sendQuickPrompt('Configure LuckPerms default ranks with Admin, Moderator, VIP, and Default groups')" class="w-full text-left p-2.5 rounded-lg bg-gray-900/80 hover:bg-gray-800 border border-gray-800 text-xs text-gray-200 transition">
+              <div class="font-semibold text-yellow-400 flex items-center space-x-1 mb-0.5">
+                <i data-lucide="shield" class="w-3 h-3"></i>
+                <span>Configure LuckPerms</span>
+              </div>
+              <div class="text-gray-400 text-[11px]">Set ranks, prefixes & perms</div>
+            </button>
+
+            <button onclick="sendQuickPrompt('Write a Skript for auto-replanting wheat, carrots, and potatoes when harvested')" class="w-full text-left p-2.5 rounded-lg bg-gray-900/80 hover:bg-gray-800 border border-gray-800 text-xs text-gray-200 transition">
+              <div class="font-semibold text-teal-400 flex items-center space-x-1 mb-0.5">
+                <i data-lucide="wheat" class="w-3 h-3"></i>
+                <span>Auto-Replant Skript</span>
+              </div>
+              <div class="text-gray-400 text-[11px]">Drop into Skript scripts</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Token status card -->
+        <div class="p-3 rounded-xl bg-gray-900/90 border border-gray-800 text-xs text-gray-400">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-bold text-gray-300">Active Provider</span>
+            <span id="provider-badge" class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono text-[10px]">Gemini</span>
+          </div>
+          <p class="text-[11px] text-gray-500">Autonomous tool calls enabled. Safe diff validation active.</p>
+        </div>
+      </div>
+
+      <!-- Main Chat Area -->
+      <div class="flex-grow flex flex-col justify-between bg-[#080C14] overflow-hidden">
+        <!-- Messages stream -->
+        <div id="chat-messages" class="flex-grow overflow-y-auto p-4 md:p-6 space-y-4">
+          <!-- Initial welcome message from Vexo -->
+          <div class="flex items-start space-x-3 max-w-3xl">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center font-bold text-black text-sm shrink-0">
+              ⛏️
+            </div>
+            <div class="bg-gray-900/90 border border-gray-800 rounded-2xl p-4 text-sm text-gray-200 space-y-2 shadow-lg">
+              <div class="font-bold text-emerald-400 text-xs flex items-center space-x-1">
+                <span>Vexo AI</span>
+                <span class="text-gray-500">· Autonomous Admin & Plugin Developer</span>
+              </div>
+              <p>Hello! I am Vexo, your autonomous Minecraft server assistant. I am linked to your server environment.</p>
+              <p class="text-gray-400 text-xs">
+                You can ask me to optimize server configurations, troubleshoot lag reports, write and compile custom Java plugins, manage LuckPerms permissions, or execute console commands safely.
+              </p>
+              <div class="pt-2 flex flex-wrap gap-2 text-xs">
+                <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 border border-gray-700">💡 Tip: Try clicking any preset on the left or type below!</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Input Bar -->
+        <div class="p-4 border-t border-gray-800 bg-[#0B0F19]">
+          <form id="chat-form" onsubmit="handleChatSubmit(event)" class="max-w-4xl mx-auto flex items-center space-x-3">
+            <div class="relative flex-grow">
+              <input id="chat-input" type="text" placeholder="Tell Vexo what to do (e.g. 'Set view distance to 8 and optimize entity activation range')..." class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 transition font-sans pr-10">
+              <button type="button" onclick="document.getElementById('chat-input').value='';" class="absolute right-3 top-3 text-gray-500 hover:text-gray-300">
+                <i data-lucide="x-circle" class="w-4 h-4"></i>
+              </button>
+            </div>
+            <button type="submit" id="chat-send-btn" class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-sm transition flex items-center space-x-2 shrink-0">
+              <span>Send</span>
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: LIVE CONSOLE -->
+    <div id="studio-tab-console" class="hidden flex-grow flex flex-col bg-[#080C14] overflow-hidden p-4">
+      <div class="flex items-center justify-between mb-3 text-xs">
+        <div class="flex items-center space-x-3">
+          <span class="font-bold text-gray-300 flex items-center space-x-1.5">
+            <i data-lucide="terminal" class="w-4 h-4 text-emerald-400"></i>
+            <span>Live Server Console</span>
+          </span>
+          <span class="text-gray-500">| ANSI Color Support</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="refreshConsole()" class="px-2.5 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-300 transition flex items-center space-x-1">
+            <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+            <span>Refresh</span>
+          </button>
+          <button onclick="clearConsole()" class="px-2.5 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-300 transition flex items-center space-x-1">
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            <span>Clear</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Console Output Screen -->
+      <div id="console-output" class="flex-grow rounded-xl bg-black/90 border border-gray-800 p-4 font-mono text-xs text-gray-300 overflow-y-auto space-y-1">
+        <!-- Log lines injected here -->
+      </div>
+
+      <!-- Command Dispatch Bar -->
+      <div class="mt-3 flex items-center space-x-2">
+        <span class="text-emerald-400 font-mono text-sm font-bold pl-1">&gt;</span>
+        <input id="console-cmd-input" type="text" onkeydown="handleConsoleKey(event)" placeholder="Type Minecraft command (e.g. 'say Hello', 'tps', 'gamemode creative Steve')..." class="flex-grow bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-emerald-500">
+        <button onclick="dispatchConsoleCommand()" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs font-mono transition">
+          Run Command
+        </button>
+      </div>
+    </div>
+
+    <!-- TAB 3: FILE EXPLORER & EDITOR -->
+    <div id="studio-tab-files" class="hidden flex-grow flex overflow-hidden">
+      <!-- File Tree Sidebar -->
+      <div class="w-72 border-r border-gray-800 bg-[#0B0F19] p-4 flex flex-col justify-between shrink-0">
+        <div>
+          <div class="text-xs font-bold font-mono text-gray-400 uppercase tracking-wider mb-3">Server Files</div>
+          <div id="file-tree" class="space-y-1 text-xs font-mono">
+            <!-- Injected file list -->
+          </div>
+        </div>
+        <div class="pt-4 border-t border-gray-800 space-y-2">
+          <button onclick="loadFile('server.properties')" class="w-full text-left px-2 py-1.5 rounded bg-gray-800 hover:bg-gray-700 text-xs font-mono text-emerald-400">
+            📄 server.properties
+          </button>
+          <button onclick="loadFile('paper-world-defaults.yml')" class="w-full text-left px-2 py-1.5 rounded bg-gray-800 hover:bg-gray-700 text-xs font-mono text-cyan-400">
+            📄 paper-world-defaults.yml
+          </button>
+          <button onclick="loadFile('plugins/Essentials/config.yml')" class="w-full text-left px-2 py-1.5 rounded bg-gray-800 hover:bg-gray-700 text-xs font-mono text-yellow-400">
+            📄 Essentials config.yml
+          </button>
+        </div>
+      </div>
+
+      <!-- File Editor Area -->
+      <div class="flex-grow flex flex-col bg-[#080C14] overflow-hidden">
+        <div class="p-3 border-b border-gray-800 bg-[#0E1322] flex items-center justify-between text-xs font-mono">
+          <div class="flex items-center space-x-2">
+            <i data-lucide="file-code" class="w-4 h-4 text-emerald-400"></i>
+            <span id="active-file-path" class="text-gray-200 font-semibold">server.properties</span>
+          </div>
+          <button onclick="saveActiveFile()" class="px-4 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-bold transition flex items-center space-x-1.5">
+            <i data-lucide="save" class="w-3.5 h-3.5"></i>
+            <span>Save & Backup</span>
+          </button>
+        </div>
+        <textarea id="file-editor-content" spellcheck="false" class="flex-grow p-4 bg-black/80 font-mono text-xs text-gray-200 resize-none focus:outline-none leading-relaxed"></textarea>
+      </div>
+    </div>
+
+    <!-- TAB 4: JAVA PLUGIN BUILDER -->
+    <div id="studio-tab-builder" class="hidden flex-grow flex flex-col p-6 bg-[#080C14] overflow-y-auto">
+      <div class="max-w-4xl mx-auto w-full space-y-6">
+        <div>
+          <h3 class="text-2xl font-bold text-white flex items-center space-x-2">
+            <i data-lucide="cpu" class="w-6 h-6 text-purple-400"></i>
+            <span>Custom Java Plugin Studio</span>
+          </h3>
+          <p class="text-gray-400 text-sm mt-1">Vexo AI can generate Java code, write <code class="text-purple-300">plugin.yml</code>, compile directly with JDK 17 <code class="text-purple-300">javac</code>, and package a live <code class="text-purple-300">.jar</code>!</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-mono text-gray-400 mb-1">Plugin Name</label>
+            <input id="builder-plugin-name" type="text" value="DoubleJump" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-purple-500">
+          </div>
+          <div>
+            <label class="block text-xs font-mono text-gray-400 mb-1">Package Name</label>
+            <input id="builder-package" type="text" value="com.vexo.doublejump" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-purple-500">
+          </div>
+          <div>
+            <label class="block text-xs font-mono text-gray-400 mb-1">Main Class</label>
+            <input id="builder-main-class" type="text" value="DoubleJumpPlugin" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-purple-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono text-gray-400 mb-1">Java Source Code (Paper/Spigot 1.20+)</label>
+          <textarea id="builder-source-code" rows="12" spellcheck="false" class="w-full p-3 rounded-xl bg-black border border-gray-800 font-mono text-xs text-gray-200 focus:outline-none focus:border-purple-500"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono text-gray-400 mb-1">plugin.yml</label>
+          <textarea id="builder-plugin-yml" rows="5" spellcheck="false" class="w-full p-3 rounded-xl bg-black border border-gray-800 font-mono text-xs text-gray-200 focus:outline-none focus:border-purple-500"></textarea>
+        </div>
+
+        <div class="flex items-center space-x-3">
+          <button onclick="compileCustomPlugin()" class="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm transition flex items-center space-x-2">
+            <i data-lucide="play" class="w-4 h-4"></i>
+            <span>Compile & Package .JAR</span>
+          </button>
+          <span id="builder-status" class="text-xs font-mono text-gray-400">Ready to build</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: LAG & HEALTH PROFILER -->
+    <div id="studio-tab-profiler" class="hidden flex-grow flex flex-col p-6 bg-[#080C14] overflow-y-auto">
+      <div class="max-w-4xl mx-auto w-full space-y-6">
+        <div>
+          <h3 class="text-2xl font-bold text-white flex items-center space-x-2">
+            <i data-lucide="activity" class="w-6 h-6 text-emerald-400"></i>
+            <span>Real-time Lag & Performance Profiler</span>
+          </h3>
+          <p class="text-gray-400 text-sm mt-1">Live metrics from your server bridge. Detects tick lag, entity spikes, and memory leaks.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div class="p-4 rounded-xl bg-gray-900 border border-gray-800">
+            <div class="text-xs text-gray-400 font-mono mb-1">Current TPS (1m)</div>
+            <div id="metric-tps" class="text-3xl font-extrabold text-emerald-400 font-mono">19.98</div>
+            <div class="text-[11px] text-gray-500 mt-1">Ideal: 20.00 TPS</div>
+          </div>
+          <div class="p-4 rounded-xl bg-gray-900 border border-gray-800">
+            <div class="text-xs text-gray-400 font-mono mb-1">Tick Time (MSPT)</div>
+            <div id="metric-mspt" class="text-3xl font-extrabold text-cyan-400 font-mono">32.4 ms</div>
+            <div class="text-[11px] text-gray-500 mt-1">Target: &lt; 50.0 ms</div>
+          </div>
+          <div class="p-4 rounded-xl bg-gray-900 border border-gray-800">
+            <div class="text-xs text-gray-400 font-mono mb-1">Memory Usage</div>
+            <div id="metric-ram" class="text-3xl font-extrabold text-purple-400 font-mono">1.8 / 4.0 GB</div>
+            <div class="text-[11px] text-gray-500 mt-1">Heap Allocation</div>
+          </div>
+          <div class="p-4 rounded-xl bg-gray-900 border border-gray-800">
+            <div class="text-xs text-gray-400 font-mono mb-1">Online Players</div>
+            <div id="metric-players" class="text-3xl font-extrabold text-yellow-400 font-mono">6 / 40</div>
+            <div class="text-[11px] text-gray-500 mt-1">Active on server</div>
+          </div>
+        </div>
+
+        <!-- Spark & timings simulator -->
+        <div class="p-6 rounded-2xl bg-gray-900/80 border border-gray-800 space-y-4">
+          <h4 class="font-bold text-white text-base">Run Health Diagnosis</h4>
+          <p class="text-xs text-gray-400">Ask Vexo AI to run a 30-second automated profiler check across world chunks, entity ticking, and plugin event handlers.</p>
+          <button onclick="sendQuickPrompt('Run a spark performance check and summarize where lag is occurring')" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs transition flex items-center space-x-2">
+            <i data-lucide="zap" class="w-4 h-4"></i>
+            <span>Diagnose Performance Now</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: BRING YOUR OWN KEY (BYOK) SETTINGS -->
+  <!-- ========================================================================= -->
+  <div id="byok-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#0E1424] border border-gray-800 rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-gray-800">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+            <i data-lucide="key" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-white">Connect Your Own API Key</h3>
+            <p class="text-xs text-gray-400">Bring Your Own Key (BYOK) — 100% Free Forever</p>
+          </div>
+        </div>
+        <button onclick="closeByokModal()" class="text-gray-500 hover:text-gray-300">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 text-xs font-sans">
+        <!-- Provider Selector -->
+        <div>
+          <label class="block text-gray-300 font-semibold mb-1.5">Select AI Provider</label>
+          <select id="byok-provider" onchange="onProviderSelectChange()" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-emerald-500">
+            <option value="gemini">Google Gemini</option>
+            <option value="nvidia">NVIDIA NIM</option>
+            <option value="openai">OpenAI</option>
+            <option value="claude">Anthropic Claude</option>
+            <option value="deepseek">DeepSeek</option>
+            <option value="groq">Groq</option>
+            <option value="ollama">Ollama (Local / Offline)</option>
+            <option value="custom">Custom OpenAI-compatible</option>
+          </select>
+        </div>
+
+        <!-- API Key Input -->
+        <div id="byok-key-container">
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="text-gray-300 font-semibold">API Key</label>
+            <a id="get-key-link" href="https://aistudio.google.com/app/apikey" target="_blank" class="text-emerald-400 hover:underline text-[11px]">Get free API Key &rarr;</a>
+          </div>
+          <div class="relative">
+            <input id="byok-key" type="password" oninput="onKeyInputDebounced()" placeholder="Paste your API key here..." class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white font-mono focus:outline-none focus:border-emerald-500 pr-10">
+            <button type="button" onclick="toggleKeyVisibility()" class="absolute right-3 top-2.5 text-gray-400 hover:text-gray-200">
+              <i data-lucide="eye" id="key-eye-icon" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Base URL (for Ollama or Custom) -->
+        <div id="byok-base-url-container" class="hidden">
+          <label id="byok-base-url-label" class="block text-gray-300 font-semibold mb-1.5">Base URL (Ollama or Custom Endpoint)</label>
+          <input id="byok-base-url" type="text" oninput="onKeyInputDebounced()" value="" placeholder="http://localhost:11434" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white font-mono focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <!-- Dynamic Model Selection -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="text-gray-300 font-semibold">Model</label>
+            <button type="button" onclick="fetchProviderModels(true)" id="fetch-models-btn" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center space-x-1 cursor-pointer">
+              <i data-lucide="refresh-cw" id="fetch-models-icon" class="w-3 h-3"></i>
+              <span id="fetch-models-text">Import / Refresh Models</span>
+            </button>
+          </div>
+          <select id="byok-model" onchange="onModelSelectChange()" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white font-mono focus:outline-none focus:border-emerald-500">
+            <option value="">-- Enter API Key to Import Models --</option>
+          </select>
+          <div id="model-fetch-status" class="text-[11px] text-gray-400 mt-1 hidden"></div>
+
+          <div class="mt-2 flex items-center justify-between">
+            <span class="text-[10px] text-gray-500">Need a custom or fine-tuned model ID?</span>
+            <button type="button" onclick="toggleCustomModelInput()" id="toggle-custom-btn" class="text-gray-400 hover:text-emerald-400 text-[10px] underline cursor-pointer">
+              Enter Custom Model ID
+            </button>
+          </div>
+          <div id="custom-model-container" class="mt-1.5 hidden">
+            <input id="byok-custom-model" type="text" placeholder="e.g. nvidia/nemotron-3-super-120b-a12b" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-1.5 text-xs text-white font-mono focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+
+        <!-- Connection Test Result -->
+        <div id="test-key-result" class="hidden p-3 rounded-lg text-xs font-mono"></div>
+      </div>
+
+      <div class="flex items-center justify-between pt-3 border-t border-gray-800">
+        <button type="button" onclick="testApiKey()" id="test-key-btn" class="px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 font-semibold text-xs transition flex items-center space-x-1.5">
+          <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+          <span>Test Connection</span>
+        </button>
+
+        <div class="flex items-center space-x-2">
+          <button type="button" onclick="closeByokModal()" class="px-3 py-2 rounded-lg text-gray-400 hover:text-gray-200 text-xs">
+            Cancel
+          </button>
+          <button type="button" onclick="saveByokSettings()" class="px-5 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs transition">
+            Save Settings
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: CONNECT SERVER WIZARD -->
+  <!-- ========================================================================= -->
+  <div id="connect-server-modal" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#0E1424] border border-gray-800 rounded-2xl max-w-xl w-full p-6 space-y-4 shadow-2xl overflow-hidden max-h-[92vh] flex flex-col">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-gray-800 shrink-0">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+            <i data-lucide="link-2" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-white">Connect Minecraft Server</h3>
+            <p class="text-xs text-gray-400">Link Paper, Spigot, Fabric, Forge, Velocity, or Local directory</p>
+          </div>
+        </div>
+        <button onclick="closeConnectServerModal()" class="text-gray-500 hover:text-gray-300">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Scrollable content -->
+      <div class="overflow-y-auto space-y-4 text-xs pr-1 flex-grow">
+        <!-- Saved servers list -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-gray-300 font-semibold">Your Servers</label>
+            <span class="text-[10px] text-gray-500">Click to switch active</span>
+          </div>
+          <div id="saved-servers-list" class="space-y-2 max-h-36 overflow-y-auto pr-1">
+            <!-- Dynamically populated servers cards -->
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-gray-800">
+          <div class="flex items-center justify-between mb-2.5">
+            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider" id="server-form-title">Add / Edit Server</span>
+            <button type="button" onclick="resetServerForm()" class="text-[11px] text-gray-400 hover:text-emerald-400 transition font-mono">+ New Server</button>
+          </div>
+
+          <!-- Server Name -->
+          <div class="mb-3">
+            <label class="block text-gray-300 font-semibold mb-1">Server Display Name</label>
+            <input id="server-form-name" type="text" placeholder="e.g. Survival SMP, Velocity Proxy, Lobby" value="My Survival Server" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-emerald-500">
+          </div>
+
+          <!-- Connection Mode Tabs -->
+          <div class="mb-3">
+            <label class="block text-gray-300 font-semibold mb-1.5">Connection Method</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button type="button" id="conn-tab-sftp" onclick="setConnectionMethodTab('sftp')" class="p-2 rounded-lg border border-emerald-500 bg-emerald-500/10 text-emerald-400 font-semibold text-center transition">
+                <i data-lucide="server" class="w-4 h-4 mx-auto mb-1"></i>
+                <span>SFTP + RCON</span>
+              </button>
+              <button type="button" id="conn-tab-local" onclick="setConnectionMethodTab('local')" class="p-2 rounded-lg border border-gray-700 bg-gray-900 text-gray-400 hover:text-gray-200 font-semibold text-center transition">
+                <i data-lucide="folder" class="w-4 h-4 mx-auto mb-1"></i>
+                <span>Local Folder</span>
+              </button>
+              <button type="button" id="conn-tab-sandbox" onclick="setConnectionMethodTab('sandbox')" class="p-2 rounded-lg border border-gray-700 bg-gray-900 text-gray-400 hover:text-gray-200 font-semibold text-center transition">
+                <i data-lucide="play" class="w-4 h-4 mx-auto mb-1"></i>
+                <span>Demo Sandbox</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Option A: SFTP + RCON Fields -->
+          <div id="sftp-fields" class="space-y-3.5">
+            <!-- SECTION 1: SFTP (File Access) -->
+            <div class="p-3.5 rounded-xl bg-gray-900/80 border border-gray-800 space-y-2.5">
+              <div class="flex items-center justify-between pb-1.5 border-b border-gray-800">
+                <div class="flex items-center space-x-1.5 text-white font-semibold">
+                  <i data-lucide="folder-tree" class="w-4 h-4 text-emerald-400"></i>
+                  <span>1. SFTP File Access (Configs, Plugins, Logs)</span>
+                </div>
+                <span class="text-[10px] text-gray-400 font-mono">Port 2022 / 22</span>
+              </div>
+
+              <div class="grid grid-cols-3 gap-2.5">
+                <div class="col-span-2">
+                  <label class="block text-gray-300 font-medium mb-1">SFTP Host / IP</label>
+                  <input id="server-form-sftp-host" type="text" placeholder="e.g. sftp.host.com or 51.79.12.34" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-1.5 text-white font-mono text-xs focus:outline-none focus:border-emerald-500">
+                </div>
+                <div>
+                  <label class="block text-gray-300 font-medium mb-1">SFTP Port</label>
+                  <input id="server-form-sftp-port" type="number" value="2022" placeholder="2022" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-1.5 text-white font-mono text-xs focus:outline-none focus:border-emerald-500">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2.5">
+                <div>
+                  <label class="block text-gray-300 font-medium mb-1">Username</label>
+                  <input id="server-form-sftp-user" type="text" placeholder="e.g. client.1234abcd" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-1.5 text-white font-mono text-xs focus:outline-none focus:border-emerald-500">
+                </div>
+                <div>
+                  <label class="block text-gray-300 font-medium mb-1">Password</label>
+                  <input id="server-form-sftp-pass" type="password" placeholder="SFTP Password" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-1.5 text-white font-mono text-xs focus:outline-none focus:border-emerald-500">
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 2: Commands (RCON) -->
+            <div class="p-3.5 rounded-xl bg-gray-900/80 border border-gray-800 space-y-2.5">
+              <div class="flex items-center justify-between pb-1.5 border-b border-gray-800">
+                <div class="flex items-center space-x-1.5 text-white font-semibold">
+                  <i data-lucide="terminal" class="w-4 h-4 text-emerald-400"></i>
+                  <span>2. Commands & Console (RCON)</span>
+                </div>
+                <span class="text-[10px] text-gray-400 font-mono">Port 25575</span>
+              </div>
+
+              <div class="grid grid-cols-3 gap-2.5">
+                <div class="col-span-2">
+                  <label class="block text-gray-300 font-medium mb-1">RCON Host / IP</label>
+                  <input id="server-form-rcon-host" type="text" placeholder="Leave blank to match SFTP Host" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-1.5 text-white font-mono text-xs focus:outline-none focus:border-emerald-500">
+                </div>
+                <div>
+                  <label class="block text-gray-300 font-medium mb-1">RCON Port</label>
+                  <input id="server-form-rcon-port" type="number" value="25575" placeholder="25575" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-1.5 text-white font-mono text-xs focus:outline-none focus:border-emerald-500">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-gray-300 font-medium mb-1">RCON Password</label>
+                <input id="server-form-rcon-pass" type="password" placeholder="rcon.password from server.properties" class="w-full bg-gray-950 border border-gray-700 rounded-lg px-3 py-1.5 text-white font-mono text-xs focus:outline-none focus:border-emerald-500">
+              </div>
+            </div>
+          </div>
+
+          <!-- Option B: Local Folder Fields -->
+          <div id="local-fields" class="hidden space-y-3">
+            <div>
+              <label class="block text-gray-300 font-semibold mb-1">Server Folder Path on Disk</label>
+              <input id="server-form-folder" type="text" placeholder="e.g. D:\Minecraft\Paper-1.20 or C:\Server" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white font-mono focus:outline-none focus:border-emerald-500">
+              <p class="text-[10px] text-gray-500 mt-1">Vexo AI accesses your files directly on disk. No port-forwarding or plugins needed!</p>
+            </div>
+
+            <div class="p-3 rounded-lg bg-gray-900/60 border border-gray-800 space-y-2">
+              <div class="text-gray-300 font-semibold">Optional Console RCON (For running commands)</div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-gray-400 text-[10px] mb-0.5">RCON Port</label>
+                  <input id="server-form-rcon-port" type="number" value="25575" class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1 text-white font-mono">
+                </div>
+                <div>
+                  <label class="block text-gray-400 text-[10px] mb-0.5">RCON Password</label>
+                  <input id="server-form-rcon-pass" type="password" placeholder="From server.properties" class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1 text-white font-mono">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Option C: Sandbox Info -->
+          <div id="sandbox-fields" class="hidden p-3 rounded-lg bg-gray-950 border border-gray-800 text-gray-300 text-xs">
+            <p class="text-emerald-400 font-bold mb-1">✨ Built-in Sandbox Mode</p>
+            <p class="text-gray-400 text-[11px]">Instant simulated environment with virtual TPS, configs, and players. No real Minecraft server required.</p>
+          </div>
+
+          <!-- Connection Test Box Result -->
+          <div id="server-test-result" class="hidden mt-3 p-3 rounded-lg text-xs font-mono"></div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="flex items-center justify-between pt-3 border-t border-gray-800 shrink-0">
+        <button type="button" onclick="testCurrentServerForm()" id="server-test-btn" class="px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 font-semibold text-xs transition flex items-center space-x-1.5">
+          <i data-lucide="radio" class="w-4 h-4 text-emerald-400"></i>
+          <span>Test Ping</span>
+        </button>
+
+        <div class="flex items-center space-x-2">
+          <button type="button" onclick="closeConnectServerModal()" class="px-3 py-2 rounded-lg text-gray-400 hover:text-gray-200 text-xs">
+            Cancel
+          </button>
+          <button type="button" onclick="saveAndConnectServer()" class="px-5 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs transition flex items-center space-x-1.5">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>Save & Connect</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: MINECRAFT VERSION SELECTOR & DOWNLOADER (DESIGN.md) -->
+  <!-- ========================================================================= -->
+  <div id="version-selector-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6" onclick="handleVersionModalBackdrop(event)">
+    <div class="bg-[#0F172A] border border-[#1E293B] rounded-2xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden glow-card" onclick="event.stopPropagation()">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-[#1E293B] bg-[#0B0F19] flex items-center justify-between shrink-0">
+        <div class="flex items-center space-x-3">
+          <div id="version-modal-icon" class="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center font-bold text-lg">
+            📜
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <h3 id="version-modal-title" class="text-lg sm:text-xl font-extrabold text-white tracking-tight">Select Minecraft Version</h3>
+              <span id="version-modal-platform-badge" class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-semibold">Paper / Purpur</span>
+            </div>
+            <p id="version-modal-subtitle" class="text-xs text-gray-400 mt-0.5">Choose your Minecraft version (from classic 1.7.10 to latest 26.3) to download the optimized build.</p>
+          </div>
+        </div>
+        <button onclick="closeVersionModal()" class="w-8 h-8 rounded-lg bg-gray-900 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-700 flex items-center justify-center transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Platform Switcher Tabs (Inside Modal) -->
+      <div class="px-6 py-2.5 bg-[#080C14] border-b border-[#1E293B] flex items-center space-x-2 overflow-x-auto shrink-0">
+        <button id="vtab-paper" onclick="switchVersionModalPlatform('paper')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold font-mono flex items-center space-x-1.5 transition whitespace-nowrap bg-emerald-500 text-black">
+          <span>📜 Paper / Spigot</span>
+        </button>
+        <button id="vtab-fabric" onclick="switchVersionModalPlatform('fabric')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold font-mono flex items-center space-x-1.5 transition whitespace-nowrap bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:bg-gray-800">
+          <span>🧵 Fabric Mod</span>
+        </button>
+        <button id="vtab-forge" onclick="switchVersionModalPlatform('forge')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold font-mono flex items-center space-x-1.5 transition whitespace-nowrap bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:bg-gray-800">
+          <span>🔨 Forge & NeoForge</span>
+        </button>
+        <button id="vtab-proxy" onclick="switchVersionModalPlatform('proxy')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold font-mono flex items-center space-x-1.5 transition whitespace-nowrap bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:bg-gray-800">
+          <span>🌐 Velocity & Bungee</span>
+        </button>
+        <button id="vtab-daemon" onclick="switchVersionModalPlatform('daemon')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold font-mono flex items-center space-x-1.5 transition whitespace-nowrap bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:bg-gray-800">
+          <span>🐍 Python Daemon</span>
+        </button>
+      </div>
+
+      <!-- Tactical Controls Bar: Filter, Category Chips & Sort Order -->
+      <div class="px-6 py-3 bg-[#0B0F19] border-b border-[#1E293B] flex flex-wrap items-center justify-between gap-3 shrink-0">
+        <!-- Search and Sort -->
+        <div class="flex items-center space-x-2 w-full sm:w-auto flex-grow sm:flex-grow-0">
+          <div class="relative flex-grow sm:w-64">
+            <i data-lucide="search" class="w-3.5 h-3.5 text-gray-500 absolute left-3 top-2.5"></i>
+            <input type="text" id="version-search-input" oninput="renderVersionGrid()" placeholder="Filter version (e.g. 26.3, 1.21.4, 1.20.1, 1.16.5, 1.8.8)..." class="w-full bg-[#080C14] border border-[#1E293B] rounded-lg pl-8 pr-3 py-1.5 text-xs text-white font-mono focus:outline-none focus:border-emerald-500">
+          </div>
+          <!-- Sort Button (Toggles between Oldest->Newest and Newest->Oldest) -->
+          <button id="version-sort-btn" onclick="toggleVersionSortOrder()" title="Click to reverse sort order" class="px-3 py-1.5 rounded-lg bg-[#080C14] border border-[#1E293B] hover:border-emerald-500/40 text-gray-300 hover:text-emerald-400 font-mono text-xs flex items-center space-x-1.5 transition shrink-0">
+            <span id="version-sort-icon">🔽</span>
+            <span id="version-sort-label">Latest ➔ Oldest</span>
+          </button>
+        </div>
+
+        <!-- Category Filter Chips -->
+        <div class="flex items-center space-x-1.5 overflow-x-auto text-[11px] font-mono py-1">
+          <button onclick="setVersionEraFilter('all')" id="era-chip-all" class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-semibold">All</button>
+          <button onclick="setVersionEraFilter('26')" id="era-chip-26" class="px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200">26.x (Latest)</button>
+          <button onclick="setVersionEraFilter('1.21')" id="era-chip-1.21" class="px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200">1.21.x</button>
+          <button onclick="setVersionEraFilter('1.20')" id="era-chip-1.20" class="px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200">1.20.x</button>
+          <button onclick="setVersionEraFilter('1.19')" id="era-chip-1.19" class="px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200">1.19.x</button>
+          <button onclick="setVersionEraFilter('1.18')" id="era-chip-1.18" class="px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200">1.18.x</button>
+          <button onclick="setVersionEraFilter('1.16')" id="era-chip-1.16" class="px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200">1.16.x</button>
+          <button onclick="setVersionEraFilter('1.12')" id="era-chip-1.12" class="px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200">1.12.x</button>
+          <button onclick="setVersionEraFilter('legacy')" id="era-chip-legacy" class="px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200">1.8 - 1.7</button>
+        </div>
+      </div>
+
+      <!-- Version Cards Grid (Scrollable Container) -->
+      <div id="version-grid" class="p-6 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-4 flex-grow bg-[#080C14] max-h-[52vh]">
+        <!-- Dynamic cards will be rendered here by JavaScript -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-3.5 bg-[#0B0F19] border-t border-[#1E293B] flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
+        <div class="flex items-center space-x-2 text-xs text-gray-400">
+          <i data-lucide="info" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+          <span>Drop the downloaded <code class="text-emerald-400 font-mono">.jar</code> into your server's <code class="text-emerald-400 font-mono" id="modal-install-dir">/plugins/</code> directory and restart.</span>
+        </div>
+        <button onclick="closeVersionModal()" class="w-full sm:w-auto px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-200 font-medium text-xs transition border border-gray-700">
+          Done
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Vexo HUD Toast Container -->
+  <div id="vexo-toast-container" class="fixed bottom-5 right-5 z-[100] flex flex-col space-y-2 pointer-events-none"></div>
+
+  <!-- ========================================================================= -->
+  <!-- FRONTEND LOGIC & SCRIPT -->
+  <!-- ========================================================================= -->
+  <script>
+    // State management
+    const defaultServers = [
+      {
+        id: 'sandbox',
+        name: 'Demo SMP (Sandbox)',
+        mode: 'sandbox',
+        platform: 'Paper 1.20.4',
+        status: 'ONLINE'
+      },
+      {
+        id: 'default_sftp',
+        name: 'My Minecraft Server (SFTP + RCON)',
+        mode: 'sftp',
+        sftp: { host: '', port: 2022, username: '', password: '' },
+        rcon: { host: '', port: 25575, password: '' },
+        platform: 'SFTP + RCON',
+        status: 'STANDBY'
+      }
+    ];
+
+    const state = {
+      currentView: 'landing', // 'landing' | 'studio'
+      currentTab: 'chat',     // 'chat' | 'console' | 'files' | 'builder' | 'profiler'
+      provider: localStorage.getItem('vexo_provider') || localStorage.getItem('conny_provider') || 'gemini',
+      apiKey: localStorage.getItem('vexo_api_key') || localStorage.getItem('conny_api_key') || '',
+      model: (localStorage.getItem('vexo_model') || localStorage.getItem('conny_model') || ''),
+      baseUrl: localStorage.getItem('vexo_base_url') || localStorage.getItem('conny_base_url') || '',
+      chatHistory: [],
+      activeFile: 'server.properties',
+      servers: JSON.parse(localStorage.getItem('vexo_servers') || localStorage.getItem('conny_servers') || 'null') || defaultServers,
+      activeServerId: localStorage.getItem('vexo_active_server_id') || localStorage.getItem('conny_active_server_id') || 'sandbox',
+      connectionMethodTab: 'sftp',
+      editingServerId: null
+    };
+
+    function getActiveServer() {
+      return state.servers.find(s => s.id === state.activeServerId) || state.servers[0];
+    }
+
+    function getActiveServerConfig() {
+      const s = getActiveServer();
+      if (!s || s.mode === 'sandbox') return { mode: 'sandbox' };
+      if (s.mode === 'local') return { mode: 'local', folderPath: s.folderPath, rcon: s.rcon };
+      return {
+        mode: 'sftp',
+        sftp: s.sftp || {},
+        rcon: s.rcon || {}
+      };
+    }
+
+    // Initialize UI on load
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      updateByokUI();
+      renderServersDropdown();
+      initBuilderSample();
+      refreshConsole();
+      refreshFileList();
+      loadFile('server.properties');
+      pollActiveServerStatus();
+      setInterval(pollActiveServerStatus, 4000);
+    });
+
+    // View Switching (Landing vs Studio)
+    function switchView(viewName) {
+      state.currentView = viewName;
+      const landing = document.getElementById('landing-view');
+      const studio = document.getElementById('studio-view');
+      const toggleText = document.getElementById('view-toggle-text');
+
+      if (viewName === 'studio') {
+        landing.classList.add('hidden');
+        studio.classList.remove('hidden');
+        toggleText.textContent = 'Exit Studio';
+      } else {
+        studio.classList.add('hidden');
+        landing.classList.remove('hidden');
+        toggleText.textContent = 'Launch Studio';
+      }
+      lucide.createIcons();
+    }
+
+    function toggleView() {
+      switchView(state.currentView === 'landing' ? 'studio' : 'landing');
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Studio Tab Switching
+    function setStudioTab(tab) {
+      state.currentTab = tab;
+      const tabs = ['chat', 'console', 'files', 'builder', 'profiler'];
+      tabs.forEach(t => {
+        const pane = document.getElementById(`studio-tab-${t}`);
+        const btn = document.getElementById(`tab-btn-${t}`);
+        if (pane) pane.classList.toggle('hidden', t !== tab);
+        if (btn) {
+          if (t === tab) {
+            btn.className = 'px-3 py-1 rounded bg-emerald-500 text-black font-semibold transition flex items-center space-x-1.5';
+          } else {
+            btn.className = 'px-3 py-1 rounded hover:bg-gray-800 text-gray-300 transition flex items-center space-x-1.5';
+          }
+        }
+      });
+      lucide.createIcons();
+    }
+
+    // -------------------------------------------------------------------------
+    // SERVER CONNECTION & MANAGEMENT
+    // -------------------------------------------------------------------------
+    function renderServersDropdown() {
+      const select = document.getElementById('server-select');
+      if (!select) return;
+      select.innerHTML = '';
+
+      state.servers.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.id;
+        const icon = s.status === 'ONLINE' ? '🟢' : (s.mode === 'sandbox' ? '🧪' : '⚪');
+        opt.textContent = `${icon} ${s.name}`;
+        if (s.id === state.activeServerId) opt.selected = true;
+        select.appendChild(opt);
+      });
+
+      const addOpt = document.createElement('option');
+      addOpt.value = '__add_new__';
+      addOpt.textContent = '➕ Connect New Server...';
+      select.appendChild(addOpt);
+    }
+
+    function onServerSelectChange(val) {
+      if (val === '__add_new__') {
+        openConnectServerModal();
+        renderServersDropdown();
+        return;
+      }
+      state.activeServerId = val;
+      localStorage.setItem('vexo_active_server_id', val);
+      renderServersDropdown();
+
+      const active = getActiveServer();
+      appendChatMessage('assistant', `🔄 Switched active server to: **${active.name}** (${active.mode.toUpperCase()}). Refreshing console and server files...`);
+      pollActiveServerStatus();
+      refreshConsole();
+      refreshFileList();
+      loadFile('server.properties');
+    }
+
+    function openConnectServerModal() {
+      renderSavedServersList();
+      resetServerForm();
+      document.getElementById('connect-server-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeConnectServerModal() {
+      document.getElementById('connect-server-modal').classList.add('hidden');
+    }
+
+    function renderSavedServersList() {
+      const container = document.getElementById('saved-servers-list');
+      if (!container) return;
+      container.innerHTML = '';
+
+      state.servers.forEach(s => {
+        const isActive = s.id === state.activeServerId;
+        const card = document.createElement('div');
+        card.className = `p-2.5 rounded-xl border flex items-center justify-between transition ${
+          isActive ? 'border-emerald-500/60 bg-emerald-950/30' : 'border-gray-800 bg-gray-900/60 hover:border-gray-700'
+        }`;
+
+        let detailText = s.mode === 'sandbox' 
+          ? 'Simulated Sandbox' 
+          : (s.mode === 'local' 
+              ? s.folderPath 
+              : ((s.sftp?.host ? `${s.sftp.host}:${s.sftp.port || 2022}` : 'SFTP Server') + (s.rcon?.password ? ' (RCON Active)' : '')));
+        if (detailText && detailText.length > 35) detailText = '...' + detailText.slice(-32);
+
+        card.innerHTML = `
+          <div class="flex items-center space-x-2.5 overflow-hidden">
+            <span class="w-2.5 h-2.5 rounded-full ${s.status === 'ONLINE' ? 'bg-emerald-400' : 'bg-gray-500'} shrink-0"></span>
+            <div class="truncate">
+              <div class="font-bold text-gray-200 truncate flex items-center space-x-1.5">
+                <span>${s.name}</span>
+                ${isActive ? '<span class="text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 font-mono">ACTIVE</span>' : ''}
+              </div>
+              <div class="text-[10px] text-gray-500 font-mono truncate">${detailText}</div>
+            </div>
+          </div>
+          <div class="flex items-center space-x-1 shrink-0">
+            ${!isActive ? `<button onclick="activateServer('${s.id}')" class="px-2.5 py-1 rounded bg-gray-800 hover:bg-emerald-500 hover:text-black text-gray-300 font-semibold text-[11px] transition">Connect</button>` : ''}
+            <button onclick="editServer('${s.id}')" class="p-1 rounded hover:bg-gray-800 text-gray-400 hover:text-white transition" title="Edit"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i></button>
+            ${s.id !== 'sandbox' ? `<button onclick="deleteServer('${s.id}')" class="p-1 rounded hover:bg-red-950 text-gray-400 hover:text-red-400 transition" title="Delete"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>` : ''}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    function activateServer(id) {
+      onServerSelectChange(id);
+      closeConnectServerModal();
+    }
+
+    function editServer(id) {
+      const s = state.servers.find(srv => srv.id === id);
+      if (!s) return;
+      state.editingServerId = id;
+      document.getElementById('server-form-title').textContent = `Editing: ${s.name}`;
+      document.getElementById('server-form-name').value = s.name;
+      setConnectionMethodTab(s.mode === 'bridge' ? 'sftp' : (s.mode || 'sftp'));
+
+      if (s.mode === 'sftp' || s.mode === 'bridge') {
+        document.getElementById('server-form-sftp-host').value = s.sftp?.host || '';
+        document.getElementById('server-form-sftp-port').value = s.sftp?.port || 2022;
+        document.getElementById('server-form-sftp-user').value = s.sftp?.username || s.sftp?.user || '';
+        document.getElementById('server-form-sftp-pass').value = s.sftp?.password || s.sftp?.pass || '';
+        document.getElementById('server-form-rcon-host').value = s.rcon?.host || '';
+        document.getElementById('server-form-rcon-port').value = s.rcon?.port || 25575;
+        document.getElementById('server-form-rcon-pass').value = s.rcon?.password || '';
+      } else if (s.mode === 'local') {
+        document.getElementById('server-form-folder').value = s.folderPath || '';
+        document.getElementById('server-form-rcon-port').value = s.rcon?.port || 25575;
+        document.getElementById('server-form-rcon-pass').value = s.rcon?.password || '';
+      }
+    }
+
+    function resetServerForm() {
+      state.editingServerId = null;
+      document.getElementById('server-form-title').textContent = 'Add New Server';
+      document.getElementById('server-form-name').value = 'My Survival Server';
+      document.getElementById('server-form-sftp-host').value = '';
+      document.getElementById('server-form-sftp-port').value = '2022';
+      document.getElementById('server-form-sftp-user').value = '';
+      document.getElementById('server-form-sftp-pass').value = '';
+      document.getElementById('server-form-rcon-host').value = '';
+      document.getElementById('server-form-rcon-port').value = '25575';
+      document.getElementById('server-form-rcon-pass').value = '';
+      document.getElementById('server-form-folder').value = '';
+      document.getElementById('server-test-result').classList.add('hidden');
+      setConnectionMethodTab('sftp');
+    }
+
+    function setConnectionMethodTab(method) {
+      if (method === 'bridge') method = 'sftp';
+      state.connectionMethodTab = method;
+      const tabs = ['sftp', 'local', 'sandbox'];
+      tabs.forEach(m => {
+        const btn = document.getElementById(`conn-tab-${m}`);
+        const fields = document.getElementById(`${m}-fields`);
+        if (fields) fields.classList.toggle('hidden', m !== method);
+        if (btn) {
+          if (m === method) {
+            btn.className = 'p-2 rounded-lg border border-emerald-500 bg-emerald-500/10 text-emerald-400 font-semibold text-center transition';
+          } else {
+            btn.className = 'p-2 rounded-lg border border-gray-700 bg-gray-900 text-gray-400 hover:text-gray-200 font-semibold text-center transition';
+          }
+        }
+      });
+      lucide.createIcons();
+    }
+
+    function deleteServer(id) {
+      if (id === 'sandbox') return;
+      if (!confirm('Are you sure you want to remove this server connection?')) return;
+      state.servers = state.servers.filter(s => s.id !== id);
+      if (state.activeServerId === id) state.activeServerId = 'sandbox';
+      localStorage.setItem('vexo_servers', JSON.stringify(state.servers));
+      localStorage.setItem('vexo_active_server_id', state.activeServerId);
+      renderServersDropdown();
+      renderSavedServersList();
+    }
+
+    async function testCurrentServerForm() {
+      const btn = document.getElementById('server-test-btn');
+      const resBox = document.getElementById('server-test-result');
+      btn.disabled = true;
+      btn.innerHTML = 'Testing...';
+      resBox.classList.remove('hidden');
+      resBox.className = 'mt-3 p-3 rounded-lg text-xs font-mono bg-gray-900 border border-gray-700 text-gray-300';
+      resBox.textContent = 'Connecting via SFTP & testing RCON...';
+
+      const payload = buildServerPayloadFromForm();
+      try {
+        const res = await fetch('/api/server/test-connection', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          resBox.className = 'mt-3 p-3 rounded-lg text-xs font-mono bg-emerald-950/60 border border-emerald-500/40 text-emerald-300';
+          const info = data.serverInfo || {};
+          resBox.textContent = `✓ Success! Connected via SFTP in ${data.latencyMs}ms. [${info.version || 'Online'}] | MOTD: ${info.motd || 'Minecraft Server'} | Files Detected: ${info.filesCount || 0} | RCON: ${info.rconStatus || 'OK'}`;
+        } else {
+          resBox.className = 'mt-3 p-3 rounded-lg text-xs font-mono bg-red-950/60 border border-red-500/40 text-red-300';
+          resBox.textContent = `✗ Connection failed: ${data.error}`;
+        }
+      } catch (err) {
+        resBox.className = 'mt-3 p-3 rounded-lg text-xs font-mono bg-red-950/60 border border-red-500/40 text-red-300';
+        resBox.textContent = `✗ Error: ${err.message}`;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i data-lucide="radio" class="w-4 h-4 text-emerald-400"></i><span>Test Ping</span>';
+        lucide.createIcons();
+      }
+    }
+
+    function buildServerPayloadFromForm() {
+      const name = document.getElementById('server-form-name').value.trim() || 'My Server';
+      const mode = state.connectionMethodTab;
+
+      if (mode === 'sandbox') {
+        return { name, mode: 'sandbox' };
+      } else if (mode === 'local') {
+        const folderPath = document.getElementById('server-form-folder').value.trim();
+        const rconPort = parseInt(document.getElementById('server-form-rcon-port')?.value || 25575);
+        const rconPassword = document.getElementById('server-form-rcon-pass')?.value.trim();
+        return {
+          name,
+          mode: 'local',
+          folderPath,
+          rcon: rconPassword ? { host: '127.0.0.1', port: rconPort, password: rconPassword } : null
+        };
+      } else {
+        const sftpHost = document.getElementById('server-form-sftp-host').value.trim();
+        const sftpPort = parseInt(document.getElementById('server-form-sftp-port').value || 2022);
+        const sftpUser = document.getElementById('server-form-sftp-user').value.trim();
+        const sftpPass = document.getElementById('server-form-sftp-pass').value.trim();
+
+        const rconHost = document.getElementById('server-form-rcon-host').value.trim() || sftpHost;
+        const rconPort = parseInt(document.getElementById('server-form-rcon-port').value || 25575);
+        const rconPass = document.getElementById('server-form-rcon-pass').value.trim();
+
+        return {
+          name,
+          mode: 'sftp',
+          sftp: {
+            host: sftpHost,
+            port: sftpPort,
+            username: sftpUser,
+            password: sftpPass
+          },
+          rcon: rconPass ? {
+            host: rconHost,
+            port: rconPort,
+            password: rconPass
+          } : null
+        };
+      }
+    }
+
+    function saveAndConnectServer() {
+      const payload = buildServerPayloadFromForm();
+      const id = state.editingServerId || 'srv_' + Date.now();
+      const serverRecord = { id, ...payload, status: 'ONLINE' };
+
+      const existingIdx = state.servers.findIndex(s => s.id === id);
+      if (existingIdx !== -1) {
+        state.servers[existingIdx] = serverRecord;
+      } else {
+        state.servers.push(serverRecord);
+      }
+
+      state.activeServerId = id;
+      localStorage.setItem('vexo_servers', JSON.stringify(state.servers));
+      localStorage.setItem('vexo_active_server_id', id);
+
+      renderServersDropdown();
+      closeConnectServerModal();
+
+      appendChatMessage('assistant', `🟢 Successfully linked and connected to **${payload.name}**! Telemetry active. Ready to administer.`);
+      pollActiveServerStatus();
+      refreshConsole();
+      refreshFileList();
+      loadFile('server.properties');
+    }
+
+    async function pollActiveServerStatus() {
+      const dot = document.getElementById('status-dot');
+      const text = document.getElementById('status-text');
+      const active = getActiveServer();
+      const config = getActiveServerConfig();
+
+      try {
+        const start = Date.now();
+        const res = await fetch('/api/server/status', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ serverConfig: config })
+        });
+        const latency = Date.now() - start;
+        const data = await res.json();
+
+        if (data.online || data.success) {
+          active.status = 'ONLINE';
+          dot.className = 'w-2 h-2 rounded-full bg-emerald-400 animate-pulse';
+          const tps1m = data.tps ? (data.tps['1m'] || 20.0) : 20.0;
+          const pOnline = data.players ? (data.players.online ?? 0) : 0;
+          const pMax = data.players ? (data.players.max ?? 20) : 20;
+          const mem = data.memory ? `${(data.memory.usedMb / 1024).toFixed(1)}GB` : '1.8GB';
+
+          text.textContent = `ONLINE (${latency}ms) | ${tps1m} TPS | ${pOnline}/${pMax} Players | ${mem} RAM`;
+
+          // Update Profiler tab if visible
+          const elTps = document.getElementById('metric-tps');
+          if (elTps) elTps.textContent = tps1m;
+          const elMspt = document.getElementById('metric-mspt');
+          if (elMspt) elMspt.textContent = `${(50 - (20 - tps1m) * 2.5).toFixed(1)} ms`;
+          const elRam = document.getElementById('metric-ram');
+          if (elRam && data.memory) elRam.textContent = `${(data.memory.usedMb / 1024).toFixed(1)} / ${(data.memory.totalMb / 1024).toFixed(1)} GB`;
+          const elPlayers = document.getElementById('metric-players');
+          if (elPlayers) elPlayers.textContent = `${pOnline} / ${pMax}`;
+        } else {
+          active.status = 'OFFLINE';
+          dot.className = 'w-2 h-2 rounded-full bg-red-500';
+          text.textContent = `OFFLINE | ${active.name} unreachable (Retrying...)`;
+        }
+      } catch (e) {
+        active.status = 'OFFLINE';
+        if (dot) dot.className = 'w-2 h-2 rounded-full bg-red-500';
+        if (text) text.textContent = `OFFLINE | ${active.name} unreachable (Retrying...)`;
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // BYOK SETTINGS & DYNAMIC MODEL IMPORTING
+    // -------------------------------------------------------------------------
+    let byokKeyDebounceTimer = null;
+    function onKeyInputDebounced() {
+      clearTimeout(byokKeyDebounceTimer);
+      byokKeyDebounceTimer = setTimeout(() => {
+        fetchProviderModels(false);
+      }, 500);
+    }
+
+    function toggleCustomModelInput() {
+      const container = document.getElementById('custom-model-container');
+      const btn = document.getElementById('toggle-custom-btn');
+      const isHidden = container.classList.contains('hidden');
+      if (isHidden) {
+        container.classList.remove('hidden');
+        btn.textContent = 'Hide Custom Model ID';
+        document.getElementById('byok-custom-model').focus();
+      } else {
+        container.classList.add('hidden');
+        btn.textContent = 'Enter Custom Model ID';
+      }
+    }
+
+    function onModelSelectChange() {
+      const select = document.getElementById('byok-model');
+      if (select && select.value) {
+        const customInput = document.getElementById('byok-custom-model');
+        if (customInput) customInput.value = '';
+      }
+    }
+
+    function getProviderDisplayName(p) {
+      const map = {
+        gemini: 'Google Gemini',
+        nvidia: 'NVIDIA NIM',
+        openai: 'OpenAI',
+        claude: 'Anthropic Claude',
+        deepseek: 'DeepSeek',
+        groq: 'Groq',
+        ollama: 'Ollama',
+        custom: 'Custom OpenAI-compatible'
+      };
+      return map[p] || (p ? p.toUpperCase() : 'AI');
+    }
+
+    function openByokModal() {
+      document.getElementById('byok-provider').value = state.provider;
+      document.getElementById('byok-key').value = state.apiKey;
+      document.getElementById('byok-base-url').value = state.baseUrl || (state.provider === 'ollama' ? 'http://localhost:11434' : (state.provider === 'nvidia' ? 'https://integrate.api.nvidia.com/v1' : ''));
+      onProviderSelectChange();
+      document.getElementById('byok-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeByokModal() {
+      document.getElementById('byok-modal').classList.add('hidden');
+    }
+
+    function onProviderSelectChange() {
+      const p = document.getElementById('byok-provider').value;
+      const keyContainer = document.getElementById('byok-key-container');
+      const urlContainer = document.getElementById('byok-base-url-container');
+      const urlInput = document.getElementById('byok-base-url');
+      const link = document.getElementById('get-key-link');
+
+      if (p === 'gemini') {
+        link.href = 'https://aistudio.google.com/app/apikey';
+        link.textContent = 'Get free Gemini API Key →';
+        keyContainer.classList.remove('hidden');
+        urlContainer.classList.add('hidden');
+      } else if (p === 'nvidia') {
+        link.href = 'https://build.nvidia.com/';
+        link.textContent = 'Get free NVIDIA NIM Key →';
+        keyContainer.classList.remove('hidden');
+        urlContainer.classList.add('hidden');
+        urlInput.value = 'https://integrate.api.nvidia.com/v1';
+      } else if (p === 'openai') {
+        link.href = 'https://platform.openai.com/api-keys';
+        link.textContent = 'Get OpenAI API Key →';
+        keyContainer.classList.remove('hidden');
+        urlContainer.classList.add('hidden');
+      } else if (p === 'claude') {
+        link.href = 'https://console.anthropic.com/';
+        link.textContent = 'Get Claude API Key →';
+        keyContainer.classList.remove('hidden');
+        urlContainer.classList.add('hidden');
+      } else if (p === 'deepseek') {
+        link.href = 'https://platform.deepseek.com/';
+        link.textContent = 'Get DeepSeek Key →';
+        keyContainer.classList.remove('hidden');
+        urlContainer.classList.add('hidden');
+      } else if (p === 'groq') {
+        link.href = 'https://console.groq.com/keys';
+        link.textContent = 'Get free Groq Key →';
+        keyContainer.classList.remove('hidden');
+        urlContainer.classList.add('hidden');
+      } else if (p === 'ollama') {
+        link.href = 'https://ollama.ai';
+        link.textContent = 'Download Ollama →';
+        keyContainer.classList.add('hidden');
+        urlContainer.classList.remove('hidden');
+        if (!urlInput.value || urlInput.value.includes('nvidia')) urlInput.value = 'http://localhost:11434';
+      } else if (p === 'custom') {
+        link.href = 'https://openrouter.ai/keys';
+        link.textContent = 'Get OpenRouter / Custom Key →';
+        keyContainer.classList.remove('hidden');
+        urlContainer.classList.remove('hidden');
+        if (!urlInput.value || urlInput.value.includes('nvidia') || urlInput.value.includes('11434')) urlInput.value = 'https://openrouter.ai/api/v1';
+      }
+
+      fetchProviderModels(false);
+    }
+
+    async function fetchProviderModels(userInitiated = false) {
+      const provider = document.getElementById('byok-provider').value;
+      const apiKey = document.getElementById('byok-key').value.trim();
+      const baseUrl = document.getElementById('byok-base-url').value.trim();
+      const modelSelect = document.getElementById('byok-model');
+      const statusEl = document.getElementById('model-fetch-status');
+      const fetchBtn = document.getElementById('fetch-models-btn');
+      const fetchText = document.getElementById('fetch-models-text');
+
+      if (provider !== 'ollama' && provider !== 'nvidia' && !apiKey) {
+        modelSelect.innerHTML = `<option value="">-- Enter ${getProviderDisplayName(provider)} API Key to load models --</option>`;
+        if (userInitiated) {
+          statusEl.classList.remove('hidden');
+          statusEl.className = 'text-[11px] text-yellow-400 mt-1 flex items-center space-x-1';
+          statusEl.textContent = '⚠ Please paste your API key above first.';
+        } else {
+          statusEl.classList.add('hidden');
+        }
+        return;
+      }
+
+      statusEl.classList.remove('hidden');
+      statusEl.className = 'text-[11px] text-gray-400 mt-1 flex items-center space-x-1';
+      statusEl.innerHTML = `<span class="inline-block animate-spin mr-1">⟳</span> Fetching live models from ${getProviderDisplayName(provider)}...`;
+      if (fetchBtn) fetchBtn.disabled = true;
+      if (fetchText) fetchText.textContent = 'Importing...';
+
+      try {
+        const res = await fetch('/api/ai/models', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ provider, apiKey, baseUrl })
+        });
+        const data = await res.json();
+
+        if (data.success && data.models && data.models.length > 0) {
+          modelSelect.innerHTML = '';
+          data.models.forEach(m => {
+            const opt = document.createElement('option');
+            opt.value = m.id;
+            opt.textContent = m.name && m.name !== m.id ? `${m.name}` : m.id;
+            modelSelect.appendChild(opt);
+          });
+
+          // Auto-select preferred or saved model
+          let targetModel = state.model;
+          if (!targetModel || !data.models.some(m => m.id === targetModel)) {
+            if (provider === 'nvidia') {
+              const defaultNemotron = data.models.find(m => m.id === 'nvidia/nemotron-3-super-120b-a12b') || data.models.find(m => m.id.includes('nemotron'));
+              targetModel = defaultNemotron ? defaultNemotron.id : data.models[0].id;
+            } else {
+              targetModel = data.models[0].id;
+            }
+          }
+          modelSelect.value = targetModel;
+
+          statusEl.className = 'text-[11px] text-emerald-400 mt-1 flex items-center space-x-1';
+          statusEl.textContent = `✓ Imported ${data.models.length} live models from ${getProviderDisplayName(provider)}`;
+        } else {
+          statusEl.className = 'text-[11px] text-red-400 mt-1 flex items-center space-x-1';
+          statusEl.textContent = `⚠ ${data.error || 'Failed to import models.'} Enter custom model ID below.`;
+        }
+      } catch (err) {
+        statusEl.className = 'text-[11px] text-red-400 mt-1 flex items-center space-x-1';
+        statusEl.textContent = `⚠ Network error (${err.message}). Enter custom model ID below.`;
+      } finally {
+        if (fetchBtn) fetchBtn.disabled = false;
+        if (fetchText) fetchText.textContent = 'Import / Refresh Models';
+        lucide.createIcons();
+      }
+    }
+
+    function toggleKeyVisibility() {
+      const input = document.getElementById('byok-key');
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+
+    function saveByokSettings() {
+      const customModel = document.getElementById('byok-custom-model')?.value.trim();
+      const selectModel = document.getElementById('byok-model')?.value.trim();
+
+      state.provider = document.getElementById('byok-provider').value;
+      state.apiKey = document.getElementById('byok-key').value.trim();
+      state.model = customModel || selectModel;
+      state.baseUrl = document.getElementById('byok-base-url').value.trim();
+
+      localStorage.setItem('vexo_provider', state.provider);
+      localStorage.setItem('vexo_api_key', state.apiKey);
+      localStorage.setItem('vexo_model', state.model);
+      localStorage.setItem('vexo_base_url', state.baseUrl);
+
+      updateByokUI();
+      closeByokModal();
+    }
+
+    function updateByokUI() {
+      const dot = document.getElementById('byok-status-dot');
+      const text = document.getElementById('byok-status-text');
+      const badge = document.getElementById('active-model-badge');
+      const provBadge = document.getElementById('provider-badge');
+
+      if (state.apiKey || state.provider === 'ollama') {
+        dot.className = 'w-2 h-2 rounded-full bg-emerald-400';
+        text.textContent = `${getProviderDisplayName(state.provider)} Connected`;
+      } else {
+        dot.className = 'w-2 h-2 rounded-full bg-yellow-400 animate-pulse';
+        text.textContent = 'Connect API Key';
+      }
+
+      badge.textContent = `⚡ ${state.model || 'No model'}`;
+      provBadge.textContent = state.provider.toUpperCase();
+    }
+
+    async function testApiKey() {
+      const btn = document.getElementById('test-key-btn');
+      const resultBox = document.getElementById('test-key-result');
+      const provider = document.getElementById('byok-provider').value;
+      const apiKey = document.getElementById('byok-key').value.trim();
+      const customModel = document.getElementById('byok-custom-model')?.value.trim();
+      const selectModel = document.getElementById('byok-model')?.value.trim();
+      const model = customModel || selectModel;
+      const baseUrl = document.getElementById('byok-base-url').value.trim();
+
+      btn.disabled = true;
+      btn.innerHTML = 'Testing...';
+      resultBox.classList.remove('hidden');
+      resultBox.className = 'p-3 rounded-lg text-xs font-mono bg-gray-900 border border-gray-700 text-gray-300';
+      resultBox.textContent = `Sending test ping to ${getProviderDisplayName(provider)} with model: ${model || '(default)'}...`;
+
+      try {
+        const res = await fetch('/api/ai/test-key', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ provider, apiKey, model, baseUrl })
+        });
+        const data = await res.json();
+        if (data.success) {
+          resultBox.className = 'p-3 rounded-lg text-xs font-mono bg-emerald-950/60 border border-emerald-500/40 text-emerald-300';
+          resultBox.textContent = `✓ Success! Connected in ${data.latencyMs}ms. Response: ${data.reply}`;
+        } else {
+          resultBox.className = 'p-3 rounded-lg text-xs font-mono bg-red-950/60 border border-red-500/40 text-red-300';
+          resultBox.textContent = `✗ Failed (${data.latencyMs}ms): ${data.error}`;
+        }
+      } catch (err) {
+        resultBox.className = 'p-3 rounded-lg text-xs font-mono bg-red-950/60 border border-red-500/40 text-red-300';
+        resultBox.textContent = `✗ Error: ${err.message}`;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>Test Connection</span>';
+        lucide.createIcons();
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // AI CHAT HANDLER
+    // -------------------------------------------------------------------------
+    async function handleChatSubmit(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+
+      if (!state.apiKey && state.provider !== 'ollama') {
+        openByokModal();
+        return;
+      }
+
+      appendChatMessage('user', text);
+      const loadingId = appendLoadingMessage();
+
+      try {
+        state.chatHistory.push({ role: 'user', content: text });
+
+        const res = await fetch('/api/ai/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            provider: state.provider,
+            apiKey: state.apiKey,
+            model: state.model,
+            baseUrl: state.baseUrl,
+            messages: state.chatHistory,
+            serverConfig: getActiveServerConfig()
+          })
+        });
+
+        const data = await res.json();
+        removeMessage(loadingId);
+
+        if (data.success) {
+          state.chatHistory.push({ role: 'assistant', content: data.text });
+          appendChatMessage('assistant', data.text, data.toolExecutions);
+          refreshConsole();
+          refreshFileList();
+        } else {
+          appendChatMessage('assistant', `⚠️ Error: ${data.error}`);
+        }
+      } catch (err) {
+        removeMessage(loadingId);
+        appendChatMessage('assistant', `⚠️ Connection error: ${err.message}`);
+      }
+    }
+
+    function sendQuickPrompt(promptText) {
+      document.getElementById('chat-input').value = promptText;
+      handleChatSubmit();
+    }
+
+    function appendChatMessage(role, text, toolExecutions) {
+      const container = document.getElementById('chat-messages');
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'flex items-start space-x-3 max-w-3xl';
+
+      const isUser = role === 'user';
+      const avatar = isUser
+        ? '<div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white text-sm shrink-0">👤</div>'
+        : '<div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center font-bold text-black text-sm shrink-0">⛏️</div>';
+
+      let toolsHtml = '';
+      if (toolExecutions && toolExecutions.length > 0) {
+        toolExecutions.forEach(t => {
+          toolsHtml += `
+            <div class="mt-2 p-3 rounded-xl bg-black/60 border border-emerald-500/30 text-xs font-mono space-y-1">
+              <div class="flex items-center space-x-1.5 text-emerald-400 font-bold">
+                <span>⚡ Tool Executed:</span>
+                <span class="text-white">${t.tool}</span>
+              </div>
+              <div class="text-[11px] text-gray-400">Parameters: ${JSON.stringify(t.parameters)}</div>
+              <div class="text-[11px] text-emerald-300">Result: ${JSON.stringify(t.result).substring(0, 150)}...</div>
+            </div>
+          `;
+        });
+      }
+
+      msgDiv.innerHTML = `
+        ${avatar}
+        <div class="bg-gray-900/90 border border-gray-800 rounded-2xl p-4 text-sm text-gray-200 space-y-2 shadow-lg flex-grow">
+          <div class="font-bold text-xs flex items-center space-x-1 ${isUser ? 'text-blue-400' : 'text-emerald-400'}">
+            <span>${isUser ? 'You' : 'Vexo AI'}</span>
+          </div>
+          <div class="whitespace-pre-wrap leading-relaxed">${formatMarkdown(text)}</div>
+          ${toolsHtml}
+        </div>
+      `;
+
+      container.appendChild(msgDiv);
+      container.scrollTop = container.scrollHeight;
+      lucide.createIcons();
+    }
+
+    function appendLoadingMessage() {
+      const container = document.getElementById('chat-messages');
+      const id = 'msg-' + Date.now();
+      const div = document.createElement('div');
+      div.id = id;
+      div.className = 'flex items-start space-x-3 max-w-3xl';
+      div.innerHTML = `
+        <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center font-bold text-black text-sm shrink-0">⛏️</div>
+        <div class="bg-gray-900/90 border border-gray-800 rounded-2xl p-4 text-xs font-mono text-emerald-400 flex items-center space-x-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>Vexo is analyzing server context & executing tools...</span>
+        </div>
+      `;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+      return id;
+    }
+
+    function removeMessage(id) {
+      const el = document.getElementById(id);
+      if (el) el.remove();
+    }
+
+    function formatMarkdown(text) {
+      if (!text) return '';
+      return text
+        .replace(/`([^`]+)`/g, '<code class="px-1.5 py-0.5 rounded bg-gray-800 text-emerald-300 font-mono text-xs">$1</code>')
+        .replace(/\*\*([^*]+)\*\*/g, '<strong class="text-white font-bold">$1</strong>');
+    }
+
+    // -------------------------------------------------------------------------
+    // CONSOLE FUNCTIONS
+    // -------------------------------------------------------------------------
+    async function refreshConsole() {
+      try {
+        const res = await fetch('/api/server/logs', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ serverConfig: getActiveServerConfig() })
+        });
+        const data = await res.json();
+        if (data.lines) {
+          const out = document.getElementById('console-output');
+          out.innerHTML = data.lines.map(l => `<div class="hover:bg-gray-900/50 py-0.5 px-1">${formatLogLine(l)}</div>`).join('');
+          out.scrollTop = out.scrollHeight;
+        }
+      } catch (e) {}
+    }
+
+    function formatLogLine(line) {
+      return line
+        .replace(/INFO/g, '<span class="text-blue-400 font-bold">INFO</span>')
+        .replace(/WARN/g, '<span class="text-yellow-400 font-bold">WARN</span>')
+        .replace(/ERROR|SEVERE/g, '<span class="text-red-400 font-bold">ERROR</span>')
+        .replace(/§a/g, '<span class="text-green-400">')
+        .replace(/§r/g, '</span>');
+    }
+
+    function clearConsole() {
+      document.getElementById('console-output').innerHTML = '';
+    }
+
+    async function dispatchConsoleCommand() {
+      const input = document.getElementById('console-cmd-input');
+      const cmd = input.value.trim();
+      if (!cmd) return;
+      input.value = '';
+
+      try {
+        await fetch('/api/server/command', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ command: cmd, serverConfig: getActiveServerConfig() })
+        });
+        refreshConsole();
+      } catch (e) {}
+    }
+
+    function handleConsoleKey(e) {
+      if (e.key === 'Enter') dispatchConsoleCommand();
+    }
+
+    // -------------------------------------------------------------------------
+    // FILE EXPLORER & EDITOR
+    // -------------------------------------------------------------------------
+    async function refreshFileList() {
+      try {
+        const res = await fetch('/api/server/files/list', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ path: '', serverConfig: getActiveServerConfig() })
+        });
+        const data = await res.json();
+        if (data.files) {
+          const tree = document.getElementById('file-tree');
+          tree.innerHTML = data.files.map(f => `
+            <div onclick="loadFile('${f.name}')" class="p-1.5 rounded hover:bg-gray-800 cursor-pointer flex items-center space-x-2 text-gray-300">
+              <i data-lucide="${f.isDirectory ? 'folder' : 'file-text'}" class="w-3.5 h-3.5 ${f.isDirectory ? 'text-yellow-400' : 'text-gray-400'}"></i>
+              <span>${f.name}</span>
+            </div>
+          `).join('');
+          lucide.createIcons();
+        }
+      } catch (e) {}
+    }
+
+    async function loadFile(filePath) {
+      state.activeFile = filePath;
+      document.getElementById('active-file-path').textContent = filePath;
+      try {
+        const res = await fetch('/api/server/files/read', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ path: filePath, serverConfig: getActiveServerConfig() })
+        });
+        const data = await res.json();
+        document.getElementById('file-editor-content').value = data.content || '';
+      } catch (e) {}
+    }
+
+    async function saveActiveFile() {
+      const content = document.getElementById('file-editor-content').value;
+      try {
+        const res = await fetch('/api/server/files/write', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ path: state.activeFile, content, serverConfig: getActiveServerConfig() })
+        });
+        const data = await res.json();
+        alert(`Saved ${state.activeFile} successfully! Auto-backup created.`);
+      } catch (e) {
+        alert('Failed to save file: ' + e.message);
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // PLUGIN BUILDER INITIALIZATION
+    // -------------------------------------------------------------------------
+    function initBuilderSample() {
+      document.getElementById('builder-source-code').value = `package com.vexo.doublejump;
+
+import org.bukkit.GameMode;
+import org.bukkit.Material;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerToggleFlightEvent;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class DoubleJumpPlugin extends JavaPlugin implements Listener {
+
+    @Override
+    public void onEnable() {
+        getServer().getPluginManager().registerEvents(this, this);
+        getLogger().info("DoubleJump Plugin active!");
+    }
+
+    @EventHandler
+    public void onToggleFlight(PlayerToggleFlightEvent event) {
+        Player player = event.getPlayer();
+        if (player.getGameMode() == GameMode.CREATIVE || player.getGameMode() == GameMode.SPECTATOR) {
+            return;
+        }
+
+        event.setCancelled(true);
+        player.setAllowFlight(false);
+        player.setFlying(false);
+
+        // Double jump velocity
+        player.setVelocity(player.getLocation().getDirection().multiply(1.6).setY(1.0));
+        player.getWorld().spawnParticle(Particle.CLOUD, player.getLocation(), 15, 0.2, 0.2, 0.2, 0.1);
+        player.getWorld().playSound(player.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1.0f, 1.0f);
+    }
+}`;
+
+      document.getElementById('builder-plugin-yml').value = `name: DoubleJump
+version: 1.0.0
+main: com.vexo.doublejump.DoubleJumpPlugin
+api-version: 1.20
+author: Vexo AI
+description: High-performance double jumping plugin generated by Vexo AI`;
+    }
+
+    async function compileCustomPlugin() {
+      const status = document.getElementById('builder-status');
+      status.textContent = 'Compiling Java classes with JDK javac...';
+      status.className = 'text-xs font-mono text-yellow-400';
+
+      const payload = {
+        name: document.getElementById('builder-plugin-name').value.trim(),
+        packageName: document.getElementById('builder-package').value.trim(),
+        mainClass: document.getElementById('builder-main-class').value.trim(),
+        sourceCode: document.getElementById('builder-source-code').value,
+        pluginYml: document.getElementById('builder-plugin-yml').value
+      };
+
+      try {
+        const res = await fetch('/api/builder/compile-plugin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          status.textContent = `✓ Built ${data.jarPath} (${data.sizeBytes} bytes)!`;
+          status.className = 'text-xs font-mono text-emerald-400 font-bold';
+        } else {
+          status.textContent = `✗ Compilation error: ${data.error}`;
+          status.className = 'text-xs font-mono text-red-400';
+        }
+      } catch (err) {
+        status.textContent = `✗ Error: ${err.message}`;
+        status.className = 'text-xs font-mono text-red-400';
+      }
+    }
+    // =========================================================================
+    // VEXO AI - MINECRAFT MULTI-VERSION CATALOG & DOWNLOADER (DESIGN.md)
+    // =========================================================================
+
+    // Complete catalog of Minecraft server releases from classic 1.7.10 up to 26.3 latest
+    const MINECRAFT_VERSIONS_CATALOG = [
+      { version: '26.3', name: 'Minecraft 26.3 (Latest Release)', java: 'Java 21 / 25', tag: 'LATEST STABLE', tagColor: 'emerald', era: '26', date: 'Latest 2026', desc: 'Current latest release. Full bytecode telemetry, async tick hooks & server guardrails.' },
+      { version: '26.2', name: 'Minecraft 26.2', java: 'Java 21', tag: 'STABLE', tagColor: 'emerald', era: '26', date: '2026', desc: 'Game Drop optimizations and network security updates.' },
+      { version: '26.1', name: 'Minecraft 26.1', java: 'Java 21', tag: 'STABLE', tagColor: 'emerald', era: '26', date: '2026', desc: 'Core server improvements & packet compression.' },
+      { version: '26.0', name: 'Minecraft 26.0 (Major Release)', java: 'Java 21', tag: 'MAJOR RELEASE', tagColor: 'cyan', era: '26', date: '2026', desc: '2026 Game Drop ecosystem standard with next-gen entity activation.' },
+      { version: '1.21.4', name: 'Tricky Trials (Winter Release)', java: 'Java 21', tag: 'TRICKY TRIALS LTS', tagColor: 'emerald', era: '1.21', date: 'Jan 2025', desc: 'Full Paperweight API & Tricky Trials entity support.' },
+      { version: '1.21.3', name: 'Tricky Trials Minor', java: 'Java 21', tag: 'STABLE', tagColor: 'emerald', era: '1.21', date: 'Oct 2024', desc: 'Bundle feature flags and network optimizations.' },
+      { version: '1.21.1', name: 'Tricky Trials LTS', java: 'Java 21', tag: 'RECOMMENDED LTS', tagColor: 'cyan', era: '1.21', date: 'Aug 2024', desc: 'Most widely adopted 1.21 build. Zero-overhead async hooks.' },
+      { version: '1.21.0', name: 'Tricky Trials Launch', java: 'Java 21', tag: 'STABLE', tagColor: 'emerald', era: '1.21', date: 'Jun 2024', desc: 'Initial Crafter, Mace, and Trial Chamber support.' },
+      { version: '1.20.6', name: 'Armored Paws', java: 'Java 21', tag: 'STABLE', tagColor: 'emerald', era: '1.20', date: 'Apr 2024', desc: 'Armadillo, Wolf armor & Java 21 LTS migration.' },
+      { version: '1.20.4', name: 'Trails & Tales Update', java: 'Java 17', tag: 'STABLE', tagColor: 'emerald', era: '1.20', date: 'Dec 2023', desc: 'Pottery, Decorated Pots & high-TPS entity fixes.' },
+      { version: '1.20.2', name: 'Trails & Tales Minor', java: 'Java 17', tag: 'STABLE', tagColor: 'emerald', era: '1.20', date: 'Sep 2023', desc: 'Configuration phase network architecture rewrite.' },
+      { version: '1.20.1', name: 'Trails & Tales Major LTS', java: 'Java 17', tag: 'MAJOR ECOSYSTEM LTS', tagColor: 'cyan', era: '1.20', date: 'Jun 2023', desc: 'Universal standard for survival SMPs and modpacks.' },
+      { version: '1.20.0', name: 'Trails & Tales Launch', java: 'Java 17', tag: 'STABLE', tagColor: 'emerald', era: '1.20', date: 'Jun 2023', desc: 'Cherry Grove, Camel, Sniffer & Armor Trims.' },
+      { version: '1.19.4', name: 'The Wild Update Minor', java: 'Java 17', tag: 'STABLE', tagColor: 'emerald', era: '1.19', date: 'Mar 2023', desc: 'Display entities & interaction entity telemetry.' },
+      { version: '1.19.3', name: 'The Wild Update Minor', java: 'Java 17', tag: 'STABLE', tagColor: 'emerald', era: '1.19', date: 'Dec 2022', desc: 'Creative inventory overhaul & chat reports support.' },
+      { version: '1.19.2', name: 'The Wild Major LTS', java: 'Java 17', tag: 'POPULAR LTS', tagColor: 'cyan', era: '1.19', date: 'Aug 2022', desc: 'Deep Dark, Warden, Allay & Mangrove Swamp.' },
+      { version: '1.19.0', name: 'The Wild Launch', java: 'Java 17', tag: 'STABLE', tagColor: 'emerald', era: '1.19', date: 'Jun 2022', desc: 'Sculk sensors, Swift Sneak & Ancient Cities.' },
+      { version: '1.18.2', name: 'Caves & Cliffs Part II LTS', java: 'Java 17', tag: 'POPULAR LTS', tagColor: 'cyan', era: '1.18', date: 'Feb 2022', desc: '384-block world height & custom biome registries.' },
+      { version: '1.18.1', name: 'Caves & Cliffs Part II', java: 'Java 17', tag: 'STABLE', tagColor: 'emerald', era: '1.18', date: 'Dec 2021', desc: 'Massive terrain overhaul & cave generation.' },
+      { version: '1.17.1', name: 'Caves & Cliffs Part I', java: 'Java 16', tag: 'STABLE', tagColor: 'emerald', era: '1.17', date: 'Jul 2021', desc: 'Copper, Axolotls, Deepslate & Java 16 requirement.' },
+      { version: '1.16.5', name: 'Nether Update Legendary LTS', java: 'Java 8 / 11', tag: 'LEGENDARY MOD & PLUGIN LTS', tagColor: 'amber', era: '1.16', date: 'Jan 2021', desc: 'Rock-solid stability for large servers & modpacks.' },
+      { version: '1.16.4', name: 'Nether Update Minor', java: 'Java 8', tag: 'STABLE', tagColor: 'emerald', era: '1.16', date: 'Nov 2020', desc: 'Multiplayer social interactions & netherite gear.' },
+      { version: '1.16.3', name: 'Nether Update Minor', java: 'Java 8', tag: 'STABLE', tagColor: 'emerald', era: '1.16', date: 'Sep 2020', desc: 'Piglins, Piglin Brutes & Hoglin mechanics.' },
+      { version: '1.15.2', name: 'Buzzy Bees LTS', java: 'Java 8', tag: 'BUZZY BEES', tagColor: 'amber', era: 'legacy', date: 'Jan 2020', desc: 'Honey blocks, Bees & major chunk rendering fixes.' },
+      { version: '1.14.4', name: 'Village & Pillage LTS', java: 'Java 8', tag: 'VILLAGE & PILLAGE', tagColor: 'amber', era: 'legacy', date: 'Jul 2019', desc: 'Villager workstations, raids & crossbows.' },
+      { version: '1.13.2', name: 'Update Aquatic LTS', java: 'Java 8', tag: 'UPDATE AQUATIC', tagColor: 'cyan', era: 'legacy', date: 'Oct 2018', desc: 'The Flattening (Numerical ID elimination) milestone.' },
+      { version: '1.12.2', name: 'World of Color Golden Era LTS', java: 'Java 8', tag: 'GOLDEN ERA MODDED LTS', tagColor: 'amber', era: '1.12', date: 'Sep 2017', desc: 'The most popular modded Minecraft version in history.' },
+      { version: '1.11.2', name: 'Exploration Update', java: 'Java 8', tag: 'EXPLORATION', tagColor: 'amber', era: 'legacy', date: 'Dec 2016', desc: 'Totem of Undying, Shulker Boxes & Woodland Mansions.' },
+      { version: '1.10.2', name: 'Frostburn Update', java: 'Java 8', tag: 'FROSTBURN', tagColor: 'cyan', era: 'legacy', date: 'Jun 2016', desc: 'Polar bears, Strays, Husks & Magma blocks.' },
+      { version: '1.9.4', name: 'Combat Update', java: 'Java 8', tag: 'COMBAT UPDATE', tagColor: 'rose', era: 'legacy', date: 'May 2016', desc: 'Dual wielding, Elytra, Shulkers & End cities.' },
+      { version: '1.8.9', name: 'Bountiful Update PvP Standard', java: 'Java 8', tag: 'PVP STANDARD', tagColor: 'rose', era: 'legacy', date: 'Dec 2015', desc: 'Standard 1.8 PvP combat mechanics (No attack cooldown).' },
+      { version: '1.8.8', name: 'PvP Classic Standard', java: 'Java 8', tag: 'PVP CLASSIC', tagColor: 'rose', era: 'legacy', date: 'Jul 2015', desc: 'Legendary Hypixel-compatible 1.8 multiplayer engine.' },
+      { version: '1.7.10', name: 'Legacy Modded Golden Era', java: 'Java 8', tag: 'LEGACY GOLDEN ERA', tagColor: 'amber', era: 'legacy', date: 'Jun 2014', desc: 'Classic Forge 1.7.10 modpacks (Orespawn, Thaumcraft).' }
+    ];
+
+    const PLATFORMS_CONFIG = {
+      paper: {
+        id: 'paper',
+        name: 'Paper / Spigot / Purpur',
+        badge: 'Bukkit / Paper API',
+        icon: '📜',
+        filePrefix: 'vexo-bridge-paper',
+        ext: 'jar',
+        installDir: '/plugins/',
+        desc: 'Native Bukkit & Paperweight API plugin with embedded WebSocket & SFTP sync telemetry.',
+        filter: () => true
+      },
+      fabric: {
+        id: 'fabric',
+        name: 'Fabric Mod',
+        badge: 'Fabric Loader',
+        icon: '🧵',
+        filePrefix: 'vexo-bridge-fabric',
+        ext: 'jar',
+        installDir: '/mods/',
+        desc: 'Dedicated server mod for Fabric. Hooks directly into MinecraftServer lifecycle using Mixin.',
+        filter: (v) => {
+          const parts = v.version.split('.');
+          const major = parseInt(parts[0], 10);
+          const minor = parseInt(parts[1], 10);
+          return major >= 26 || (major === 1 && minor >= 14); // Supports 26.x and 1.14+
+        }
+      },
+      forge: {
+        id: 'forge',
+        name: 'Forge & NeoForge',
+        badge: 'FML / NeoForged',
+        icon: '🔨',
+        filePrefix: 'vexo-bridge-forge',
+        ext: 'jar',
+        installDir: '/mods/',
+        desc: 'Universal mod for Forge & NeoForge modded servers. Intercepts crashes, configs, and commands.',
+        filter: (v) => ['26.3', '26.2', '26.0', '1.21.4', '1.21.1', '1.20.4', '1.20.1', '1.19.4', '1.19.2', '1.18.2', '1.16.5', '1.12.2', '1.7.10'].includes(v.version)
+      },
+      proxy: {
+        id: 'proxy',
+        name: 'Velocity & BungeeCord',
+        badge: 'Network Proxy',
+        icon: '🌐',
+        filePrefix: 'vexo-bridge-proxy',
+        ext: 'jar',
+        installDir: '/plugins/',
+        desc: 'Network proxy bridge for Velocity 3.x and BungeeCord / Waterfall. Multi-server telemetry routing.',
+        customBuilds: [
+          { version: 'Velocity 3.3.x', name: 'Velocity 3.3.x (Latest)', java: 'Java 17 - 21', tag: 'LATEST PROXY', tagColor: 'emerald', era: 'all', date: '2025', desc: 'Modern high-performance Minecraft proxy with modern packet pipeline.' },
+          { version: 'Velocity 3.2.x', name: 'Velocity 3.2.x (Stable)', java: 'Java 17', tag: 'STABLE', tagColor: 'cyan', era: 'all', date: '2024', desc: 'Rock-solid compatibility for cross-server networks.' },
+          { version: 'Velocity 3.1.x', name: 'Velocity 3.1.x (Legacy)', java: 'Java 11 - 17', tag: 'LEGACY', tagColor: 'amber', era: 'all', date: '2023', desc: 'Backward-compatible Velocity builds.' },
+          { version: 'Waterfall Universal', name: 'Waterfall Universal (1.8 - 1.21)', java: 'Java 8 - 21', tag: 'UNIVERSAL', tagColor: 'cyan', era: 'all', date: 'Universal', desc: 'Universal BungeeCord & Waterfall network proxy bridge.' }
+        ]
+      },
+      daemon: {
+        id: 'daemon',
+        name: 'Standalone Daemon & Scripts',
+        badge: 'Zero-Mod Universal',
+        icon: '🐍',
+        filePrefix: 'vexo_daemon',
+        ext: 'py',
+        installDir: 'Server Root (Any OS)',
+        desc: 'Runs outside of Minecraft! Connects to any Vanilla, Bedrock, or panel server via direct SFTP & RCON.',
+        customBuilds: [
+          { version: 'Python 3 Universal', name: 'vexo_daemon.py (Universal Script)', java: 'Python 3.10+', tag: 'ZERO IN-GAME MODS', tagColor: 'emerald', era: 'all', date: 'Universal', desc: 'Works with Vanilla 1.0 - 1.21.4, Bedrock BDS, Paper, Forge, Fabric, or Panels.' },
+          { version: 'Linux Systemd', name: 'vexo-daemon.service (Linux Service)', java: 'Systemd', tag: 'SYSTEMD DAEMON', tagColor: 'cyan', era: 'all', date: 'Production', desc: 'Runs in the background 24/7 on Ubuntu / Debian / CentOS / Arch servers.' },
+          { version: 'Windows PowerShell', name: 'run_daemon.ps1 (Windows Script)', java: 'PowerShell 5.1+', tag: 'WINDOWS NATIVE', tagColor: 'cyan', era: 'all', date: 'Windows', desc: 'One-click launch script for Windows local servers or dedicated hosts.' }
+        ]
+      }
+    };
+
+    let currentModalPlatform = 'paper';
+    let currentVersionEra = 'all';
+    let versionSortOrder = 'asc'; // 'asc' = Oldest to Latest (Most previous -> Latest), 'desc' = Latest to Oldest
+
+    function compareMcVersions(a, b) {
+      const pa = a.split('.').map(n => parseInt(n, 10) || 0);
+      const pb = b.split('.').map(n => parseInt(n, 10) || 0);
+      for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+        const na = pa[i] || 0;
+        const nb = pb[i] || 0;
+        if (na !== nb) return na - nb;
+      }
+      return 0;
+    }
+
+    function openVersionModal(platformKey = 'paper') {
+      currentModalPlatform = platformKey;
+      const modal = document.getElementById('version-selector-modal');
+      if (!modal) return;
+
+      modal.classList.remove('hidden');
+      updateVersionModalTabs();
+      renderVersionGrid();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeVersionModal() {
+      const modal = document.getElementById('version-selector-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function handleVersionModalBackdrop(e) {
+      if (e.target && e.target.id === 'version-selector-modal') {
+        closeVersionModal();
+      }
+    }
+
+    function switchVersionModalPlatform(platformKey) {
+      currentModalPlatform = platformKey;
+      updateVersionModalTabs();
+      renderVersionGrid();
+    }
+
+    function updateVersionModalTabs() {
+      const platforms = ['paper', 'fabric', 'forge', 'proxy', 'daemon'];
+      platforms.forEach(p => {
+        const tabBtn = document.getElementById(`vtab-${p}`);
+        if (!tabBtn) return;
+        if (p === currentModalPlatform) {
+          tabBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold font-mono flex items-center space-x-1.5 transition whitespace-nowrap bg-emerald-500 text-black shadow-lg shadow-emerald-500/20';
+        } else {
+          tabBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold font-mono flex items-center space-x-1.5 transition whitespace-nowrap bg-gray-900 border border-gray-800 text-gray-400 hover:text-white hover:bg-gray-800';
+        }
+      });
+
+      const config = PLATFORMS_CONFIG[currentModalPlatform] || PLATFORMS_CONFIG.paper;
+      const iconEl = document.getElementById('version-modal-icon');
+      const titleEl = document.getElementById('version-modal-title');
+      const badgeEl = document.getElementById('version-modal-platform-badge');
+      const subtitleEl = document.getElementById('version-modal-subtitle');
+      const installDirEl = document.getElementById('modal-install-dir');
+
+      if (iconEl) iconEl.textContent = config.icon;
+      if (titleEl) titleEl.textContent = `Select Version — ${config.name}`;
+      if (badgeEl) badgeEl.textContent = config.badge;
+      if (subtitleEl) subtitleEl.textContent = config.desc;
+      if (installDirEl) installDirEl.textContent = config.installDir;
+    }
+
+    function toggleVersionSortOrder() {
+      versionSortOrder = versionSortOrder === 'asc' ? 'desc' : 'asc';
+      const icon = document.getElementById('version-sort-icon');
+      const label = document.getElementById('version-sort-label');
+      if (versionSortOrder === 'asc') {
+        if (icon) icon.textContent = '🔼';
+        if (label) label.textContent = 'Oldest ➔ Latest';
+      } else {
+        if (icon) icon.textContent = '🔽';
+        if (label) label.textContent = 'Latest ➔ Oldest';
+      }
+      renderVersionGrid();
+    }
+
+    function setVersionEraFilter(era) {
+      currentVersionEra = era;
+      const chips = ['all', '26', '1.21', '1.20', '1.19', '1.18', '1.16', '1.12', 'legacy'];
+      chips.forEach(c => {
+        const btn = document.getElementById(`era-chip-${c}`);
+        if (!btn) return;
+        if (c === era) {
+          btn.className = 'px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-semibold';
+        } else {
+          btn.className = 'px-2.5 py-1 rounded bg-[#080C14] text-gray-400 border border-[#1E293B] hover:text-gray-200';
+        }
+      });
+      renderVersionGrid();
+    }
+
+    function renderVersionGrid() {
+      const container = document.getElementById('version-grid');
+      if (!container) return;
+
+      const config = PLATFORMS_CONFIG[currentModalPlatform] || PLATFORMS_CONFIG.paper;
+      const searchInput = document.getElementById('version-search-input');
+      const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+
+      let list = [];
+      if (config.customBuilds) {
+        list = [...config.customBuilds];
+      } else {
+        list = MINECRAFT_VERSIONS_CATALOG.filter(v => config.filter(v));
+      }
+
+      // Filter by era
+      if (currentVersionEra !== 'all' && !config.customBuilds) {
+        list = list.filter(v => v.era === currentVersionEra);
+      }
+
+      // Filter by search query
+      if (query) {
+        list = list.filter(v => 
+          v.version.toLowerCase().includes(query) ||
+          v.name.toLowerCase().includes(query) ||
+          v.tag.toLowerCase().includes(query) ||
+          (v.desc && v.desc.toLowerCase().includes(query))
+        );
+      }
+
+      // Sort order
+      if (!config.customBuilds) {
+        list.sort((a, b) => {
+          const comp = compareMcVersions(a.version, b.version);
+          return versionSortOrder === 'asc' ? comp : -comp;
+        });
+      }
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-12 text-center text-gray-400 font-mono text-xs">
+            <i data-lucide="alert-circle" class="w-8 h-8 mx-auto text-gray-600 mb-2"></i>
+            <p>No Minecraft releases matching "${query}" found for this platform.</p>
+            <button onclick="document.getElementById('version-search-input').value=''; setVersionEraFilter('all');" class="mt-3 text-emerald-400 hover:underline">Reset Filters</button>
+          </div>
+        `;
+        if (window.lucide) lucide.createIcons();
+        return;
+      }
+
+      let html = '';
+      list.forEach(item => {
+        const cleanVer = item.version.replace(/[^a-zA-Z0-9._-]/g, '_');
+        const filename = `${config.filePrefix}-${cleanVer}.${config.ext}`;
+        
+        let tagBadgeClass = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30';
+        if (item.tagColor === 'cyan') tagBadgeClass = 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30';
+        if (item.tagColor === 'amber') tagBadgeClass = 'bg-amber-500/10 text-amber-400 border-amber-500/30';
+        if (item.tagColor === 'rose') tagBadgeClass = 'bg-rose-500/10 text-rose-400 border-rose-500/30';
+
+        html += `
+          <div class="p-4 rounded-xl bg-[#0B0F19] border border-[#1E293B] hover:border-emerald-500/50 hover:bg-[#0F172A] transition-all flex flex-col justify-between group shadow-md">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center space-x-2">
+                  <span class="text-sm font-bold font-mono text-white group-hover:text-emerald-400 transition">${item.name}</span>
+                </div>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded border ${tagBadgeClass} font-semibold shrink-0">${item.tag}</span>
+              </div>
+              <p class="text-gray-400 text-xs mb-3 leading-relaxed">${item.desc}</p>
+              
+              <div class="space-y-1 text-[11px] font-mono text-gray-400 border-t border-gray-800/80 pt-2.5 mb-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-500">Release:</span>
+                  <span class="text-gray-300 font-semibold">${item.date || 'Standard'}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-500">Runtime:</span>
+                  <span class="text-emerald-400 font-semibold">${item.java}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-500">Binary Target:</span>
+                  <span class="text-gray-300 truncate max-w-[180px]">${filename}</span>
+                </div>
+              </div>
+            </div>
+
+            <button onclick="downloadSpecificVersion('${currentModalPlatform}', '${item.version}')" id="dl-btn-${cleanVer}" class="w-full py-2 px-3 rounded-lg bg-[#0F172A] hover:bg-emerald-500 text-gray-200 hover:text-black border border-gray-700 hover:border-emerald-400 font-bold text-xs flex items-center justify-center space-x-2 transition shadow-sm group/btn">
+              <i data-lucide="download" class="w-3.5 h-3.5 text-emerald-400 group-hover/btn:text-black"></i>
+              <span>Download for ${item.version}</span>
+            </button>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+      if (window.lucide) lucide.createIcons();
+    }
+
+    async function downloadSpecificVersion(platformKey, version) {
+      const config = PLATFORMS_CONFIG[platformKey] || PLATFORMS_CONFIG.paper;
+      const cleanVer = version.replace(/[^a-zA-Z0-9._-]/g, '_');
+      const filename = `${config.filePrefix}-${cleanVer}.${config.ext}`;
+      const baseSourceUrl = `/downloads/${config.filePrefix}.${config.ext}`;
+
+      // Temporary button state
+      const btn = document.getElementById(`dl-btn-${cleanVer}`);
+      if (btn) {
+        btn.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5 text-black"></i><span>Downloaded!</span>`;
+        btn.classList.add('bg-emerald-500', 'text-black', 'border-emerald-400');
+        if (window.lucide) lucide.createIcons({ root: btn });
+        setTimeout(() => {
+          btn.innerHTML = `<i data-lucide="download" class="w-3.5 h-3.5 text-emerald-400 group-hover/btn:text-black"></i><span>Download for ${version}</span>`;
+          btn.classList.remove('bg-emerald-500', 'text-black', 'border-emerald-400');
+          if (window.lucide) lucide.createIcons({ root: btn });
+        }, 2500);
+      }
+
+      showToast(`Started download: ${filename} (${config.name})`, 'success');
+
+      try {
+        const res = await fetch(baseSourceUrl);
+        if (res.ok) {
+          const blob = await res.blob();
+          const blobUrl = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = blobUrl;
+          link.download = filename;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+          return;
+        }
+      } catch (e) {
+        console.warn('Direct blob fetch failed, falling back to direct link:', e);
+      }
+
+      // Fallback
+      const fallbackLink = document.createElement('a');
+      fallbackLink.href = baseSourceUrl;
+      fallbackLink.download = filename;
+      document.body.appendChild(fallbackLink);
+      fallbackLink.click();
+      document.body.removeChild(fallbackLink);
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('vexo-toast-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      const borderColor = type === 'success' ? 'border-emerald-500/60' : type === 'error' ? 'border-rose-500/60' : 'border-cyan-500/60';
+      const textColor = type === 'success' ? 'text-emerald-400' : type === 'error' ? 'text-rose-400' : 'text-cyan-400';
+      const icon = type === 'success' ? 'check-circle' : type === 'error' ? 'alert-triangle' : 'info';
+
+      toast.className = `pointer-events-auto bg-[#0B0F19] border ${borderColor} rounded-xl px-4 py-3 shadow-2xl flex items-center space-x-3 transition-all duration-300 transform translate-y-2 opacity-0 font-sans max-w-sm glow-card`;
+      toast.innerHTML = `
+        <div class="${textColor} shrink-0"><i data-lucide="${icon}" class="w-4 h-4"></i></div>
+        <div class="text-xs text-gray-200 font-mono flex-grow leading-tight">${message}</div>
+      `;
+
+      container.appendChild(toast);
+      if (window.lucide) lucide.createIcons({ root: toast });
+
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
+      });
+
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3800);
+    }
+
+    // Keyboard listener: Escape to close version selector modal
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeVersionModal();
+      }
+    });
+  </script>
+</body>
+</html>

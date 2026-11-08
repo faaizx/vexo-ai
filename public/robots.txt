@@ -1,0 +1,6 @@
+# robots.txt for Vexo AI
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://vexo-ai.vercel.app/sitemap.xml
