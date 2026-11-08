@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0b0f19; }
+::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #374151; }
+
+.glow-emerald { box-shadow: 0 0 35px -8px rgba(16, 185, 129, 0.35); }
+.glow-card { box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7); }
+.grid-bg {
+  background-size: 32px 32px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+.minecraft-badge { text-shadow: 2px 2px 0px rgba(0,0,0,0.8); }
+
+/* Long-form documentation pages */
+@layer components {
+  .doc { @apply text-gray-300 leading-relaxed text-[15px]; }
+  .doc h1 { @apply text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-4; }
+  .doc h2 { @apply text-2xl font-bold text-white mt-12 mb-4 pt-2 scroll-mt-24; }
+  .doc h3 { @apply text-lg font-semibold text-white mt-8 mb-3 scroll-mt-24; }
+  .doc p { @apply my-4; }
+  .doc ul { @apply list-disc pl-6 my-4 space-y-2; }
+  .doc ol { @apply list-decimal pl-6 my-4 space-y-2; }
+  .doc a { @apply text-emerald-400 underline underline-offset-2 hover:text-emerald-300; }
+  .doc strong { @apply text-white font-semibold; }
+  .doc code { @apply font-mono text-[13px] bg-gray-800/80 text-emerald-300 px-1.5 py-0.5 rounded; }
+  .doc pre { @apply font-mono text-[13px] bg-[#06090F] border border-gray-800 rounded-xl p-4 my-5 overflow-x-auto text-gray-200; }
+  .doc pre code { @apply bg-transparent p-0 text-gray-200; }
+  .doc blockquote { @apply border-l-4 border-emerald-500/60 bg-emerald-500/5 pl-4 pr-3 py-2 my-5 rounded-r-lg italic text-gray-200; }
+  .doc table { @apply w-full text-left text-sm my-6 border border-gray-800 rounded-xl overflow-hidden; }
+  .doc th { @apply bg-gray-900 text-white font-semibold px-4 py-2.5 border-b border-gray-800; }
+  .doc td { @apply px-4 py-2.5 border-b border-gray-800/70 align-top; }
+  .doc .lead { @apply text-lg text-gray-300 my-5; }
+  .doc .answer { @apply bg-[#0d1520] border border-emerald-500/30 rounded-xl px-5 py-4 my-6 text-gray-200; }
+}
