@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --vexo-mint: #00FF9D;
+  --vexo-dark: #050505;
+}
+
+html, body {
+  background-color: #050505;
+  color: #F8FAFC;
+  cursor: none; /* Hidden for CustomCursor */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0F19;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00FF9D;
+}
+
+.text-glow-mint {
+  text-shadow: 0 0 25px rgba(0, 255, 157, 0.45), 0 0 50px rgba(0, 255, 157, 0.2);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
